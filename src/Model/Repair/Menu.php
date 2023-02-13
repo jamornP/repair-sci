@@ -7,9 +7,9 @@ use App\Database\DbRepair;
 
 class Menu extends DbRepair
 {
-    public function newMenu($data)
-    {
-        $sql = "
+  public function newMenu($data)
+  {
+    $sql = "
           INSERT INTO tb_menu (     
             m_name, 
             m_link_repair, 
@@ -24,8 +24,20 @@ class Menu extends DbRepair
             :m_table
           )    
       ";
-        $stmt = $this->pdo->prepare($sql);
-        $stmt->execute($data);
-        return $this->pdo->lastInsertId();
-    }
+    $stmt = $this->pdo->prepare($sql);
+    $stmt->execute($data);
+    return $this->pdo->lastInsertId();
+  }
+  public function getAllMenu()
+  {
+    $sql = "
+          SELECT 
+              *
+          FROM
+              tb_menu
+      ";
+    $stmt = $this->pdo->query($sql);
+    $data = $stmt->fetchAll();
+    return $data;
+  }
 }

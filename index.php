@@ -14,8 +14,8 @@
 
 <body class="theme-deep-orange font-kanit">
     <?php require $_SERVER['DOCUMENT_ROOT']."/repair-sci/component/page-loader.php";?>
-    <?php require $_SERVER['DOCUMENT_ROOT']."/repair-sci/component/navbar.php";?>
-    <?php require $_SERVER['DOCUMENT_ROOT']."/repair-sci/component/s-left-right.php";?>
+    <?php //require $_SERVER['DOCUMENT_ROOT']."/repair-sci/component/navbar.php";?>
+    <?php //require $_SERVER['DOCUMENT_ROOT']."/repair-sci/component/s-left-right.php";?>
 
     <section class="content">
         <div class="container-fluid">
