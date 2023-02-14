@@ -1,7 +1,7 @@
 
 <?php  
     session_start(); 
-    if(!($_SESSION['st_status']=="administrator")){
+    if(!($_SESSION['sts_name']=="Administrator")){
         echo "  
             <script type='text/javascript'>
                 setTimeout(function(){location.href='/repair-sci/pages/repair'} , 500);
@@ -24,7 +24,7 @@
 <body class="theme-deep-orange font-kanit">
     <?php require $_SERVER['DOCUMENT_ROOT']."/repair-sci/component/page-loader.php";?>
     <?php require $_SERVER['DOCUMENT_ROOT']."/repair-sci/component/navbar.php";?>
-    <?php //require $_SERVER['DOCUMENT_ROOT']."/repair-sci/component/s-left-right.php";?>
+    <?php require $_SERVER['DOCUMENT_ROOT']."/repair-sci/component/s-left-right.php";?>
 
     <section class="content">
         <div class="container-fluid">
@@ -122,6 +122,7 @@
                                             <tr>
                                                 <th>#</th>
                                                 <th>ชื่อเมนู</th>
+                                                <th>Link แจ้งซ่อม</th>
                                                 <th>Link เจ้าหน้าที่</th>
                                                 <th>Icon เมนู</th>
                                                 <th>Table เมนู</th>
@@ -137,6 +138,7 @@
                                                     <tr>
                                                         <th scope='row'>{$m['m_id']}</th>
                                                         <td>{$m['m_name']}</td>
+                                                        <td>{$m['m_link_repair']}</td>
                                                         <td>{$m['m_link_m_repair']}</td>
                                                         <td><i class='material-icons'>{$m['m_icon']}</i></td>
                                                         <td>{$m['m_table']}</td>

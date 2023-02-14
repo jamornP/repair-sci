@@ -211,11 +211,11 @@ function statusRepair($s){
         
     }
 }
-function go($data){
+function sent($data){
     $code = base64_encode($data);
     return $code;
 }
-function to($data){
+function resive($data){
     $code = base64_decode($data);
     return $code;
 }

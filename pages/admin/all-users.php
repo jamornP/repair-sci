@@ -1,6 +1,6 @@
 <?php  
     session_start();
-    if(!($_SESSION['st_status']=="administrator")){
+    if(!($_SESSION['sts_name']=="Administrator")){
         echo "  
             <script type='text/javascript'>
                 setTimeout(function(){location.href='/repair-sci/pages/repair'} , 500);
@@ -22,63 +22,10 @@
 <body class="theme-deep-orange font-kanit">
     <?php require $_SERVER['DOCUMENT_ROOT']."/repair-sci/component/page-loader.php";?>
     <?php require $_SERVER['DOCUMENT_ROOT']."/repair-sci/component/navbar.php";?>
-    <?php //require $_SERVER['DOCUMENT_ROOT']."/repair-sci/component/s-left-right.php";?>
+    <?php require $_SERVER['DOCUMENT_ROOT']."/repair-sci/component/s-left-right.php";?>
 
     <section class="content">
         <div class="container-fluid">
-            <div class="block-header">
-                <?php //$year_term = yearterm(date('Y-m-d')); ?>
-                <!-- <h2>DASHBOARD<?php //echo $year_term;?></h2> -->
-            </div>
-            <!-- Widgets -->
-            <!-- <div class="row">
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box bg-pink hover-zoom-effect">
-                        <div class="icon">
-                            <i class="material-icons">email</i>
-                        </div>
-                        <div class="content">
-                            <div class="text">MESSAGES</div>
-                            <div class="number">15</div>
-                        </div>
-                    </div>
-
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box bg-blue hover-zoom-effect">
-                        <div class="icon">
-                            <i class="material-icons">devices</i>
-                        </div>
-                        <div class="content">
-                            <div class="text">CPU USAGE</div>
-                            <div class="number">92%</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box bg-light-blue hover-zoom-effect">
-                        <div class="icon">
-                            <i class="material-icons">access_alarm</i>
-                        </div>
-                        <div class="content">
-                            <div class="text">ALARM</div>
-                            <div class="number">07:00 AM</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box bg-cyan hover-zoom-effect">
-                        <div class="icon">
-                            <i class="material-icons">gps_fixed</i>
-                        </div>
-                        <div class="content">
-                            <div class="text">LOCATION</div>
-                            <div class="number">Turkey</div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
-            <!-- Exportable Table -->
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
@@ -110,7 +57,7 @@
                                     <tbody>
                                         <?php
                                            $datast = $usersObj->getAllUsers();
-                                           print_r($datast);
+                                        //    print_r($datast);
                                            $i = 0;
                                            foreach($datast as $data2){
                                                if($data2['password']==""){
@@ -130,7 +77,7 @@
                                                     <td class=''>{$pass}</td>
                                                     <td class=''>{$data2['s_tel']}</td>
                                                     <td class=''> 
-                                                        <a href='/repair-sci/pages/admin/manage.php?id={$data2['s_id']}'>
+                                                        <a href='/repair-sci/pages/admin/manage.php?s_id={$data2['s_id']}'>
                                                             <i class='material-icons fs-19'>settings</i>
                                                         </a>
                                                     </td>
