@@ -37,8 +37,8 @@ foreach($staffMenu as $smenu){
     $nitifi[$d] = $notifiObj->getRowsRepairByTable($d);
     $count1 = $count1 + $nitifi[$d];
 }
-print_r($nitifi);
-echo $count1;
+// print_r($nitifi);
+// echo $count1;
 
 ?> 
     

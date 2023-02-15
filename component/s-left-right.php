@@ -1,5 +1,4 @@
-
-    <section>
+<section>
         <!-- Left Sidebar -->
         <aside id="leftsidebar" class="sidebar font-kanit">
             <!-- User Info -->
@@ -77,20 +76,26 @@
                     </li>
 
                     
-                    <li class="header">MENU ADMIN</li>
+                    
                     <?php
                         $staffMenu = $menuObj->getMenuByStaff($_SESSION['s_id']);
-
-                        foreach($staffMenu as $smenu){
+                        $a = count($staffMenu);
+                        if($a>0){
                             echo "
-                                <li>
-                                    <a href='{$smenu['m_link_m_repair']}'>
-                                        <i class='material-icons'>{$smenu['m_icon']}</i>
-                                        <span>{$smenu['m_name']}</span>
-                                    </a>
-                                </li>
+                            <li class='header'>MENU ADMIN</li>
                             ";
+                            foreach($staffMenu as $smenu){
+                                echo "
+                                    <li>
+                                        <a href='{$smenu['m_link_m_repair']}'>
+                                            <i class='material-icons'>{$smenu['m_icon']}</i>
+                                            <span>{$smenu['m_name']}</span>
+                                        </a>
+                                    </li>
+                                ";
+                            }
                         }
+                        
                         if($_SESSION['sts_name']=='Administrator'){
                             ?>
                             <li class="header">MENU ADMIN</li>
