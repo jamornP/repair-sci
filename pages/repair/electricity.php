@@ -86,6 +86,12 @@
                         <div class="header">
                             <h2>
                                 รายการแจ้งซ่อมทั้งหมด
+                                <?php 
+                                    // $year =$_SESSION['year'];
+                                    // $table = "tb_e_repair";
+                                    // $datar = $repairObj->getAllRepair($year,$table);
+                                    // print_r($datar);
+                                ?>
                             </h2>
                             <div class="header-dropdown m-r--5">
                                 <button type="button" class="btn bg-red waves-effect m-r-20 m-t--10 fs-16 " data-toggle="modal" data-target="#defaultModal">
@@ -113,41 +119,42 @@
                                     </thead>
                                     <tbody>
                                         <?php
-                                        //     $year_term = yearterm(date('Y-m-d'));
-                                        //     $datar = $repairObj->getRepairByYear($year_term);
-                                        // $i = 0;
-                                        // foreach($datar as $data){
-                                        //     $i++;
-                                        //     $date_add = datethai($data['date_add']);
-                                        //     $datefull = datethai_time($data['date_add']);
-                                        //     $s = "";
-                                        //     $dataSt1 = $datastatusObj->getDsByRid($data['r_id']);
-                                        //     // print_r($dataSt1);
-                                        //     $s = btStatus($dataSt1);
-                                        //     // foreach($dataSt1 as $c){
-                                        //     //     $ds['s_id'] = $c['s_id'];
-                                        //     //     $ds['s_name'] = $c['s_name'];
-                                        //     //     $das = statusRepair($ds);
-                                        //     //     $s = $s."".$das['bt'];
                                             
-                                        //     // }
-                                        //     // ----
-                                        //     echo "
-                                        //         <tr>
-                                        //             <th scope='row'>{$i}</th>
-                                        //             <td class='fs-10 text-center'>{$datefull}</td>
-                                        //             <td>{$data['r_remark']}</td>
-                                        //             <td class='fs-12'>{$data['room']}</td>
-                                        //             <td class='fs-12'>{$data['floor']}</td>
-                                        //             <td class='fs-10'>{$data['b_name']}</td>
-                                        //             <td class='fs-12'>{$data['t_name']}</td>
-                                        //             <td class='fs-12'>{$data['n_name']}</td>
-                                        //             <td class='fs-12'>{$data['fullname']}</td>
-                                        //             <td class='fs-12 align-justify'>{$s} {$data['s_name']}</td>
-                                                
-                                        //         </tr>
-                                        //     ";
-                                        // }
+                                            $datar = $repairObj->getAllRepair($_SESSION['year'],"tb_e_repair");
+                                            $r = count($datar);
+                                            if($r>0){
+                                                // print_r($datar);
+                                                $i = 0;
+                                                $dss['s_id'] = ""; 
+                                                $dss['s_name'] = ""; 
+                                                foreach($datar as $data){
+                                                    $i++;
+                                                    $date_add = datethai($data['date_add']);
+                                                    $datefull = datethai_time($data['date_add']);
+                                                    $s = "";
+                                                    $dataSt1 = $comboboxObj->getDataStatusById("tb_e_status",$data['es_id']);
+                                                    $dss['s_id'] = $dataSt1['es_id']; 
+                                                    $dss['s_name'] = $dataSt1['es_name']; 
+                                                    $das = statusRepair($dss);
+                                                    $s = $das['bt'];
+                                                    echo "
+                                                        <tr>
+                                                            <th scope='row'>{$i}</th>
+                                                            <td class='fs-10 text-center'>{$datefull}</td>
+                                                            <td>{$data['er_remark']}</td>
+                                                            <td class='fs-12'>{$data['er_room']}</td>
+                                                            <td class='fs-12'>{$data['er_floor']}</td>
+                                                            <td class='fs-10'>{$data['b_name']}</td>
+                                                            <td class='fs-12'>{$data['et_name']}</td>
+                                                            <td class='fs-12'>{$data['n_name']}</td>
+                                                            <td class='fs-12'>{$data['s_name_TH']}</td>
+                                                            <td class='fs-12 align-justify'>{$s} {$data['es_name']}</td>
+                                                        
+                                                        </tr>
+                                                    ";
+                                                }
+                                            }
+                                            
                                         ?>
                                         
                                         
@@ -160,8 +167,158 @@
             </div>
         </div>
     </section>
-    
+    <!-- defaultModal -->
+    <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="defaultModalLabel">กรอกข้อมูลการแจ้งซ่อม</h4>
+                </div>
+                <form id="add" action="save.php" method="post">
+                    <div class="modal-body">
+                        <div class="row clearfix">
+                            <div class="col-sm-12">
+                                <!-- <p>
+                                    <b>ปีงบประมาณ</b>
+                                </p>
+                                <div class="input-group">
+                                    <div class="form-line"> -->
+                                        <input type="hidden" class="form-control" id="year_term" value="<?php echo $_SESSION['year'];?>" name="year_term" required readonly>
+                                        <input type="hidden" class="form-control" id="form_name" value="electricity" name="form_name" required readonly>
+                                    <!-- </div>
+                                </div>
+                            </div>
+                        </div> -->
+                        <div class="row clearfix">
+                            <div class="col-sm-12">
+                                <p>
+                                    <b>ชื่อ - สกุล</b>
+                                </p>
+                                <div class="input-group">
+                                    <div class="form-line">
+                                        <input type="text" class="form-control" id="fullname" placeholder="" name="" value="<?php echo $_SESSION['s_name_TH'];?>" required readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                       
+                        <div class="row clearfix">
+                            <div class="col-sm-12">
+                                <p>
+                                    <b>เบอร์ติดต่อ</b>
+                                </p>
+                                <div class="input-group">
+                                    <div class="form-line">
+                                        <input type="text" class="form-control" id="tel" placeholder="" name="tel" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row clearfix">
+                            <div class="col-sm-12">
+                                <p>
+                                    <b>ห้อง</b>
+                                </p>
+                                <div class="input-group">
+                                    <div class="form-line">
+                                        <input type="text" class="form-control" id="room" placeholder="" name="room" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row clearfix">
+                            <div class="col-sm-12">
+                                <p>
+                                    <b>ชั้น</b>
+                                </p>
+                                <div class="input-group">
+                                    <div class="form-line">
+                                        <input type="text" class="form-control" id="floor" placeholder="" name="floor" required>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row clearfix">
+                            <div class="col-sm-12">
+                                <p>
+                                    <b>อาคาร</b>
+                                </p>
+                                <select class="form-control show-tick" name="b_id">
+                                    <?php
+                                        $building = $comboboxObj->getBuilding();
+                                        foreach($building as $datab){
+                                            $databc = $datab['b_code']." ".$datab['b_name'];
+                                            echo "
+                                                <option value='{$datab['b_id']}'>{$databc}</option>
+                                            ";
+                                        }
+                                    ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row clearfix">
+                            <div class="col-sm-12">
+                                <p>
+                                    <b>ประเภท</b>
+                                </p>
+                                <select class="form-control show-tick" name="t_id">
+                                    <?php
+                                        $datat = $comboboxObj->getType();
+                                        foreach($datat as $type){
+                                            echo "
+                                                <option value='{$type['et_id']}'>{$type['et_name']}</option>
+                                            ";
+                                        }
+                                    ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row clearfix">
+                            <div class="col-sm-12">
+                                <p>
+                                    <b>ลักษณะงาน</b>
+                                </p>
+                                <select class="form-control show-tick" name="n_id">
+                                    <?php
+                                        $datan = $comboboxObj->getNature();
+                                        foreach($datan as $nature){
+                                            echo "
+                                                <option value='{$nature['n_id']}'>{$nature['n_name']}</option>
+                                            ";
+                                        }
+                                    ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row clearfix">
+                            <div class="col-sm-12">
+                                <p>
+                                    <b>รายละเอียด</b>
+                                </p>
+                                <div class="input-group">
+                                    <div class="form-line">
+                                        <textarea class="form-control" id="r_remark" rows="3" name="r_remark" required></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                        <button type="submit" class="btn btn-primary waves-effect">บันทึก</button>
+                    </div>
+                </form>
+                
+            </div>
+        </div>
+    </div>
     <?php require $_SERVER['DOCUMENT_ROOT']."/repair-sci/component/script-js.php";?>
+    <script>
+    $('#defaultModal').on('shown.bs.modal', function () {
+        $('#tel').focus()
+    });
+    
+    </script>
 </body>
 
 </html>

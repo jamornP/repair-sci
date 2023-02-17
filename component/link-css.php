@@ -57,7 +57,8 @@
     <link href="/repair-sci/css/style-font.css" rel="stylesheet">
 
     <!-- coler -->
-    <link rel="stylesheet" href="/repair-sci/css/style-color.css">
+    <!-- <link rel="stylesheet" href="/repair-sci/css/style-color.css"> -->
 
     <!--  -->
+  
    

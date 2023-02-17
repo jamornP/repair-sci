@@ -9,6 +9,7 @@
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <title>App Science KMITL</title>
     <?php require $_SERVER['DOCUMENT_ROOT']."/repair-sci/component/link-css.php";?>
+   
 </head>
 
 <body class="theme-deep-orange font-kanit">
