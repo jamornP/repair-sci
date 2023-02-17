@@ -20,6 +20,7 @@ class Repair extends DbRepair
                 LEFT JOIN tb_e_status as s ON s.es_id = r.es_id
                 LEFT JOIN tb_nature as n ON n.n_id = r.n_id
                 WHERE r.er_year_term = '".$year."'
+                ORDER BY r.es_id,r.date_add
                 ";
             break;
             case "tb_a_repair":
@@ -31,6 +32,7 @@ class Repair extends DbRepair
                 LEFT JOIN tb_e_status as s ON s.es_id = r.es_id
                 LEFT JOIN tb_nature as n ON n.n_id = r.n_id
                 WHERE r.ar_year_term = '".$year."'
+                ORDER BY r.as_id,r.date_add
                 ";
             break;
             case "tb_c_repair":
@@ -42,6 +44,7 @@ class Repair extends DbRepair
                 LEFT JOIN tb_e_status as s ON s.es_id = r.es_id
                 LEFT JOIN tb_nature as n ON n.n_id = r.n_id
                 WHERE r.cr_year_term = '".$year."'
+                ORDER BY r.cs_id,r.date_add
                 ";
             break;
             case "tb_r_repair":
@@ -53,6 +56,7 @@ class Repair extends DbRepair
                 LEFT JOIN tb_e_status as s ON s.es_id = r.es_id
                 LEFT JOIN tb_nature as n ON n.n_id = r.n_id
                 WHERE r.rr_year_term = '".$year."'
+                ORDER BY r.rs_id,r.date_add
                 ";
             break;
        
@@ -181,6 +185,93 @@ class Repair extends DbRepair
         return $this->pdo->lastInsertId();  
         // return $sql;  
     }
+    public function getRepairById($year,$table,$id) {
+        switch ($table){
+            
+            case "tb_e_repair":
+                $sql = "
+                SELECT r.* ,st.s_name_TH,st.s_images,b.b_name,t.et_name,s.es_name,n.n_name
+                FROM ".$table." as r 
+                LEFT JOIN tb_staff as st ON st.s_id = r.s_id
+                LEFT JOIN tb_building as b ON b.b_id = r.b_id
+                LEFT JOIN tb_e_type as t ON t.et_id = r.et_id
+                LEFT JOIN tb_e_status as s ON s.es_id = r.es_id
+                LEFT JOIN tb_nature as n ON n.n_id = r.n_id
+                WHERE r.er_year_term = '".$year."' AND r.r_id = {$id}
+                ";
+            break;
+            case "tb_a_repair":
+                $sql = "
+                SELECT r.* ,st.s_name_TH,st.s_images,b.b_name,s.es_name,n.en_name
+                FROM ".$table." as r 
+                LEFT JOIN tb_staff as st ON st.s_id = r.s_id
+                LEFT JOIN tb_building as b ON b.b_id = r.b_id
+                LEFT JOIN tb_e_status as s ON s.es_id = r.es_id
+                LEFT JOIN tb_nature as n ON n.n_id = r.n_id
+                WHERE r.ar_year_term = '".$year."' AND r.r_id = {$id}
+                ";
+            break;
+            case "tb_c_repair":
+                $sql = "
+                SELECT r.* ,st.s_name_TH,st.s_images,b.b_name,s.es_name,n.en_name
+                FROM ".$table." as r 
+                LEFT JOIN tb_staff as st ON st.s_id = r.s_id
+                LEFT JOIN tb_building as b ON b.b_id = r.b_id
+                LEFT JOIN tb_e_status as s ON s.es_id = r.es_id
+                LEFT JOIN tb_nature as n ON n.n_id = r.n_id
+                WHERE r.cr_year_term = '".$year."' AND r.r_id = {$id}
+                ";
+            break;
+            case "tb_r_repair":
+                $sql = "
+                SELECT r.* ,st.s_name_TH,st.s_images,b.b_name,s.es_name,n.en_name
+                FROM ".$table." as r 
+                LEFT JOIN tb_staff as st ON st.s_id = r.s_id
+                LEFT JOIN tb_building as b ON b.b_id = r.b_id
+                LEFT JOIN tb_e_status as s ON s.es_id = r.es_id
+                LEFT JOIN tb_nature as n ON n.n_id = r.n_id
+                WHERE r.rr_year_term = '".$year."' AND r.r_id = {$id}
+                ";
+            break;
+       
+        }
+        $stmt = $this->pdo->query($sql);
+        $data = $stmt->fetchAll();
+        // $row = $stmt->rowCount();
+        return  $data[0];
+    }
+    public function updateStatusRepair($data,$table) {
+        switch ($table){
+            
+            case "tb_e_repair":
+                $sql = "
+                    UPDATE {$table}
+                    SET es_id = :es_id
+                    WHERE r_id = :r_id
+                ";
+            break;
+            case "tb_a_repair":
+                $sql = "
+                
+                ";
+            break;
+            case "tb_c_repair":
+                $sql = "
+                
+                ";
+            break;
+            case "tb_r_repair":
+                $sql = "
+               
+                ";
+            break;
+        }
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute($data);
+        return true;  
+    }
+
+    // tb_-_datastatus-------------------------------------------------------------------------------------
     public function addDatastatus($data,$table) {
         switch($table){
             case "tb_e_datastatus" :
@@ -272,6 +363,68 @@ class Repair extends DbRepair
         $stmt = $this->pdo->prepare($sql);
         $stmt->execute($data);
         return $this->pdo->lastInsertId();  
+    }
+    public function getDatastatusByRepair($table,$r_id) {
+        switch($table){
+            case "tb_e_datastatus" :
+                $sql = "
+                    SELECT ds.*,st.s_name_TH,s.es_name 
+                    FROM {$table} as ds
+                    LEFT JOIN tb_staff as st ON st.s_id = ds.s_id
+                    LEFT JOIN tb_e_status as s ON s.es_id = ds.es_id
+                    WHERE ds.r_id ={$r_id}
+                    ORDER BY ds.ds_date
+                ";
+            break;
+            case "tb_a_datastatus" :
+               
+            break;
+            case "tb_c_datastatus" :
+                
+            break;
+            case "tb_r_datastatus" :
+                
+            break;
+            
+        }
+        $stmt = $this->pdo->query($sql);
+        $data = $stmt->fetchAll();
+        // $row = $stmt->rowCount();
+        return  $data; 
+    }
+
+
+    // tb_-_datastatus-------------------------------------------------------------------------------------
+    public function editDatastatus($data,$table) {
+        switch($table){
+            case "tb_e_datastatus" :
+                $sql = "
+                    UPDATE {$table}
+                    SET ds_remark = :ds_remark,
+                    s_id = :s_id
+                    WHERE ds_id =:ds_id
+                ";
+            break;
+            case "tb_a_datastatus" :
+                $sql = "
+                   
+                ";
+            break;
+            case "tb_c_datastatus" :
+                $sql = "
+                    
+                ";
+            break;
+            case "tb_r_datastatus" :
+                $sql = "
+                    
+                ";
+            break;
+            
+        }
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute($data);
+        return true; 
     }
 }
 ?>

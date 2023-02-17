@@ -41,7 +41,19 @@
 <?php
 // print_r($_REQUEST);
 // echo $_REQUEST['form_name'];
-echo "ระบบกำลังดำเนินการ...";
+echo "
+    ระบบกำลังดำเนินการ...
+    <div class='preloader pl-size-xs'>
+        <div class='spinner-layer'>
+            <div class='circle-clipper left'>
+                <div class='circle'></div>
+            </div>
+            <div class='circle-clipper right'>
+                <div class='circle'></div>
+            </div>
+        </div>
+    </div>
+";
 switch ($_REQUEST['form_name']){
     case "electricity" :
         $data['er_year_term']=$_POST['year_term'];

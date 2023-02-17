@@ -37,4 +37,97 @@ class Combobox extends DbRepair
         $data = $stmt->fetchAll();
         return $data[0];
     }
+    public function getDataStatusByRepair($table,$id) {
+        $sql = "SELECT * FROM {$table} WHERE r_id = {$id} ORDER BY ds_num DESC";
+        $stmt = $this->pdo->query($sql);
+        $data = $stmt->fetchAll();
+        return $data[0];
+    }
+    // เลือกสถานะงานซ่อมจากขั้นตอนการดำเนินงาน
+    public function getStatusManage($table,$s_id) {
+        switch($table){
+            case "tb_e_status" :
+                switch ($s_id) {
+                    case "9":
+                        $sql = "SELECT * FROM {$table} WHERE es_id > 4";
+                      break;
+                    case "10":
+                        $sql = "SELECT * FROM {$table} WHERE es_id > 4";
+                      break;
+                    default:
+                        $sql = "SELECT * FROM {$table} WHERE es_id > {$s_id}";
+                }
+            break;
+            case "tb_a_status" :
+                switch ($s_id) {
+                    case "9":
+                        $sql = "SELECT * FROM {$table} WHERE as_id > 4";
+                      break;
+                    case "10":
+                        $sql = "SELECT * FROM {$table} WHERE as_id > 4";
+                      break;
+                    default:
+                        $sql = "SELECT * FROM {$table} WHERE as_id > ".$s_id;
+                }
+            break;
+            case "tb_c_status" :
+                switch ($s_id) {
+                    case "1":
+                        $sql = "SELECT * FROM {$table} WHERE cs_id > 1";
+                        break;
+                    case "5":
+                        $sql = "SELECT * FROM {$table} WHERE cs_id > 1";
+                        break;
+                    case "6":
+                        $sql = "SELECT * FROM {$table} WHERE cs_id > 1";
+                        break;
+                    case "7":
+                        $sql = "SELECT * FROM {$table} WHERE cs_id > 1";
+                      break;
+                    case "3":
+                        $sql = "SELECT * FROM {$table} WHERE cs_id = 3";
+                      break;
+                    case "4":
+                        $sql = "SELECT * FROM {$table} WHERE cs_id > 5";
+                      break;
+                    case "8":
+                        $sql = "SELECT * FROM {$table} WHERE cs_id = 8";
+                      break;
+                    default:
+                        $sql = "SELECT * FROM {$table} WHERE cs_id > ".$s_id;
+                }
+            break;
+            case "tb_r_status" :
+                switch ($s_id) {
+                    case "1":
+                        $sql = "SELECT * FROM {$table} WHERE cs_id > 1";
+                        break;
+                    case "5":
+                        $sql = "SELECT * FROM {$table} WHERE cs_id > 1";
+                        break;
+                    case "6":
+                        $sql = "SELECT * FROM {$table} WHERE cs_id > 1";
+                        break;
+                    case "7":
+                        $sql = "SELECT * FROM {$table} WHERE rs_id > 1";
+                      break;
+                    case "3":
+                        $sql = "SELECT * FROM {$table} WHERE rs_id = 3";
+                      break;
+                    case "4":
+                        $sql = "SELECT * FROM {$table} WHERE rs_id > 5";
+                      break;
+                    case "8":
+                        $sql = "SELECT * FROM {$table} WHERE rs_id = 8";
+                      break;
+                    default:
+                        $sql = "SELECT * FROM {$table} WHERE rs_id > ".$s_id;
+                }
+            break;
+            
+        }
+        $stmt = $this->pdo->query($sql);
+        $data = $stmt->fetchAll();
+        return $data;
+    }
 }
