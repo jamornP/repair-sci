@@ -16,7 +16,14 @@
     <?php require $_SERVER['DOCUMENT_ROOT']."/repair-sci/component/page-loader.php";?>
     <?php require $_SERVER['DOCUMENT_ROOT']."/repair-sci/component/navbar.php";?>
     <?php require $_SERVER['DOCUMENT_ROOT']."/repair-sci/component/s-left-right.php";?>
-
+    <?php
+        $all = $notifiObj->countAll($_SESSION['year'],"tb_c_repair");
+        $danger = $notifiObj->countNoSuccess($_SESSION['year'],"tb_c_repair");
+        $success = $notifiObj->countStatus($_SESSION['year'],"tb_c_repair",3);
+        $wait = $notifiObj->countStatus($_SESSION['year'],"tb_c_repair",7);
+        $company = $notifiObj->countStatus($_SESSION['year'],"tb_c_repair",6);
+        // $success = 200;
+    ?>
     <section class="content">
         <div class="container-fluid">
             <div class="block-header">
@@ -26,77 +33,389 @@
             <!-- Widgets -->
             <div class="row">
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box bg-pink hover-zoom-effect">
+                    <div class="info-box bg-teal hover-expand-effect">
                         <div class="icon">
-                            <i class="material-icons">email</i>
+                            <i class="material-icons">done</i>
                         </div>
                         <div class="content">
-                            <div class="text">MESSAGES</div>
-                            <div class="number">15</div>
+                            <div class="text fs-18">งานที่เรียบร้อย</div>
+                            <div class="number count-to" data-from="0" data-to="<?php echo $success;?>" data-speed="1000" data-fresh-interval="20"></div>
                         </div>
                     </div>
-
                 </div>
+                
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box bg-blue hover-zoom-effect">
+                    <div class="info-box bg-pink hover-expand-effect">
                         <div class="icon">
                             <i class="material-icons">devices</i>
                         </div>
                         <div class="content">
-                            <div class="text">CPU USAGE</div>
-                            <div class="number">92%</div>
+                            <div class="text fs-18">งานค้าง</div>
+                            <div class="number count-to" data-from="0" data-to="<?php echo $danger;?>" data-speed="1000" data-fresh-interval="20"></div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box bg-light-blue hover-zoom-effect">
+                    <div class="info-box bg-grey hover-expand-effect">
                         <div class="icon">
-                            <i class="material-icons">access_alarm</i>
+                            <i class="material-icons">schedule</i>
                         </div>
                         <div class="content">
-                            <div class="text">ALARM</div>
-                            <div class="number">07:00 AM</div>
+                            <div class="text fs-18">งานรออะไหล่</div>
+                            <div class="number count-to" data-from="0" data-to="<?php echo $wait;?>" data-speed="1000" data-fresh-interval="20"></div>
                         </div>
                     </div>
                 </div>
                 <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box bg-cyan hover-zoom-effect">
+                    <div class="info-box bg-blue-grey hover-expand-effect">
                         <div class="icon">
-                            <i class="material-icons">gps_fixed</i>
+                            <i class="material-icons">monetization_on</i>
                         </div>
                         <div class="content">
-                            <div class="text">LOCATION</div>
-                            <div class="number">Turkey</div>
+                            <div class="text fs-18">ส่งบริษัท</div>
+                            <div class="number count-to" data-from="0" data-to="<?php echo $company;?>" data-speed="1000" data-fresh-interval="20"></div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+            <?php
+                if(isset($_GET['id'])){
+                    $r_id =resive($_GET['id']);
+                    $dataid = $repairObj->getRepairById($_SESSION['year'],"tb_c_repair",$r_id);
+                    ?>
+        <!-- กรณีมีการส่งค่า id มา-->
+            <!-- Show data -->
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                                ใบงานที่ <?php echo $r_id;?>
+                            </h2>
+                            <div class="header-dropdown m-r--5">
+                            </div>
+                        </div>
+                        <div class="body table-responsive">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th width="2%" scope="col">#</th>
+                                        <th width="6%" scope="col">วันที่แจ้ง</th>
+                                        <th width="34%" scope="col">รายละเอียด</th>
+                                        <th width="8%" scope="col">ห้อง</th>
+                                        <th width="3%" scope="col">ชั้น</th>
+                                        <th width="12%" scope="col">อาคาร</th>
+                                        <th width="8%" scope="col">ลักษณะงาน</th>
+                                        <th width="10%" scope="col">ผู้แจ้ง</th>
+                                        <th width="15%" scope="col">สถานะ</th>
+                                        </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+                                        
+                                        // print_r($dataid);
+                                        $date_add = datethai($dataid['date_add']);
+                                        $datefull = datethai_time($dataid['date_add']);
+                                        $s = "";
+                                        $dataSt1 = $comboboxObj->getDataStatusById("tb_c_status",$dataid['cs_id']);
+                                        $dss['s_id'] = $dataSt1['cs_id']; 
+                                        $dss['s_name'] = $dataSt1['cs_name']; 
+                                        $das = statusIT($dss);
+                                        $s = $das['bt'];
+                                        $r_idl = sent($dataid['r_id']);
+                                        echo "
+                                            <tr>
+                                                <th scope='row'>{$r_id}</th>
+                                                <td class='fs-10 text-center'>{$datefull}</td>
+                                                <td>{$dataid['cr_remark']}</td>
+                                                <td class='fs-12'>{$dataid['cr_room']}</td>
+                                                <td class='fs-12'>{$dataid['cr_floor']}</td>
+                                                <td class='fs-10'>{$dataid['b_name']}</td>
+                                                <td class='fs-12'>{$dataid['n_name']}</td>
+                                                <td class='fs-12'>{$dataid['s_name_TH']}</td>
+                                                <td class='fs-12 align-justify'>{$s} {$dataid['cs_name']}</td>
+                                            </tr>
+                                        ";
+                                    
+                                    ?>
+                                    
+                                </tbody>
+                            </table>
+
                         </div>
                     </div>
                 </div>
             </div>
-            
+            <!-- ขั้นตอนการดำเนินการ -->
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                                ขั้นตอนการดำเนินงาน
+                            </h2>
+                            <div class="header-dropdown m-r--5">
+                            
+                            <button type="button" class="btn bg-red waves-effect m-r-20 m-t--10 fs-16 " data-toggle="modal" data-target="#defaultModal"><i class="material-icons">add_circle_outline</i>
+                                    <span>เพิ่ม</span></span></button>
+                            </div>
+                        </div>
+                        <div class="body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th width="2%" scope="col">#</th>
+                                            <th width="6%" scope="col">วันที่</th>
+                                            <th width="50%" scope="col">รายละเอียด</th>
+                                            <th width="" scope="col">ระยะเวลา</th>
+                                            <th width="10%" scope="col">สถานะ</th>
+                                            <th width="" scope="col">ผู้บันทึก</th>
+                                            <th width="" scope="col"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                            $dataSt = $repairObj->getDatastatusByRepair("tb_c_datastatus",$r_id);
+                                            // print_r($dataSt);
+                                            foreach($dataSt as $row){
+                                                $date = datethai_time($row['ds_date']);
+                                                $ds2['s_id'] = $row['cs_id'];
+                                                $ds2['s_name'] = $row['cs_name'];
+                                                $das2 = statusIT($ds2);
+                                                ?>
+                                                    <tr>
+                                                        <th scope='row'><?php echo $row['ds_num'];?></th>
+                                                        <td class='fs-10 text-center'><?php echo $date;?></td>
+                                                        <td><?php echo $row['ds_remark'];?></td>
+                                                        <td class=''><?php echo $row['ds_count_time'];?></td>
+                                                        <td class=''><?php echo $das2['bt'];?> <?php echo $row['cs_name'];?></td>
+                                                        <td class=''><i class='material-icons btn btn-xs'>person</i> <?php echo $row['s_name_TH'];?></td>
+                                                        <td class=' align-justify'>
+                                                            <button class="btn btn-xs btn-warning" onclick="myFunction(<?php echo $row['ds_id'];?>,'<?php echo $row['ds_remark'];?>')"><i class="material-icons fs-12">settings</i></button>
+                                                        </td>
+                                                    </tr>
+                                                <?php
+                                            }
+                                        ?>
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <!--  -->
+                    <?php
+                }else{
+                    ?>
+        <!-- กรณีไม่มีการส่งค่า id มา -->
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header">
                             <h2>
                                 รายการแจ้งซ่อมทั้งหมด
+                                <?php 
+                                    // $year =$_SESSION['year'];
+                                    // $table = "tb_e_repair";
+                                    // $datar = $repairObj->getAllRepair($year,$table);
+                                    // print_r($datar);
+                                ?>
                             </h2>
                             <div class="header-dropdown m-r--5">
-                            
-                            <button type="button" class="btn bg-red waves-effect m-r-20 m-t--10 fs-16 " data-toggle="modal" data-target="#defaultModal"><i class="material-icons">add_circle_outline</i>
-                                    <span>แจ้งซ่อม</span></button>
-                                <!-- <a href="" class="btn btn-danger fs-16 text-white" >
-                                    <i class="material-icons text-white">call</i> แจ้งซ่อม
-                                </a> -->
+                               
                             </div>
                         </div>
                         <div class="body">
+                        <div class="table table-responsive">
+                                <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                    <thead>
+                                        <tr>
+                                            <th width="2%" scope="col">#</th>
+                                            <th width="6%" scope="col">วันที่แจ้ง</th>
+                                            <th width="" scope="col">รายละเอียด</th>
+                                            <th width="8%" scope="col">ห้อง</th>
+                                            <th width="3%" scope="col">ชั้น</th>
+                                            <th width="12%" scope="col">อาคาร</th>
+                                            <th width="8%" scope="col">ลักษณะงาน</th>
+                                            <th width="10%" scope="col">ผู้แจ้ง</th>
+                                            <th width="10%" scope="col">สถานะ</th>
+                                            <th width="3" scope="col"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                            
+                                            $datar = $repairObj->getAllRepair($_SESSION['year'],"tb_c_repair");
+                                            $r = count($datar);
+                                            if($r>0){
+                                                // print_r($datar);
+                                                $i = 0;
+                                                $dss['s_id'] = ""; 
+                                                $dss['s_name'] = ""; 
+                                                foreach($datar as $data){
+                                                    $i++;
+                                                    $date_add = datethai($data['date_add']);
+                                                    $datefull = datethai_time($data['date_add']);
+                                                    $s = "";
+                                                    $dataSt1 = $comboboxObj->getDataStatusById("tb_c_status",$data['cs_id']);
+                                                    $dss['s_id'] = $dataSt1['cs_id']; 
+                                                    $dss['s_name'] = $dataSt1['cs_name']; 
+                                                    $das = statusIT($dss);
+                                                    $s = $das['bt'];
+                                                    $r_idl = sent($data['r_id']);
+                                                    echo "
+                                                        <tr>
+                                                            <th scope='row'>{$i}</th>
+                                                            <td class='fs-10 text-center'>{$datefull}</td>
+                                                            <td>{$data['cr_remark']}</td>
+                                                            <td class='fs-12'>{$data['cr_room']}</td>
+                                                            <td class='fs-12'>{$data['cr_floor']}</td>
+                                                            <td class='fs-10'>{$data['b_name']}</td>
+                                                            <td class='fs-12'>{$data['n_name']}</td>
+                                                            <td class='fs-12'>{$data['s_name_TH']}</td>
+                                                            <td class='fs-12 align-justify'>{$s} {$data['cs_name']}</td>
+                                                            <td class=' align-justify'>
+                                                                <a href='/repair-sci/pages/manage/c_repair.php?id={$r_idl}'>
+                                                                    <i class='material-icons'>settings</i>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    ";
+                                                }
+                                            }
+                                            
+                                        ?>
+                                        
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            <!--  -->
+            <?php
+                }
+            ?>
         </div>
     </section>
-    
+   <!-- modal เพิ่มการดำเนินการ -->
+   <?php
+        if(isset($_GET['id'])){
+            $r_id =resive($_GET['id']);
+            $dataid = $repairObj->getRepairById($_SESSION['year'],"tb_c_repair",$r_id);
+            ?>
+            <!-- defaultModal -->
+            <div class="modal fade" id="defaultModal" tabindex="-1" role="dialog">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" id="defaultModalLabel">ข้อมูลการดำเนินงาน สถานะแจ้งซ่อม <?php echo $dataid['cs_id'];?></h4>
+                        </div>
+                        <form id="add" action="m_save.php" method="post">
+                            <div class="modal-body">
+                                <div class="row clearfix">
+                                    <div class="col-sm-12">
+                                        <p>
+                                            <b>สถานะการดำเนินงาน</b> 
+                                        </p>
+                                        <select class="form-control show-tick" name="s_id">
+                                            <?php
+                                                $datast2 = $comboboxObj->getStatusManage("tb_c_status",$dataid['cs_id']);
+                                                foreach($datast2 as $st){
+                                                    echo "
+                                                        <option value='{$st['cs_id']}'>{$st['cs_name']}</option>
+                                                    ";
+                                                }
+                                            ?>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="row clearfix">
+                                    <div class="col-sm-12">
+                                        <p>
+                                            <b>รายละเอียด</b>
+                                        </p>
+                                        <div class="input-group">
+                                            <div class="form-line">
+                                                <textarea class="form-control" id="ds_remark" rows="3" name="ds_remark" ></textarea>
+                                                <input type="hidden" class="form-control" id="r_id" value="<?php echo $r_id;?>" name="r_id" required readonly>
+                                                <input type="hidden" class="form-control" id="table" value="tb_c_datastatus" name="table" required readonly>
+                                                <input type="hidden" class="form-control" id="action" value="add" name="action" required readonly>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                                <button type="submit" class="btn btn-primary waves-effect" >บันทึก</button>
+                            </div>
+                        </form>
+                        
+                    </div>
+                </div>
+            </div>
+            <?php
+        }
+    ?>
+    <!-- modal แก้ไขรายละเอียดขั้นตอนการดำเนินงาน -->
+    <div class="modal fade" id="editModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="editModalLabel">ข้อมูลการดำเนินงาน แก้ไข </h4>
+                </div>
+                <form id="add" action="m_save.php" method="post">
+                    <div class="modal-body">
+                        <div class="row clearfix">
+                            <div class="col-sm-12">
+                                <p>
+                                    <b>รายละเอียด</b>
+                                </p>
+                                <div class="input-group">
+                                    <div class="form-line">
+                                        <textarea class="form-control" id="cds_remark" rows="3" name="ds_remark" ></textarea>
+                                        <input type="hidden" class="form-control" id="st_id" value="<?php echo $_SESSION['s_id'];?>" name="s_id" required readonly>
+                                        <input type="hidden" class="form-control" id="r_id" value="<?php echo resive($_GET['id']);?>" name="r_id" required readonly>
+                                        <input type="hidden" class="form-control" id="ds_id"  name="ds_id" required readonly>
+                                        <input type="hidden" class="form-control" id="table" value="tb_c_datastatus" name="table" required readonly>
+                                        <input type="hidden" class="form-control" id="action" value="edit" name="action" required readonly>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-link waves-effect" data-dismiss="modal">CLOSE</button>
+                        <button type="submit" class="btn btn-primary waves-effect" >บันทึก</button>
+                    </div>
+                </form>
+                
+            </div>
+        </div>
+    </div>
     <?php require $_SERVER['DOCUMENT_ROOT']."/repair-sci/component/script-js.php";?>
+    <script>
+        $('#defaultModal').on('shown.bs.modal', function () {
+            $('#ds_remark').focus();
+        });
+    </script>
+    <script>
+        function myFunction(id,re) {
+            $('#editModal').modal('show');
+            // document.getElementById("demo").style.color = "red";
+            var ds =  document.getElementById("ds_id");
+            var remark = document.getElementById("cds_remark");
+            ds.value = id;
+            remark.value = re;
+        }
+    </script>
 </body>
 
 </html>

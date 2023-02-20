@@ -97,12 +97,106 @@
                     }
                 break;
                 case "tb_a_datastatus":
-
+                    $data['r_id']=$_POST['r_id'];
+                    $data['as_id']=$_POST['s_id'];
+                    $data['ds_remark']=$_POST['ds_remark'];
+                    $data['ds_num']=$num['ds_num']+1;
+                    $data['ds_date']=date("Y-m-d H:i:s");
+                    $data['ds_count_time']=time_dif_TH($num['ds_date'],$data['ds_date']);
+                    $data['s_id']=$_SESSION['s_id'];
+                    // print_r($data);
+                    $datau['r_id']=$_POST['r_id'];
+                    $datau['as_id']=$_POST['s_id'];
+                    // print_r($datau);
+                    $ck = $repairObj->addDatastatus($data,$table);
+                    $r_idl = sent($_POST['r_id']);
+                    if($ck){
+                        $cku = $repairObj->updateStatusRepair($datau,"tb_a_repair");
+                        if($cku){
+                            $mes="บันทึกข้อมูลเรียบร้อย";
+                            echo "
+                                <div data-notify='container' class='bootstrap-notify-container alert alert-dismissible alert-success p-r-35 animated rotateInUpRight' role='alert' data-notify-position='top-right' style='display: inline-block; margin: 0px auto; position: fixed; transition: all 0.5s ease-in-out 0s; z-index: 1031; top: 20px; right: 20px;'>
+                                    <button type='button' aria-hidden='true' class='close' data-notify='dismiss' style='position: absolute; right: 10px; top: 5px; z-index: 1033;'>×</button>
+                                    <span data-notify='icon'></span> 
+                                    <span data-notify='title'></span> 
+                                    <span data-notify='message'>{$mes}</span>
+                                    <a href='#' target='_blank' data-notify='url'></a>
+                                </div>";
+                            echo "  
+                                <script type='text/javascript'>
+                                    setTimeout(function(){location.href='/repair-sci/pages/manage/a_repair.php?id={$r_idl}'} , 1000);
+                                </script>
+                            ";
+                        }
+                    }
                 break;
                 case "tb_c_datastatus":
-
+                    $data['r_id']=$_POST['r_id'];
+                    $data['cs_id']=$_POST['s_id'];
+                    $data['ds_remark']=$_POST['ds_remark'];
+                    $data['ds_num']=$num['ds_num']+1;
+                    $data['ds_date']=date("Y-m-d H:i:s");
+                    $data['ds_count_time']=time_dif_TH($num['ds_date'],$data['ds_date']);
+                    $data['s_id']=$_SESSION['s_id'];
+                    // print_r($data);
+                    $datau['r_id']=$_POST['r_id'];
+                    $datau['cs_id']=$_POST['s_id'];
+                    // print_r($datau);
+                    $ck = $repairObj->addDatastatus($data,$table);
+                    $r_idl = sent($_POST['r_id']);
+                    if($ck){
+                        $cku = $repairObj->updateStatusRepair($datau,"tb_c_repair");
+                        if($cku){
+                            $mes="บันทึกข้อมูลเรียบร้อย";
+                            echo "
+                                <div data-notify='container' class='bootstrap-notify-container alert alert-dismissible alert-success p-r-35 animated rotateInUpRight' role='alert' data-notify-position='top-right' style='display: inline-block; margin: 0px auto; position: fixed; transition: all 0.5s ease-in-out 0s; z-index: 1031; top: 20px; right: 20px;'>
+                                    <button type='button' aria-hidden='true' class='close' data-notify='dismiss' style='position: absolute; right: 10px; top: 5px; z-index: 1033;'>×</button>
+                                    <span data-notify='icon'></span> 
+                                    <span data-notify='title'></span> 
+                                    <span data-notify='message'>{$mes}</span>
+                                    <a href='#' target='_blank' data-notify='url'></a>
+                                </div>";
+                            echo "  
+                                <script type='text/javascript'>
+                                    setTimeout(function(){location.href='/repair-sci/pages/manage/c_repair.php?id={$r_idl}'} , 1000);
+                                </script>
+                            ";
+                        }
+                    }
                 break;
                 case "tb_r_datastatus":
+                    $data['r_id']=$_POST['r_id'];
+                    $data['rs_id']=$_POST['s_id'];
+                    $data['ds_remark']=$_POST['ds_remark'];
+                    $data['ds_num']=$num['ds_num']+1;
+                    $data['ds_date']=date("Y-m-d H:i:s");
+                    $data['ds_count_time']=time_dif_TH($num['ds_date'],$data['ds_date']);
+                    $data['s_id']=$_SESSION['s_id'];
+                    // print_r($data);
+                    $datau['r_id']=$_POST['r_id'];
+                    $datau['rs_id']=$_POST['s_id'];
+                    // print_r($datau);
+                    $ck = $repairObj->addDatastatus($data,$table);
+                    $r_idl = sent($_POST['r_id']);
+                    if($ck){
+                        $cku = $repairObj->updateStatusRepair($datau,"tb_r_repair");
+                        if($cku){
+                            $mes="บันทึกข้อมูลเรียบร้อย";
+                            echo "
+                                <div data-notify='container' class='bootstrap-notify-container alert alert-dismissible alert-success p-r-35 animated rotateInUpRight' role='alert' data-notify-position='top-right' style='display: inline-block; margin: 0px auto; position: fixed; transition: all 0.5s ease-in-out 0s; z-index: 1031; top: 20px; right: 20px;'>
+                                    <button type='button' aria-hidden='true' class='close' data-notify='dismiss' style='position: absolute; right: 10px; top: 5px; z-index: 1033;'>×</button>
+                                    <span data-notify='icon'></span> 
+                                    <span data-notify='title'></span> 
+                                    <span data-notify='message'>{$mes}</span>
+                                    <a href='#' target='_blank' data-notify='url'></a>
+                                </div>";
+                            echo "  
+                                <script type='text/javascript'>
+                                    setTimeout(function(){location.href='/repair-sci/pages/manage/r_repair.php?id={$r_idl}'} , 1000);
+                                </script>
+                            ";
+                        }
+                    }
 
                 break;
             }
@@ -138,13 +232,79 @@
                     }
                 break;
                 case "tb_a_datastatus":
-
+                        // $data['r_id']=$_POST['r_id'];
+                        $data['ds_id']=$_POST['ds_id'];
+                        $data['ds_remark']=$_POST['ds_remark'];
+                        $data['s_id']=$_SESSION['s_id'];
+                        // print_r($data);
+                        $ck = $repairObj->editDatastatus($data,$table);
+                        $r_idl = sent($_POST['r_id']);
+                        if($ck){
+                            $mes="แก้ไขข้อมูลเรียบร้อย";
+                            echo "
+                                <div data-notify='container' class='bootstrap-notify-container alert alert-dismissible alert-success p-r-35 animated rotateInUpRight' role='alert' data-notify-position='top-right' style='display: inline-block; margin: 0px auto; position: fixed; transition: all 0.5s ease-in-out 0s; z-index: 1031; top: 20px; right: 20px;'>
+                                    <button type='button' aria-hidden='true' class='close' data-notify='dismiss' style='position: absolute; right: 10px; top: 5px; z-index: 1033;'>×</button>
+                                    <span data-notify='icon'></span> 
+                                    <span data-notify='title'></span> 
+                                    <span data-notify='message'>{$mes}</span>
+                                    <a href='#' target='_blank' data-notify='url'></a>
+                                </div>";
+                            echo "  
+                                <script type='text/javascript'>
+                                    setTimeout(function(){location.href='/repair-sci/pages/manage/a_repair.php?id={$r_idl}'} , 1000);
+                                </script>
+                            ";
+                        }
                 break;
                 case "tb_c_datastatus":
-
+                        // $data['r_id']=$_POST['r_id'];
+                        $data['ds_id']=$_POST['ds_id'];
+                        $data['ds_remark']=$_POST['ds_remark'];
+                        $data['s_id']=$_SESSION['s_id'];
+                        // print_r($data);
+                        $ck = $repairObj->editDatastatus($data,$table);
+                        $r_idl = sent($_POST['r_id']);
+                        if($ck){
+                            $mes="แก้ไขข้อมูลเรียบร้อย";
+                            echo "
+                                <div data-notify='container' class='bootstrap-notify-container alert alert-dismissible alert-success p-r-35 animated rotateInUpRight' role='alert' data-notify-position='top-right' style='display: inline-block; margin: 0px auto; position: fixed; transition: all 0.5s ease-in-out 0s; z-index: 1031; top: 20px; right: 20px;'>
+                                    <button type='button' aria-hidden='true' class='close' data-notify='dismiss' style='position: absolute; right: 10px; top: 5px; z-index: 1033;'>×</button>
+                                    <span data-notify='icon'></span> 
+                                    <span data-notify='title'></span> 
+                                    <span data-notify='message'>{$mes}</span>
+                                    <a href='#' target='_blank' data-notify='url'></a>
+                                </div>";
+                            echo "  
+                                <script type='text/javascript'>
+                                    setTimeout(function(){location.href='/repair-sci/pages/manage/c_repair.php?id={$r_idl}'} , 1000);
+                                </script>
+                            ";
+                        }
                 break;
                 case "tb_r_datastatus":
-
+                          // $data['r_id']=$_POST['r_id'];
+                          $data['ds_id']=$_POST['ds_id'];
+                          $data['ds_remark']=$_POST['ds_remark'];
+                          $data['s_id']=$_SESSION['s_id'];
+                          // print_r($data);
+                          $ck = $repairObj->editDatastatus($data,$table);
+                          $r_idl = sent($_POST['r_id']);
+                          if($ck){
+                              $mes="แก้ไขข้อมูลเรียบร้อย";
+                              echo "
+                                  <div data-notify='container' class='bootstrap-notify-container alert alert-dismissible alert-success p-r-35 animated rotateInUpRight' role='alert' data-notify-position='top-right' style='display: inline-block; margin: 0px auto; position: fixed; transition: all 0.5s ease-in-out 0s; z-index: 1031; top: 20px; right: 20px;'>
+                                      <button type='button' aria-hidden='true' class='close' data-notify='dismiss' style='position: absolute; right: 10px; top: 5px; z-index: 1033;'>×</button>
+                                      <span data-notify='icon'></span> 
+                                      <span data-notify='title'></span> 
+                                      <span data-notify='message'>{$mes}</span>
+                                      <a href='#' target='_blank' data-notify='url'></a>
+                                  </div>";
+                              echo "  
+                                  <script type='text/javascript'>
+                                      setTimeout(function(){location.href='/repair-sci/pages/manage/r_repair.php?id={$r_idl}'} , 1000);
+                                  </script>
+                              ";
+                          }
                 break;
             }
         }

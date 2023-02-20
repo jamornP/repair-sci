@@ -211,6 +211,68 @@ function statusRepair($s){
         
     }
 }
+function statusIT($s){
+    
+    switch ($s['s_id']) {
+        
+        case "1":
+            // แจ้ง
+            $da['color']="bg-orange";
+            $da['bt']="<button type='button' class='btn btn-xs {$da['color']} waves-effect mb-2'><i class='material-icons fs-12' data-toggle='tooltip' data-placement='top' title='{$s['s_name']}'>call</i></button>";
+            return $da;
+            break;
+        case "2":
+            // รับเรื่อง
+            $da['color']="bg-cyan";
+            $da['bt']="<button type='button' class='btn btn-xs {$da['color']} waves-effect mb-2'><i class='material-icons fs-12' data-toggle='tooltip' data-placement='top' title='{$s['s_name']}'>save</i></button>";
+            return $da;
+            break;
+        case "3":
+            // ดำเนินการซ่อม
+            $da['color']="bg-indigo";
+            $da['bt']="<button type='button' class='btn btn-xs {$da['color']} waves-effect mb-2'><i class='material-icons fs-12' data-toggle='tooltip' data-placement='top' title='{$s['s_name']}'>build</i></button>";
+            return $da;
+            break;
+        case "4":
+            // ซ่อมไม่ได้
+            $da['color']="bg-deep-orange";
+            $da['bt']="<button type='button' class='btn btn-xs {$da['color']} waves-effect mb-2'><i class='material-icons fs-12' data-toggle='tooltip' data-placement='top' title='{$s['s_name']}'>warning</i></button>";
+            return $da;
+            break;
+        case "5":
+            // รอดำเนินการครั้งถัดไป
+            $da['color']="bg-light-green";
+            $da['bt']="<button type='button' class='btn btn-xs {$da['color']} waves-effect mb-2'><i class='material-icons fs-12 ' data-toggle='tooltip' data-placement='top' title='{$s['s_name']}'>camera_alt</i></button>";
+            return $da;
+            break;
+        case "8":
+            // เรียบร้อย
+            $da['color']="bg-teal";
+            $da['bt']="<button type='button' class='btn btn-xs {$da['color']} waves-effect mb-2'><i class='material-icons fs-12' data-toggle='tooltip' data-placement='top' title='{$s['s_name']}'>done</i></button>";
+            return $da;
+            break;
+        case "7":
+            // รออะไหล่
+            $da['color']="bg-grey";
+            $da['bt']="<button type='button' class='btn btn-xs {$da['color']} waves-effect mb-2'><i class='material-icons fs-12' data-toggle='tooltip' data-placement='top' title='{$s['s_name']}'>schedule</i></button>";
+            return $da;
+            break;
+        case "6":
+            // ส่งบริษัท
+            $da['color']="bg-blue-grey";
+            $da['bt']="<button type='button' class='btn btn-xs {$da['color']} waves-effect mb-2'><i class='material-icons fs-12' data-toggle='tooltip' data-placement='top' title='{$s['s_name']}'>monetization_on</i></button>";
+            return $da;
+            break;
+        case "9":
+            // ไม่ซ่อม
+            $da['color']="bg-deep-orange";
+            $da['bt']="<button type='button' class='btn btn-xs {$da['color']} waves-effect mb-2'><i class='material-icons fs-12' data-toggle='tooltip' data-placement='top' title='{$s['s_name']}'>highlight_off</i></button>";
+            return $da;
+            break;
+        default:
+            
+        }
+}
 function sent($data){
     $code = base64_encode($data);
     return $code;
@@ -225,6 +287,17 @@ function btStatus($data){
         $ds['s_id'] = $c['s_id'];
         $ds['s_name'] = $c['s_name'];
         $das = statusRepair($ds);
+        $s = $s."".$das['bt'];
+    
+    }
+    return $s;
+}
+function btStatusIT($data){
+    $s="";
+    foreach($data as $c){
+        $ds['s_id'] = $c['s_id'];
+        $ds['s_name'] = $c['s_name'];
+        $das = statusIT($ds);
         $s = $s."".$das['bt'];
     
     }

@@ -27,7 +27,7 @@
     <section class="content">
         <div class="container-fluid">
             <div class="block-header">
-                <h2>แจ้งซ่อมไฟฟ้าและปะปรา</h2>
+                <h2>แจ้งซ่อมไฟฟ้าและประปา</h2>
             </div>
 
             <!-- Widgets -->

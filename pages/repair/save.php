@@ -96,6 +96,126 @@ switch ($_REQUEST['form_name']){
             ";
         }
         break;
+    case "air" :
+        $data['ar_year_term']=$_POST['year_term'];
+        $data['date_add']=date("Y-m-d H:i:s");
+        $data['s_id']=$_SESSION['s_id'];
+        $data['ar_tel']=$_POST['tel'];
+        $data['ar_room']=$_POST['room'];
+        $data['ar_floor']=$_POST['floor'];
+        $data['b_id']=$_POST['b_id'];
+        $data['ar_remark']=$_POST['r_remark'];
+        $data['as_id']=1;
+        $data['n_id']=$_POST['n_id'];
+        // print_r($data);
+        $r_id = $repairObj->addRepair($data,"tb_a_repair");
+        // echo $r_id;
+        $dataStatus['r_id']=$r_id;
+        $dataStatus['as_id']=1;
+        $dataStatus['ds_remark']="แจ้งซ่อม";
+        $dataStatus['ds_num']=1;
+        $dataStatus['ds_date']=date("Y-m-d H:i:s");
+        $dataStatus['ds_count_time']="เริ่มจับเวลา";
+        $dataStatus['s_id']=$_SESSION['s_id'];
+        // print_r($dataStatus);
+        $ck = $repairObj->addDatastatus($dataStatus,"tb_a_datastatus");
+        if($ck){
+            $mes="บันทึกข้อมูลเรียบร้อย";
+            echo "
+                <div data-notify='container' class='bootstrap-notify-container alert alert-dismissible alert-success p-r-35 animated rotateInUpRight' role='alert' data-notify-position='top-right' style='display: inline-block; margin: 0px auto; position: fixed; transition: all 0.5s ease-in-out 0s; z-index: 1031; top: 20px; right: 20px;'>
+                    <button type='button' aria-hidden='true' class='close' data-notify='dismiss' style='position: absolute; right: 10px; top: 5px; z-index: 1033;'>×</button>
+                    <span data-notify='icon'></span> 
+                    <span data-notify='title'></span> 
+                    <span data-notify='message'>{$mes}</span>
+                    <a href='#' target='_blank' data-notify='url'></a>
+                </div>";
+            echo "  
+                <script type='text/javascript'>
+                    setTimeout(function(){location.href='/repair-sci/pages/repair/air.php'} , 1000);
+                </script>
+            ";
+        }
+        break;
+    case "computer" :
+        $data['cr_year_term']=$_POST['year_term'];
+        $data['date_add']=date("Y-m-d H:i:s");
+        $data['s_id']=$_SESSION['s_id'];
+        $data['cr_tel']=$_POST['tel'];
+        $data['cr_room']=$_POST['room'];
+        $data['cr_floor']=$_POST['floor'];
+        $data['b_id']=$_POST['b_id'];
+        $data['cr_remark']=$_POST['r_remark'];
+        $data['cs_id']=1;
+        $data['n_id']=$_POST['n_id'];
+        // print_r($data);
+        $r_id = $repairObj->addRepair($data,"tb_c_repair");
+        // echo $r_id;
+        $dataStatus['r_id']=$r_id;
+        $dataStatus['cs_id']=1;
+        $dataStatus['ds_remark']="แจ้งซ่อม";
+        $dataStatus['ds_num']=1;
+        $dataStatus['ds_date']=date("Y-m-d H:i:s");
+        $dataStatus['ds_count_time']="เริ่มจับเวลา";
+        $dataStatus['s_id']=$_SESSION['s_id'];
+        // print_r($dataStatus);
+        $ck = $repairObj->addDatastatus($dataStatus,"tb_c_datastatus");
+        if($ck){
+            $mes="บันทึกข้อมูลเรียบร้อย";
+            echo "
+                <div data-notify='container' class='bootstrap-notify-container alert alert-dismissible alert-success p-r-35 animated rotateInUpRight' role='alert' data-notify-position='top-right' style='display: inline-block; margin: 0px auto; position: fixed; transition: all 0.5s ease-in-out 0s; z-index: 1031; top: 20px; right: 20px;'>
+                    <button type='button' aria-hidden='true' class='close' data-notify='dismiss' style='position: absolute; right: 10px; top: 5px; z-index: 1033;'>×</button>
+                    <span data-notify='icon'></span> 
+                    <span data-notify='title'></span> 
+                    <span data-notify='message'>{$mes}</span>
+                    <a href='#' target='_blank' data-notify='url'></a>
+                </div>";
+            echo "  
+                <script type='text/javascript'>
+                    setTimeout(function(){location.href='/repair-sci/pages/repair/computer.php'} , 1000);
+                </script>
+            ";
+        }
+        break;
+    case "room" :
+        $data['rr_year_term']=$_POST['year_term'];
+        $data['date_add']=date("Y-m-d H:i:s");
+        $data['s_id']=$_SESSION['s_id'];
+        $data['rr_tel']=$_POST['tel'];
+        $data['rr_room']=$_POST['room'];
+        $data['rr_floor']=$_POST['floor'];
+        $data['b_id']=$_POST['b_id'];
+        $data['rr_remark']=$_POST['r_remark'];
+        $data['rs_id']=1;
+        $data['n_id']=$_POST['n_id'];
+        // print_r($data);
+        $r_id = $repairObj->addRepair($data,"tb_r_repair");
+        // echo $r_id;
+        $dataStatus['r_id']=$r_id;
+        $dataStatus['rs_id']=1;
+        $dataStatus['ds_remark']="แจ้งซ่อม";
+        $dataStatus['ds_num']=1;
+        $dataStatus['ds_date']=date("Y-m-d H:i:s");
+        $dataStatus['ds_count_time']="เริ่มจับเวลา";
+        $dataStatus['s_id']=$_SESSION['s_id'];
+        // print_r($dataStatus);
+        $ck = $repairObj->addDatastatus($dataStatus,"tb_r_datastatus");
+        if($ck){
+            $mes="บันทึกข้อมูลเรียบร้อย";
+            echo "
+                <div data-notify='container' class='bootstrap-notify-container alert alert-dismissible alert-success p-r-35 animated rotateInUpRight' role='alert' data-notify-position='top-right' style='display: inline-block; margin: 0px auto; position: fixed; transition: all 0.5s ease-in-out 0s; z-index: 1031; top: 20px; right: 20px;'>
+                    <button type='button' aria-hidden='true' class='close' data-notify='dismiss' style='position: absolute; right: 10px; top: 5px; z-index: 1033;'>×</button>
+                    <span data-notify='icon'></span> 
+                    <span data-notify='title'></span> 
+                    <span data-notify='message'>{$mes}</span>
+                    <a href='#' target='_blank' data-notify='url'></a>
+                </div>";
+            echo "  
+                <script type='text/javascript'>
+                    setTimeout(function(){location.href='/repair-sci/pages/repair/room.php'} , 1000);
+                </script>
+            ";
+        }
+        break;
 }
 
 ?>

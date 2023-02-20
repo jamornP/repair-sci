@@ -32,7 +32,20 @@ class Combobox extends DbRepair
         return $data;
     }
     public function getDataStatusById($table,$id) {
-        $sql = "SELECT * FROM {$table} WHERE es_id = {$id}";
+        switch ($table){
+            case "tb_e_status":
+                $sql = "SELECT * FROM {$table} WHERE es_id = {$id}";
+            break;
+            case "tb_a_status":
+                $sql = "SELECT * FROM {$table} WHERE as_id = {$id}";
+            break;
+            case "tb_c_status":
+                $sql = "SELECT * FROM {$table} WHERE cs_id = {$id}";
+            break;
+            case "tb_r_status":
+                $sql = "SELECT * FROM {$table} WHERE rs_id = {$id}";
+            break;
+        }
         $stmt = $this->pdo->query($sql);
         $data = $stmt->fetchAll();
         return $data[0];
@@ -100,13 +113,13 @@ class Combobox extends DbRepair
             case "tb_r_status" :
                 switch ($s_id) {
                     case "1":
-                        $sql = "SELECT * FROM {$table} WHERE cs_id > 1";
+                        $sql = "SELECT * FROM {$table} WHERE rs_id > 1";
                         break;
                     case "5":
-                        $sql = "SELECT * FROM {$table} WHERE cs_id > 1";
+                        $sql = "SELECT * FROM {$table} WHERE rs_id > 1";
                         break;
                     case "6":
-                        $sql = "SELECT * FROM {$table} WHERE cs_id > 1";
+                        $sql = "SELECT * FROM {$table} WHERE rs_id > 1";
                         break;
                     case "7":
                         $sql = "SELECT * FROM {$table} WHERE rs_id > 1";
