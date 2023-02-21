@@ -13,6 +13,12 @@ class Combobox extends DbRepair
         $data = $stmt->fetchAll();
         return $data;
     }
+    public function getBuildingById($id) {
+        $sql = "SELECT * FROM tb_building WHERE b_id={$id}";
+        $stmt = $this->pdo->query($sql);
+        $data = $stmt->fetchAll();
+        return $data[0];
+    }
     public function getType() {
         $sql = "SELECT * FROM tb_e_type";
         $stmt = $this->pdo->query($sql);
@@ -86,55 +92,55 @@ class Combobox extends DbRepair
             case "tb_c_status" :
                 switch ($s_id) {
                     case "1":
-                        $sql = "SELECT * FROM {$table} WHERE cs_id > 1";
+                        $sql = "SELECT * FROM {$table} WHERE cs_id > {$s_id}";
                         break;
-                    case "5":
-                        $sql = "SELECT * FROM {$table} WHERE cs_id > 1";
+                    case "2":
+                        $sql = "SELECT * FROM {$table} WHERE cs_id > {$s_id}";
                         break;
-                    case "6":
-                        $sql = "SELECT * FROM {$table} WHERE cs_id > 1";
-                        break;
-                    case "7":
-                        $sql = "SELECT * FROM {$table} WHERE cs_id > 1";
-                      break;
                     case "3":
-                        $sql = "SELECT * FROM {$table} WHERE cs_id = 3";
-                      break;
+                        $sql = "SELECT * FROM {$table} WHERE cs_id > {$s_id}";
+                        break;
                     case "4":
                         $sql = "SELECT * FROM {$table} WHERE cs_id > 5";
                       break;
-                    case "8":
-                        $sql = "SELECT * FROM {$table} WHERE cs_id = 8";
+                    case "5":
+                        $sql = "SELECT * FROM {$table} WHERE cs_id > 2";
+                      break;
+                    case "6":
+                        $sql = "SELECT * FROM {$table} WHERE cs_id > 2";
+                      break;
+                    case "7":
+                        $sql = "SELECT * FROM {$table} WHERE cs_id > 2";
                       break;
                     default:
-                        $sql = "SELECT * FROM {$table} WHERE cs_id > ".$s_id;
+                        $sql = "SELECT * FROM {$table} WHERE cs_id = ".$s_id;
                 }
             break;
             case "tb_r_status" :
                 switch ($s_id) {
                     case "1":
-                        $sql = "SELECT * FROM {$table} WHERE rs_id > 1";
+                        $sql = "SELECT * FROM {$table} WHERE rs_id > {$s_id}";
                         break;
-                    case "5":
-                        $sql = "SELECT * FROM {$table} WHERE rs_id > 1";
+                    case "2":
+                        $sql = "SELECT * FROM {$table} WHERE rs_id > {$s_id}";
                         break;
-                    case "6":
-                        $sql = "SELECT * FROM {$table} WHERE rs_id > 1";
-                        break;
-                    case "7":
-                        $sql = "SELECT * FROM {$table} WHERE rs_id > 1";
-                      break;
                     case "3":
-                        $sql = "SELECT * FROM {$table} WHERE rs_id = 3";
-                      break;
+                        $sql = "SELECT * FROM {$table} WHERE rs_id > {$s_id}";
+                        break;
                     case "4":
                         $sql = "SELECT * FROM {$table} WHERE rs_id > 5";
                       break;
-                    case "8":
-                        $sql = "SELECT * FROM {$table} WHERE rs_id = 8";
+                    case "5":
+                        $sql = "SELECT * FROM {$table} WHERE rs_id > 2";
+                      break;
+                    case "6":
+                        $sql = "SELECT * FROM {$table} WHERE rs_id > 2";
+                      break;
+                    case "7":
+                        $sql = "SELECT * FROM {$table} WHERE rs_id > 2";
                       break;
                     default:
-                        $sql = "SELECT * FROM {$table} WHERE rs_id > ".$s_id;
+                        $sql = "SELECT * FROM {$table} WHERE rs_id = ".$s_id;
                 }
             break;
             

@@ -96,10 +96,10 @@ class Notifi extends DbRepair
                 $sql ="SELECT * FROM ".$table."  WHERE ar_year_term = '".$year."' AND as_id < 8";
             break;
             case "tb_c_repair":
-                $sql ="SELECT * FROM ".$table."  WHERE cr_year_term = '".$year."' AND cs_id <> 3";
+                $sql ="SELECT * FROM ".$table."  WHERE cr_year_term = '".$year."' AND (cs_id < 8 AND cs_id <> 6)";
             break;
             case "tb_r_repair":
-                $sql ="SELECT * FROM ".$table."  WHERE rr_year_term = '".$year."' AND rs_id <> 3";
+                $sql ="SELECT * FROM ".$table."  WHERE rr_year_term = '".$year."' AND (rs_id < 8 AND rs_id <> 6)";
             break;
         }
         $stmt = $this->pdo->query($sql);

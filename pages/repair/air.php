@@ -194,7 +194,7 @@
                                 </p>
                                 <div class="input-group">
                                     <div class="form-line">
-                                        <input type="text" class="form-control" id="fullname" placeholder="" name="" value="<?php echo $_SESSION['s_name_TH'];?>" required readonly>
+                                        <input type="text" class="form-control" id="fullname" placeholder="" name="name_TH" value="<?php echo $_SESSION['s_name_TH'];?>" required readonly>
                                     </div>
                                 </div>
                             </div>

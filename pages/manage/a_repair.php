@@ -32,52 +32,58 @@
 
             <!-- Widgets -->
             <div class="row">
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box bg-teal hover-expand-effect">
-                        <div class="icon">
-                            <i class="material-icons">done</i>
-                        </div>
-                        <div class="content">
-                            <div class="text fs-18">งานที่เรียบร้อย</div>
-                            <div class="number count-to" data-from="0" data-to="<?php echo $success;?>" data-speed="1000" data-fresh-interval="20"></div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box bg-pink hover-expand-effect">
-                        <div class="icon">
-                            <i class="material-icons">devices</i>
-                        </div>
-                        <div class="content">
-                            <div class="text fs-18">งานค้าง</div>
-                            <div class="number count-to" data-from="0" data-to="<?php echo $danger;?>" data-speed="1000" data-fresh-interval="20"></div>
+                <a href="/repair-sci/pages/manage/a_repair.php?c=งานที่เรียบร้อย">    
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="info-box bg-teal hover-expand-effect">
+                            <div class="icon">
+                                <i class="material-icons">done</i>
+                            </div>
+                            <div class="content">
+                                <div class="text fs-18">งานที่เรียบร้อย</div>
+                                <div class="number count-to" data-from="0" data-to="<?php echo $success;?>" data-speed="1000" data-fresh-interval="20"></div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box bg-grey hover-expand-effect">
-                        <div class="icon">
-                            <i class="material-icons">schedule</i>
-                        </div>
-                        <div class="content">
-                            <div class="text fs-18">งานรออะไหล่</div>
-                            <div class="number count-to" data-from="0" data-to="<?php echo $wait;?>" data-speed="1000" data-fresh-interval="20"></div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                    <div class="info-box bg-blue-grey hover-expand-effect">
-                        <div class="icon">
-                            <i class="material-icons">monetization_on</i>
-                        </div>
-                        <div class="content">
-                            <div class="text fs-18">งานจ้างเหมา</div>
-                            <div class="number count-to" data-from="0" data-to="<?php echo $company;?>" data-speed="1000" data-fresh-interval="20"></div>
+                </a>
+                <a href="/repair-sci/pages/manage/a_repair.php?c=งานค้าง">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="info-box bg-pink hover-expand-effect">
+                            <div class="icon">
+                                <i class="material-icons">devices</i>
+                            </div>
+                            <div class="content">
+                                <div class="text fs-18">งานค้าง</div>
+                                <div class="number count-to" data-from="0" data-to="<?php echo $danger;?>" data-speed="1000" data-fresh-interval="20"></div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                
+                </a>
+                <a href="/repair-sci/pages/manage/a_repair.php?c=งานรออะไหล่">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="info-box bg-grey hover-expand-effect">
+                            <div class="icon">
+                                <i class="material-icons">schedule</i>
+                            </div>
+                            <div class="content">
+                                <div class="text fs-18">งานรออะไหล่</div>
+                                <div class="number count-to" data-from="0" data-to="<?php echo $wait;?>" data-speed="1000" data-fresh-interval="20"></div>
+                            </div>
+                        </div>
+                    </div>
+                </a>    
+                <a href="/repair-sci/pages/manage/a_repair.php?c=งานจ้างเหมา">
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <div class="info-box bg-blue-grey hover-expand-effect">
+                            <div class="icon">
+                                <i class="material-icons">monetization_on</i>
+                            </div>
+                            <div class="content">
+                                <div class="text fs-18">งานจ้างเหมา</div>
+                                <div class="number count-to" data-from="0" data-to="<?php echo $company;?>" data-speed="1000" data-fresh-interval="20"></div>
+                            </div>
+                        </div>
+                    </div>
+                </a>
             </div>
             <?php
                 if(isset($_GET['id'])){
@@ -212,6 +218,115 @@
                 }else{
                     ?>
         <!-- กรณีไม่มีการส่งค่า id มา -->
+            <!-- มีการส่ง สถานะของรายการมา -->
+            <?php
+                    if(isset($_GET['c'])){
+                    ?>
+            <div class="row clearfix">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>
+                                รายการแจ้งซ่อม <?php echo $_GET['c'];?>
+                                <?php 
+                                    // $year =$_SESSION['year'];
+                                    // $table = "tb_e_repair";
+                                    // $datar = $repairObj->getAllRepair($year,$table);
+                                    // print_r($datar);
+                                ?>
+                            </h2>
+                            <div class="header-dropdown m-r--5">
+                               
+                            </div>
+                        </div>
+                        <div class="body">
+                        <div class="table table-responsive">
+                                <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                    <thead>
+                                        <tr>
+                                            <th width="2%" scope="col">#</th>
+                                            <th width="6%" scope="col">วันที่แจ้ง</th>
+                                            <th width="" scope="col">รายละเอียด</th>
+                                            <th width="8%" scope="col">ห้อง</th>
+                                            <th width="3%" scope="col">ชั้น</th>
+                                            <th width="12%" scope="col">อาคาร</th>
+                                            <th width="8%" scope="col">ลักษณะงาน</th>
+                                            <th width="10%" scope="col">ผู้แจ้ง</th>
+                                            <th width="10%" scope="col">สถานะ</th>
+                                            <th width="3" scope="col"></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <?php
+                                            switch ($_GET['c']){
+                                                case "งานที่เรียบร้อย":
+                                                    $text_sql=" r.as_id = 8";
+                                                break;
+                                                case "งานค้าง":
+                                                    $text_sql=" r.as_id < 8";
+                                                break;
+                                                case "งานรออะไหล่":
+                                                    $text_sql=" r.as_id = 9";
+                                                break;
+                                                case "งานจ้างเหมา":
+                                                    $text_sql=" r.as_id = 10";
+                                                break;
+                                                default:
+                                                    $text_sql=" r.as_id < 99";
+                                            }
+                                            $datar = $repairObj->getRepairByStatus($_SESSION['year'],"tb_a_repair",$text_sql);
+                                            $r = count($datar);
+                                            if($r>0){
+                                                // print_r($datar);
+                                                $i = 0;
+                                                $dss['s_id'] = ""; 
+                                                $dss['s_name'] = ""; 
+                                                foreach($datar as $data){
+                                                    $i++;
+                                                    $date_add = datethai($data['date_add']);
+                                                    $datefull = datethai_time($data['date_add']);
+                                                    $s = "";
+                                                    $dataSt1 = $comboboxObj->getDataStatusById("tb_a_status",$data['as_id']);
+                                                    $dss['s_id'] = $dataSt1['as_id']; 
+                                                    $dss['s_name'] = $dataSt1['as_name']; 
+                                                    $das = statusRepair($dss);
+                                                    $s = $das['bt'];
+                                                    $r_idl = sent($data['r_id']);
+                                                    echo "
+                                                        <tr>
+                                                            <th scope='row'>{$i}</th>
+                                                            <td class='fs-10 text-center'>{$datefull}</td>
+                                                            <td>{$data['ar_remark']}</td>
+                                                            <td class='fs-12'>{$data['ar_room']}</td>
+                                                            <td class='fs-12'>{$data['ar_floor']}</td>
+                                                            <td class='fs-10'>{$data['b_name']}</td>
+                                                            <td class='fs-12'>{$data['n_name']}</td>
+                                                            <td class='fs-12'>{$data['s_name_TH']}</td>
+                                                            <td class='fs-12 align-justify'>{$s} {$data['as_name']}</td>
+                                                            <td class=' align-justify'>
+                                                                <a href='/repair-sci/pages/manage/a_repair.php?id={$r_idl}'>
+                                                                    <i class='material-icons'>settings</i>
+                                                                </a>
+                                                            </td>
+                                                        </tr>
+                                                    ";
+                                                }
+                                            }
+                                            
+                                        ?>
+                                        
+                                        
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- ไม่มีการส่ง สถานะของรายการมา -->                                
+                    <?php
+                    }else{
+                ?>        
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
@@ -300,6 +415,7 @@
             </div>
             <!--  -->
             <?php
+                    }
                 }
             ?>
         </div>

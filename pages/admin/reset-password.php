@@ -92,6 +92,7 @@
                                         </div>
                                     </div>
                                     <button type="submit" class="btn btn-primary m-t-15 waves-effect">Reset Password</button>
+                                    <a href="/repair-sci/pages/admin/pass-all.php" class="btn btn-danger m-t-15 waves-effect">Reset-All</a> 
                                 </div>
                             </form>
                         </div>

@@ -80,6 +80,9 @@ switch ($_REQUEST['form_name']){
         // print_r($dataStatus);
         $ck = $repairObj->addDatastatus($dataStatus,"tb_e_datastatus");
         if($ck){
+            $bdata = $comboboxObj->getBuildingById($_POST['b_id']);
+            $_POST['b_name'] = $bdata['b_name'];
+            SentLine("building",$_POST,"ไฟฟ้าและประปา");
             $mes="บันทึกข้อมูลเรียบร้อย";
             echo "
                 <div data-notify='container' class='bootstrap-notify-container alert alert-dismissible alert-success p-r-35 animated rotateInUpRight' role='alert' data-notify-position='top-right' style='display: inline-block; margin: 0px auto; position: fixed; transition: all 0.5s ease-in-out 0s; z-index: 1031; top: 20px; right: 20px;'>
@@ -120,6 +123,9 @@ switch ($_REQUEST['form_name']){
         // print_r($dataStatus);
         $ck = $repairObj->addDatastatus($dataStatus,"tb_a_datastatus");
         if($ck){
+            $bdata = $comboboxObj->getBuildingById($_POST['b_id']);
+            $_POST['b_name'] = $bdata['b_name'];
+            SentLine("building",$_POST,"เครื่องปรับอากาศ");
             $mes="บันทึกข้อมูลเรียบร้อย";
             echo "
                 <div data-notify='container' class='bootstrap-notify-container alert alert-dismissible alert-success p-r-35 animated rotateInUpRight' role='alert' data-notify-position='top-right' style='display: inline-block; margin: 0px auto; position: fixed; transition: all 0.5s ease-in-out 0s; z-index: 1031; top: 20px; right: 20px;'>
@@ -160,6 +166,9 @@ switch ($_REQUEST['form_name']){
         // print_r($dataStatus);
         $ck = $repairObj->addDatastatus($dataStatus,"tb_c_datastatus");
         if($ck){
+            $bdata = $comboboxObj->getBuildingById($_POST['b_id']);
+            $_POST['b_name'] = $bdata['b_name'];
+            SentLine("computer",$_POST,"ศักดา ตราช่าง");
             $mes="บันทึกข้อมูลเรียบร้อย";
             echo "
                 <div data-notify='container' class='bootstrap-notify-container alert alert-dismissible alert-success p-r-35 animated rotateInUpRight' role='alert' data-notify-position='top-right' style='display: inline-block; margin: 0px auto; position: fixed; transition: all 0.5s ease-in-out 0s; z-index: 1031; top: 20px; right: 20px;'>
@@ -200,6 +209,9 @@ switch ($_REQUEST['form_name']){
         // print_r($dataStatus);
         $ck = $repairObj->addDatastatus($dataStatus,"tb_r_datastatus");
         if($ck){
+            $bdata = $comboboxObj->getBuildingById($_POST['b_id']);
+            $_POST['b_name'] = $bdata['b_name'];
+            SentLine("room",$_POST,"สุรเดช คุรุภัณฑ์");
             $mes="บันทึกข้อมูลเรียบร้อย";
             echo "
                 <div data-notify='container' class='bootstrap-notify-container alert alert-dismissible alert-success p-r-35 animated rotateInUpRight' role='alert' data-notify-position='top-right' style='display: inline-block; margin: 0px auto; position: fixed; transition: all 0.5s ease-in-out 0s; z-index: 1031; top: 20px; right: 20px;'>

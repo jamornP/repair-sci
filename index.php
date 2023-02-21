@@ -26,7 +26,7 @@
                 $dataMenu = $menuObj->getAllMenu();
                 foreach($dataMenu as $menu){
                     if($menu['m_id']==3){
-                        if($_SESSION['d_id']==3 OR $_SESSION['d_id']==4){
+                        if($_SESSION['d_id']==2 OR  $_SESSION['d_id']==3 OR $_SESSION['d_id']==4){
 
                         }else{
                             echo "

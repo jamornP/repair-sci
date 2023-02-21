@@ -19,7 +19,7 @@
     <?php
         $all = $notifiObj->countAll($_SESSION['year'],"tb_c_repair");
         $danger = $notifiObj->countNoSuccess($_SESSION['year'],"tb_c_repair");
-        $success = $notifiObj->countStatus($_SESSION['year'],"tb_c_repair",3);
+        $success = $notifiObj->countStatus($_SESSION['year'],"tb_c_repair",8);
         $wait = $notifiObj->countStatus($_SESSION['year'],"tb_c_repair",7);
         $company = $notifiObj->countStatus($_SESSION['year'],"tb_c_repair",6);
         // $success = 200;
@@ -194,7 +194,7 @@
                                 </p>
                                 <div class="input-group">
                                     <div class="form-line">
-                                        <input type="text" class="form-control" id="fullname" placeholder="" name="" value="<?php echo $_SESSION['s_name_TH'];?>" required readonly>
+                                        <input type="text" class="form-control" id="fullname" placeholder="" name="name_TH" value="<?php echo $_SESSION['s_name_TH'];?>" required readonly>
                                     </div>
                                 </div>
                             </div>
