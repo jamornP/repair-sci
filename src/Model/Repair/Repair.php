@@ -125,6 +125,65 @@ class Repair extends DbRepair
         // $row = $stmt->rowCount();
         return  $data;
     }
+    public function countRepairByStatus($year,$table,$text_sql) {
+        switch ($table){
+            
+            case "tb_e_repair":
+                $sql = "
+                SELECT r.* ,st.s_name_TH,st.s_images,b.b_name,t.et_name,s.es_name,n.n_name
+                FROM ".$table." as r 
+                LEFT JOIN tb_staff as st ON st.s_id = r.s_id
+                LEFT JOIN tb_building as b ON b.b_id = r.b_id
+                LEFT JOIN tb_e_type as t ON t.et_id = r.et_id
+                LEFT JOIN tb_e_status as s ON s.es_id = r.es_id
+                LEFT JOIN tb_nature as n ON n.n_id = r.n_id
+                WHERE r.er_year_term = '".$year."' AND {$text_sql}
+                ORDER BY r.es_id,r.date_add
+                ";
+            break;
+            case "tb_a_repair":
+                $sql = "
+                SELECT r.* ,st.s_name_TH,st.s_images,b.b_name,s.as_name,n.n_name
+                FROM ".$table." as r 
+                LEFT JOIN tb_staff as st ON st.s_id = r.s_id
+                LEFT JOIN tb_building as b ON b.b_id = r.b_id
+                LEFT JOIN tb_a_status as s ON s.as_id = r.as_id
+                LEFT JOIN tb_nature as n ON n.n_id = r.n_id
+                WHERE r.ar_year_term = '".$year."' AND {$text_sql}
+                ORDER BY r.as_id,r.date_add
+                ";
+            break;
+            case "tb_c_repair":
+                $sql = "
+                SELECT r.* ,st.s_name_TH,st.s_images,b.b_name,s.cs_name,n.n_name
+                FROM ".$table." as r 
+                LEFT JOIN tb_staff as st ON st.s_id = r.s_id
+                LEFT JOIN tb_building as b ON b.b_id = r.b_id
+                LEFT JOIN tb_c_status as s ON s.cs_id = r.cs_id
+                LEFT JOIN tb_nature as n ON n.n_id = r.n_id
+                WHERE r.cr_year_term = '".$year."' AND {$text_sql}
+                ORDER BY r.cs_id,r.date_add
+                ";
+            break;
+            case "tb_r_repair":
+                $sql = "
+                SELECT r.* ,st.s_name_TH,st.s_images,b.b_name,s.rs_name,n.n_name
+                FROM ".$table." as r 
+                LEFT JOIN tb_staff as st ON st.s_id = r.s_id
+                LEFT JOIN tb_building as b ON b.b_id = r.b_id
+                LEFT JOIN tb_r_status as s ON s.rs_id = r.rs_id
+                LEFT JOIN tb_nature as n ON n.n_id = r.n_id
+                WHERE r.rr_year_term = '".$year."' AND {$text_sql}
+                ORDER BY r.rs_id,r.date_add
+                ";
+            break;
+       
+        }
+        $stmt = $this->pdo->query($sql);
+        // $data = $stmt->fetchAll();
+        $row = $stmt->rowCount();
+        return  $row;
+    }
     public function addRepair($data,$table) {
         switch ($table){
             case "tb_e_repair" :

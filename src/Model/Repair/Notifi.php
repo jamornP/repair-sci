@@ -67,6 +67,26 @@ class Notifi extends DbRepair
         $row = $stmt->rowCount();
         return $row;
     }
+    public function countStatusm($year,$table,$s_id,$s) {
+        switch ($table){
+            case "tb_e_repair":
+                $sql ="SELECT * FROM ".$table." WHERE er_year_term = '".$year."' AND es_id = '".$s_id."' AND (date_add {$s})";
+            break;
+            case "tb_a_repair":
+                $sql ="SELECT * FROM ".$table."  WHERE ar_year_term = '".$year."' AND as_id = '".$s_id."' AND (date_add {$s})";
+            break;
+            case "tb_c_repair":
+                $sql ="SELECT * FROM ".$table."  WHERE cr_year_term = '".$year."' AND cs_id = '".$s_id."' AND (date_add {$s})";
+            break;
+            case "tb_r_repair":
+                $sql ="SELECT * FROM ".$table."  WHERE rr_year_term = '".$year."' AND rs_id = '".$s_id."' AND (date_add {$s})";
+            break;
+        }
+        $stmt = $this->pdo->query($sql);
+        // $data = $stmt->fetchAll();
+        $row = $stmt->rowCount();
+        return $row;
+    }
     public function countAll($year,$table) {
         switch ($table){
             case "tb_e_repair":
@@ -87,6 +107,26 @@ class Notifi extends DbRepair
         $row = $stmt->rowCount();
         return $row;
     }
+    public function countAllm($year,$table,$s) {
+        switch ($table){
+            case "tb_e_repair":
+                $sql ="SELECT * FROM ".$table." WHERE er_year_term = '".$year."' AND (date_add {$s})" ;
+            break;
+            case "tb_a_repair":
+                $sql ="SELECT * FROM ".$table."  WHERE ar_year_term = '".$year."' AND (date_add {$s})" ;
+            break;
+            case "tb_c_repair":
+                $sql ="SELECT * FROM ".$table."  WHERE cr_year_term = '".$year."' AND (date_add {$s})" ;
+            break;
+            case "tb_r_repair":
+                $sql ="SELECT * FROM ".$table."  WHERE rr_year_term = '".$year."' AND (date_add {$s})" ;
+            break;
+        }
+        $stmt = $this->pdo->query($sql);
+        // $data = $stmt->fetchAll();
+        $row = $stmt->rowCount();
+        return $row;
+    }
     public function countNoSuccess($year,$table) {
         switch ($table){
             case "tb_e_repair":
@@ -96,10 +136,30 @@ class Notifi extends DbRepair
                 $sql ="SELECT * FROM ".$table."  WHERE ar_year_term = '".$year."' AND as_id < 8";
             break;
             case "tb_c_repair":
-                $sql ="SELECT * FROM ".$table."  WHERE cr_year_term = '".$year."' AND (cs_id < 8 AND cs_id <> 6)";
+                $sql ="SELECT * FROM ".$table."  WHERE cr_year_term = '".$year."' AND (cs_id < 8 AND (cs_id <> 6 AND cs_id <> 7))";
             break;
             case "tb_r_repair":
-                $sql ="SELECT * FROM ".$table."  WHERE rr_year_term = '".$year."' AND (rs_id < 8 AND rs_id <> 6)";
+                $sql ="SELECT * FROM ".$table."  WHERE rr_year_term = '".$year."' AND (rs_id < 8 AND (rs_id <> 6 AND rs_id <> 7))";
+            break;
+        }
+        $stmt = $this->pdo->query($sql);
+        // $data = $stmt->fetchAll();
+        $row = $stmt->rowCount();
+        return $row;
+    }
+    public function countNoSuccessm($year,$table,$s) {
+        switch ($table){
+            case "tb_e_repair":
+                $sql ="SELECT * FROM ".$table." WHERE er_year_term = '".$year."' AND es_id < 8  AND (date_add {$s})";
+            break;
+            case "tb_a_repair":
+                $sql ="SELECT * FROM ".$table."  WHERE ar_year_term = '".$year."' AND as_id < 8  AND (date_add {$s})";
+            break;
+            case "tb_c_repair":
+                $sql ="SELECT * FROM ".$table."  WHERE cr_year_term = '".$year."' AND (cs_id < 8 AND (cs_id <> 6 AND cs_id <> 7)) ' AND (date_add {$s})";
+            break;
+            case "tb_r_repair":
+                $sql ="SELECT * FROM ".$table."  WHERE rr_year_term = '".$year."' AND (rs_id < 8 AND (rs_id <> 6 AND rs_id <> 7)) ' AND (date_add {$s})";
             break;
         }
         $stmt = $this->pdo->query($sql);

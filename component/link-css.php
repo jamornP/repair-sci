@@ -47,6 +47,9 @@
     <!-- JQuery DataTable Css -->
     <link href="/repair-sci/plugins/jquery-datatable/skin/bootstrap/css/dataTables.bootstrap.css" rel="stylesheet">
 
+    <!-- Morris Css -->
+    <link href="/repair-sci/plugins/morrisjs/morris.css" rel="stylesheet" />
+
     <!-- Custom Css -->
     <link href="/repair-sci/css/style.css" rel="stylesheet">
 

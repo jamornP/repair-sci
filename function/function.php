@@ -348,4 +348,75 @@ function SentLine($tb,$datas,$name) {
         } 
         curl_close( $chOne );  
 }
+function monthInYear_term($year) {
+    $y_en = $year -543;
+    $y_en_old = $y_en -1;
+    $m=array(10,11,12,1,2,3,4,5,6,7,8,9);
+    $i=0;
+    foreach($m as $n){  
+        $n1 = $n+1;
+        if($n<10){
+            $n1 = $n+1;
+            $mn = sprintf("%02d",$n);
+            $mn1 = sprintf("%02d",$n1);
+            $data[$i]['m_sql']= "BETWEEN '{$y_en}-{$mn}-01' AND '{$y_en}-{$mn1}-01'";
+            $data[$i]['m_name']= month_TH($mn);
+        }elseif($n==12){
+            $mn = sprintf("%02d",$n);
+            $data[$i]['m_sql']= "BETWEEN '{$y_en_old}-{$n}-01' AND '{$y_en}-01-01'";
+            $data[$i]['m_name']= month_TH($mn);
+        }elseif($n>9){
+            $n1 = $n+1;
+            $mn = sprintf("%02d",$n);
+            $mn1 = sprintf("%02d",$n1);
+            $data[$i]['m_sql']= "BETWEEN '{$y_en_old}-{$mn}-01' AND '{$y_en_old}-{$mn1}-01'";
+            $data[$i]['m_name']= month_TH($mn);
+        }
+        $i++;
+    }
+    return $data;
+    
+}
+function month_TH($m){
+    switch ($m){
+        case "01":
+            $month="ม.ค.";
+            break;
+        case "02":
+            $month="ก.พ.";
+            break;
+        case "03":
+            $month="มี.ค.";
+            break;
+        case "04":
+            $month="เม.ย.";
+            break;
+        case "05":
+            $month="พ.ค.";
+            break;
+        case "06":
+            $month="มิ.ย.";
+            break;
+        case "07":
+            $month="ก.ค.";
+            break;
+        case "08":
+            $month="ส.ค.";
+            break;
+        case "09":
+            $month="ก.ย.";
+            break;
+        case "10":
+            $month="ต.ค.";
+            break;
+        case "11":
+            $month="พ.ย.";
+            break;
+        case "12":
+            $month="ธ.ค.";
+            break;
+        
+    }
+    return $month;
+}
 ?>

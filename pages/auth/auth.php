@@ -2,11 +2,19 @@
     session_start();
     if(isset($_SESSION['login'])){
         if(!$_SESSION['login']){
-            header("location: /repair-sci/pages/auth");
+            echo "  
+                <script type='text/javascript'>
+                    setTimeout(function(){location.href='/repair-sci/pages/auth'} , 1);
+                </script>
+            ";
             exit;
         }
     }else{
-        header("location: /repair-sci/pages/auth");
+        echo "  
+                <script type='text/javascript'>
+                    setTimeout(function(){location.href='/repair-sci/pages/auth'} , 1);
+                </script>
+            ";
             exit;
     }
 ?>

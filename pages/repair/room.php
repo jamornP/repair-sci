@@ -21,7 +21,7 @@
         $danger = $notifiObj->countNoSuccess($_SESSION['year'],"tb_r_repair");
         $success = $notifiObj->countStatus($_SESSION['year'],"tb_r_repair",8);
         $wait = $notifiObj->countStatus($_SESSION['year'],"tb_r_repair",7);
-        $company = $notifiObj->countStatus($_SESSION['year'],"tb_r_repair",6);
+        $company = ($notifiObj->countStatus($_SESSION['year'],"tb_r_repair",6))+($notifiObj->countStatus($_SESSION['year'],"tb_r_repair",9));
         // $success = 200;
     ?>
     <section class="content">
@@ -131,11 +131,14 @@
                                                     $date_add = datethai($data['date_add']);
                                                     $datefull = datethai_time($data['date_add']);
                                                     $s = "";
-                                                    $dataSt1 = $comboboxObj->getDataStatusById("tb_r_status",$data['rs_id']);
-                                                    $dss['s_id'] = $dataSt1['rs_id']; 
-                                                    $dss['s_name'] = $dataSt1['rs_name']; 
-                                                    $das = statusIT($dss);
-                                                    $s = $das['bt'];
+                                                    $r_data = $comboboxObj->getDataStatusByRepair2("tb_r_datastatus",$data['r_id']);
+                                                    foreach($r_data as $datas){
+                                                         $dataSt1 = $comboboxObj->getDataStatusById("tb_r_status",$datas['rs_id']);
+                                                         $dss['s_id'] = $dataSt1['rs_id']; 
+                                                         $dss['s_name'] = $dataSt1['rs_name'];
+                                                         $das = statusIT($dss);
+                                                         $s = $s."". $das['bt'];
+                                                    }
                                                     echo "
                                                         <tr>
                                                             <th scope='row'>{$i}</th>

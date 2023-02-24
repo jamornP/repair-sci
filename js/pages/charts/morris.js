@@ -147,9 +147,9 @@ function getMorris(type, element) {
         Morris.Donut({
             element: element,
             data: [{
-                label: 'Jam',
-                value: 25
-            }, {
+                    label: 'Jam',
+                    value: 25
+                }, {
                     label: 'Frosted',
                     value: 40
                 }, {

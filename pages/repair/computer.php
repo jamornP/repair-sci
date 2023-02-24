@@ -21,7 +21,7 @@
         $danger = $notifiObj->countNoSuccess($_SESSION['year'],"tb_c_repair");
         $success = $notifiObj->countStatus($_SESSION['year'],"tb_c_repair",8);
         $wait = $notifiObj->countStatus($_SESSION['year'],"tb_c_repair",7);
-        $company = $notifiObj->countStatus($_SESSION['year'],"tb_c_repair",6);
+        $company = ($notifiObj->countStatus($_SESSION['year'],"tb_c_repair",6))+($notifiObj->countStatus($_SESSION['year'],"tb_c_repair",9));
         // $success = 200;
     ?>
     <section class="content">
@@ -72,7 +72,7 @@
                             <i class="material-icons">monetization_on</i>
                         </div>
                         <div class="content">
-                            <div class="text fs-18">งานจ้างเหมา</div>
+                            <div class="text fs-18">ส่งบริษัทซ่อม / ซ่อมไม่คุ้ม</div>
                             <div class="number count-to" data-from="0" data-to="<?php echo $company;?>" data-speed="1000" data-fresh-interval="20"></div>
                         </div>
                     </div>
@@ -131,11 +131,14 @@
                                                     $date_add = datethai($data['date_add']);
                                                     $datefull = datethai_time($data['date_add']);
                                                     $s = "";
-                                                    $dataSt1 = $comboboxObj->getDataStatusById("tb_c_status",$data['cs_id']);
-                                                    $dss['s_id'] = $dataSt1['cs_id']; 
-                                                    $dss['s_name'] = $dataSt1['cs_name']; 
-                                                    $das = statusIT($dss);
-                                                    $s = $das['bt'];
+                                                    $r_data = $comboboxObj->getDataStatusByRepair2("tb_c_datastatus",$data['r_id']);
+                                                    foreach($r_data as $datas){
+                                                         $dataSt1 = $comboboxObj->getDataStatusById("tb_c_status",$datas['cs_id']);
+                                                         $dss['s_id'] = $dataSt1['cs_id']; 
+                                                         $dss['s_name'] = $dataSt1['cs_name'];
+                                                         $das = statusIT($dss);
+                                                         $s = $s."". $das['bt'];
+                                                    }
                                                     echo "
                                                         <tr>
                                                             <th scope='row'>{$i}</th>

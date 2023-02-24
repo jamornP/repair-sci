@@ -90,7 +90,7 @@
                     $r_id =resive($_GET['id']);
                     $dataid = $repairObj->getRepairById($_SESSION['year'],"tb_a_repair",$r_id);
                     ?>
-        <!-- กรณีมีการส่งค่า id มา-->
+            <!-- กรณีมีการส่งค่า id มา-->
             <!-- Show data -->
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -213,11 +213,11 @@
                     </div>
                 </div>
             </div>
-        <!--  -->
+            <!--  -->
                     <?php
                 }else{
                     ?>
-        <!-- กรณีไม่มีการส่งค่า id มา -->
+            <!-- กรณีไม่มีการส่งค่า id มา -->
             <!-- มีการส่ง สถานะของรายการมา -->
             <?php
                     if(isset($_GET['c'])){

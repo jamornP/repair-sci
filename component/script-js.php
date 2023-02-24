@@ -71,6 +71,8 @@
 <script src="/repair-sci/js/pages/ui/notifications.js"></script>
 <script src="/repair-sci/js/pages/forms/basic-form-elements.js"></script>
 
+
+
 <!-- Jquery CountTo Plugin Js -->
 <script src="/repair-sci/plugins/jquery-countto/jquery.countTo.js"></script>
 
@@ -80,6 +82,7 @@
 
 <!-- ChartJs -->
 <script src="/repair-sci/plugins/chartjs/Chart.bundle.js"></script>
+
 
 <!-- Flot Charts Plugin Js -->
 <script src="/repair-sci/plugins/flot-charts/jquery.flot.js"></script>
@@ -91,9 +94,10 @@
 <!-- Sparkline Chart Plugin Js -->
 <script src="/repair-sci/plugins/jquery-sparkline/jquery.sparkline.js"></script>
 
+
+
 <!-- Demo Js -->
 <script src="/repair-sci/js/demo.js"></script>
-
 
 <!-- time -->
 <script type="text/javascript">

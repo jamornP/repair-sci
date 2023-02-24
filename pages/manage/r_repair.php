@@ -21,7 +21,7 @@
         $danger = $notifiObj->countNoSuccess($_SESSION['year'],"tb_r_repair");
         $success = $notifiObj->countStatus($_SESSION['year'],"tb_r_repair",8);
         $wait = $notifiObj->countStatus($_SESSION['year'],"tb_r_repair",7);
-        $company = $notifiObj->countStatus($_SESSION['year'],"tb_r_repair",6);
+        $company = ($notifiObj->countStatus($_SESSION['year'],"tb_r_repair",6))+($notifiObj->countStatus($_SESSION['year'],"tb_r_repair",9));
         // $success = 200;
     ?>
     <section class="content">
@@ -78,7 +78,7 @@
                                 <i class="material-icons">monetization_on</i>
                             </div>
                             <div class="content">
-                                <div class="text fs-18">ส่งบริษัทซ่อม</div>
+                                <div class="text fs-18">ส่งบริษัทซ่อม / ซ่อมไม่คุ้ม</div>
                                 <div class="number count-to" data-from="0" data-to="<?php echo $company;?>" data-speed="1000" data-fresh-interval="20"></div>
                             </div>
                         </div>
@@ -263,13 +263,13 @@
                                                     $text_sql=" r.rs_id = 8";
                                                 break;
                                                 case "งานค้าง":
-                                                    $text_sql=" (r.rs_id < 8 AND r.rs_id <> 6)";
+                                                    $text_sql=" (r.rs_id < 8 AND (r.rs_id <> 6 AND r.rs_id <> 7))";
                                                 break;
                                                 case "งานรออะไหล่":
                                                     $text_sql=" r.rs_id = 7";
                                                 break;
                                                 case "ส่งบริษัทซ่อม":
-                                                    $text_sql=" r.rs_id = 6";
+                                                    $text_sql=" (r.rs_id = 6 OR r.rs_id = 9)";
                                                 break;
                                                 default:
                                                     $text_sql=" r.rs_id < 99";

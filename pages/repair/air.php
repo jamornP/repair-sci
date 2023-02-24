@@ -131,11 +131,14 @@
                                                     $date_add = datethai($data['date_add']);
                                                     $datefull = datethai_time($data['date_add']);
                                                     $s = "";
-                                                    $dataSt1 = $comboboxObj->getDataStatusById("tb_a_status",$data['as_id']);
-                                                    $dss['s_id'] = $dataSt1['as_id']; 
-                                                    $dss['s_name'] = $dataSt1['as_name']; 
-                                                    $das = statusRepair($dss);
-                                                    $s = $das['bt'];
+                                                    $r_data = $comboboxObj->getDataStatusByRepair2("tb_a_datastatus",$data['r_id']);
+                                                    foreach($r_data as $datas){
+                                                         $dataSt1 = $comboboxObj->getDataStatusById("tb_a_status",$datas['as_id']);
+                                                         $dss['s_id'] = $dataSt1['as_id']; 
+                                                         $dss['s_name'] = $dataSt1['as_name'];
+                                                         $das = statusRepair($dss);
+                                                         $s = $s."". $das['bt'];
+                                                    }
                                                     echo "
                                                         <tr>
                                                             <th scope='row'>{$i}</th>

@@ -62,6 +62,12 @@ class Combobox extends DbRepair
         $data = $stmt->fetchAll();
         return $data[0];
     }
+    public function getDataStatusByRepair2($table,$id) {
+        $sql = "SELECT * FROM {$table} WHERE r_id = {$id} ORDER BY ds_num";
+        $stmt = $this->pdo->query($sql);
+        $data = $stmt->fetchAll();
+        return $data;
+    }
     // เลือกสถานะงานซ่อมจากขั้นตอนการดำเนินงาน
     public function getStatusManage($table,$s_id) {
         switch($table){
@@ -145,6 +151,12 @@ class Combobox extends DbRepair
             break;
             
         }
+        $stmt = $this->pdo->query($sql);
+        $data = $stmt->fetchAll();
+        return $data;
+    }
+    public function getStatus($table) {
+        $sql = "SELECT * FROM {$table} ";
         $stmt = $this->pdo->query($sql);
         $data = $stmt->fetchAll();
         return $data;
