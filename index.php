@@ -33,7 +33,7 @@
                             <div class="body">
                                 <div class="row">
                                     <?php
-                                        $dataMenu = $menuObj->getAllMenu();
+                                        $dataMenu = $menuObj->getAllMenuShow();
                                         foreach($dataMenu as $menu){
                                             if($menu['m_id']==3){
                                                 if($_SESSION['d_id']==2 OR  $_SESSION['d_id']==3 OR $_SESSION['d_id']==4){
@@ -46,7 +46,7 @@
                                                                 <div class='caption'>
                                                                     
                                                                     <div class='icon-and-text-button-demo'>
-                                                                        <a href='{$menu['m_link_repair']}' class='btn btn-block btn-lg bg-pink waves-effect' role='button'><i class='material-icons'>publish</i><span><h4>แจ้งซ่อม</h4></span></a>
+                                                                        <a href='{$menu['m_link_repair']}' class='btn btn-block btn-lg bg-deep-orange waves-effect' role='button'><i class='material-icons'>touch_app</i><span><h4>แจ้งซ่อม</h4></span></a>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -61,7 +61,7 @@
                                                             <div class='caption'>
                                                                 
                                                                 <div class='icon-and-text-button-demo'>
-                                                                    <a href='{$menu['m_link_repair']}' class='btn btn-block btn-lg bg-pink waves-effect' role='button'><i class='material-icons'>publish</i><span><h4>แจ้งซ่อม</h4></span></a>
+                                                                    <a href='{$menu['m_link_repair']}' class='btn btn-block btn-lg bg-deep-orange waves-effect' role='button'><i class='material-icons'>touch_app</i><span><h4>แจ้งซ่อม</h4></span></a>
                                                                 </div>
                                                             </div>
                                                         </div>

@@ -51,6 +51,9 @@ class Combobox extends DbRepair
             case "tb_r_status":
                 $sql = "SELECT * FROM {$table} WHERE rs_id = {$id}";
             break;
+            case "tb_l_status":
+                $sql = "SELECT * FROM {$table} WHERE ls_id = {$id}";
+            break;
         }
         $stmt = $this->pdo->query($sql);
         $data = $stmt->fetchAll();
@@ -104,7 +107,7 @@ class Combobox extends DbRepair
                         $sql = "SELECT * FROM {$table} WHERE cs_id > {$s_id}";
                         break;
                     case "3":
-                        $sql = "SELECT * FROM {$table} WHERE cs_id > {$s_id}";
+                        $sql = "SELECT * FROM {$table} WHERE cs_id >= {$s_id}";
                         break;
                     case "4":
                         $sql = "SELECT * FROM {$table} WHERE cs_id > 5";
@@ -131,7 +134,7 @@ class Combobox extends DbRepair
                         $sql = "SELECT * FROM {$table} WHERE rs_id > {$s_id}";
                         break;
                     case "3":
-                        $sql = "SELECT * FROM {$table} WHERE rs_id > {$s_id}";
+                        $sql = "SELECT * FROM {$table} WHERE rs_id >= {$s_id}";
                         break;
                     case "4":
                         $sql = "SELECT * FROM {$table} WHERE rs_id > 5";
@@ -147,6 +150,33 @@ class Combobox extends DbRepair
                       break;
                     default:
                         $sql = "SELECT * FROM {$table} WHERE rs_id = ".$s_id;
+                }
+            break;
+            case "tb_l_status" :
+                switch ($s_id) {
+                    case "1":
+                        $sql = "SELECT * FROM {$table} WHERE ls_id > {$s_id}";
+                        break;
+                    case "2":
+                        $sql = "SELECT * FROM {$table} WHERE ls_id > {$s_id}";
+                        break;
+                    case "3":
+                        $sql = "SELECT * FROM {$table} WHERE ls_id >= {$s_id}";
+                        break;
+                    case "4":
+                        $sql = "SELECT * FROM {$table} WHERE ls_id > 5";
+                      break;
+                    case "5":
+                        $sql = "SELECT * FROM {$table} WHERE ls_id > 2";
+                      break;
+                    case "6":
+                        $sql = "SELECT * FROM {$table} WHERE ls_id > 2";
+                      break;
+                    case "7":
+                        $sql = "SELECT * FROM {$table} WHERE ls_id > 2";
+                      break;
+                    default:
+                        $sql = "SELECT * FROM {$table} WHERE ls_id = ".$s_id;
                 }
             break;
             

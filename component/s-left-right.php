@@ -51,7 +51,7 @@
                         </a>
                         <ul class="ml-menu">
                             <?php
-                                $dataMenu = $menuObj->getAllMenu();
+                                $dataMenu = $menuObj->getAllMenuShow();
                                 foreach($dataMenu as $menu){
                                     if($menu['m_id']==3){
                                         if($_SESSION['d_id']==3 OR $_SESSION['d_id']==4){
@@ -74,15 +74,12 @@
                             ?>
                         </ul>
                     </li>
-
-                    
-                    
                     <?php
                         $staffMenu = $menuObj->getMenuByStaff($_SESSION['s_id']);
                         $a = count($staffMenu);
                         if($a>0){
                             echo "
-                            <li class='header'>MENU ADMIN</li>
+                            <li class='header'>MENU STAFF</li>
                             ";
                             foreach($staffMenu as $smenu){
                                 echo "
@@ -95,7 +92,29 @@
                                 ";
                             }
                         }
-                        
+                        ?>
+                        <li>
+                        <a href="javascript:void(0);" class="menu-toggle">
+                            <i class="material-icons">assignment</i>
+                            <span>รายงาน</span>
+                        </a>
+                        <ul class="ml-menu">
+                            <?php
+                                $dataReport = $menuObj->getMenuByReportStaff($_SESSION['s_id']);
+                                foreach($dataReport as $smenu){
+                                    echo "
+                                        <li>
+                                            <a href='{$smenu['m_link_m_repair']}'>
+                                                <i class='material-icons'>{$smenu['m_icon']}</i>
+                                                <span>{$smenu['m_name']}</span>
+                                            </a>
+                                        </li>
+                                    ";
+                                }
+                            ?>
+                        </ul>
+                    </li>
+                        <?php
                         if($_SESSION['sts_name']=='Administrator'){
                             ?>
                             <li class="header">MENU ADMIN</li>
@@ -122,6 +141,7 @@
                             <?php
                         }
                     ?>
+                    
                     <li class="header">ข้อมูลส่วนตัว</li>
                     <li>
                         <a href='/repair-sci/pages/member/profile.php'>

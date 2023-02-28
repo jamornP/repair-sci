@@ -21,6 +21,9 @@ class Notifi extends DbRepair
             case "tb_r_repair":
                 $sql ="SELECT * FROM ".$table." WHERE rs_id = 1";
             break;
+            case "tb_l_repair":
+                $sql ="SELECT * FROM ".$table." WHERE ls_id = 1";
+            break;
         }
         $stmt = $this->pdo->query($sql);
         // $data = $stmt->fetchAll();
@@ -40,6 +43,9 @@ class Notifi extends DbRepair
             break;
             case "tb_r_repair":
                 $sql ="SELECT r.*, s.s_name_TH FROM ".$table."  as r LEFT JOIN tb_staff as s ON s.s_id = r.s_id WHERE rs_id = 1";
+            break;
+            case "tb_l_repair":
+                $sql ="SELECT r.*, s.s_name_TH FROM ".$table."  as r LEFT JOIN tb_staff as s ON s.s_id = r.s_id WHERE ls_id = 1";
             break;
         }
         $stmt = $this->pdo->query($sql);
@@ -61,6 +67,9 @@ class Notifi extends DbRepair
             case "tb_r_repair":
                 $sql ="SELECT * FROM ".$table."  WHERE rr_year_term = '".$year."' AND rs_id = '".$s_id."'";
             break;
+            case "tb_l_repair":
+                $sql ="SELECT * FROM ".$table."  WHERE lr_year_term = '".$year."' AND ls_id = '".$s_id."'";
+            break;
         }
         $stmt = $this->pdo->query($sql);
         // $data = $stmt->fetchAll();
@@ -80,6 +89,9 @@ class Notifi extends DbRepair
             break;
             case "tb_r_repair":
                 $sql ="SELECT * FROM ".$table."  WHERE rr_year_term = '".$year."' AND rs_id = '".$s_id."' AND (date_add {$s})";
+            break;
+            case "tb_l_repair":
+                $sql ="SELECT * FROM ".$table."  WHERE lr_year_term = '".$year."' AND ls_id = '".$s_id."' AND (date_add {$s})";
             break;
         }
         $stmt = $this->pdo->query($sql);
@@ -101,6 +113,9 @@ class Notifi extends DbRepair
             case "tb_r_repair":
                 $sql ="SELECT * FROM ".$table."  WHERE rr_year_term = '".$year."'" ;
             break;
+            case "tb_l_repair":
+                $sql ="SELECT * FROM ".$table."  WHERE lr_year_term = '".$year."'" ;
+            break;
         }
         $stmt = $this->pdo->query($sql);
         // $data = $stmt->fetchAll();
@@ -120,6 +135,9 @@ class Notifi extends DbRepair
             break;
             case "tb_r_repair":
                 $sql ="SELECT * FROM ".$table."  WHERE rr_year_term = '".$year."' AND (date_add {$s})" ;
+            break;
+            case "tb_l_repair":
+                $sql ="SELECT * FROM ".$table."  WHERE lr_year_term = '".$year."' AND (date_add {$s})" ;
             break;
         }
         $stmt = $this->pdo->query($sql);
@@ -141,6 +159,9 @@ class Notifi extends DbRepair
             case "tb_r_repair":
                 $sql ="SELECT * FROM ".$table."  WHERE rr_year_term = '".$year."' AND (rs_id < 8 AND (rs_id <> 6 AND rs_id <> 7))";
             break;
+            case "tb_l_repair":
+                $sql ="SELECT * FROM ".$table."  WHERE lr_year_term = '".$year."' AND (ls_id < 8 AND (ls_id <> 6 AND ls_id <> 7))";
+            break;
         }
         $stmt = $this->pdo->query($sql);
         // $data = $stmt->fetchAll();
@@ -156,10 +177,13 @@ class Notifi extends DbRepair
                 $sql ="SELECT * FROM ".$table."  WHERE ar_year_term = '".$year."' AND as_id < 8  AND (date_add {$s})";
             break;
             case "tb_c_repair":
-                $sql ="SELECT * FROM ".$table."  WHERE cr_year_term = '".$year."' AND (cs_id < 8 AND (cs_id <> 6 AND cs_id <> 7)) ' AND (date_add {$s})";
+                $sql ="SELECT * FROM ".$table."  WHERE cr_year_term = '".$year."' AND (cs_id < 8 AND (cs_id <> 6 AND cs_id <> 7))  AND (date_add {$s})";
             break;
             case "tb_r_repair":
-                $sql ="SELECT * FROM ".$table."  WHERE rr_year_term = '".$year."' AND (rs_id < 8 AND (rs_id <> 6 AND rs_id <> 7)) ' AND (date_add {$s})";
+                $sql ="SELECT * FROM ".$table."  WHERE rr_year_term = '".$year."' AND (rs_id < 8 AND (rs_id <> 6 AND rs_id <> 7))  AND (date_add {$s})";
+            break;
+            case "tb_l_repair":
+                $sql ="SELECT * FROM ".$table."  WHERE lr_year_term = '".$year."' AND (ls_id < 8 AND (ls_id <> 6 AND ls_id <> 7))  AND (date_add {$s})";
             break;
         }
         $stmt = $this->pdo->query($sql);

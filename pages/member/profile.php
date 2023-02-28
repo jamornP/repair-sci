@@ -213,61 +213,391 @@
 
                                 <div class="tab-content">
                                     <div role="tabpanel" class="tab-pane fade in active" id="home">
-                                        <!-- <div class="panel panel-default panel-post">
-                                            <div class="panel-heading">
-                                                <div class="media">
-                                                    <div class="media-left">
-                                                        <a href="#">
-                                                            <img src="../../images/user-lg.jpg" />
-                                                        </a>
-                                                    </div>
-                                                    <div class="media-body">
-                                                        <h4 class="media-heading">
-                                                            <a href="#">Marc K. Hammond</a>
-                                                        </h4>
-                                                        Shared publicly - 01 Oct 2018
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="panel-body">
-                                                <div class="post">
-                                                    <div class="post-heading">
-                                                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                                                    </div>
-                                                    <div class="post-content">
-                                                        <iframe width="100%" height="360" src="https://www.youtube.com/embed/SbVQsw4y6zk" frameborder="0" allowfullscreen=""></iframe>
+                                        <?php
+                                            $datar = $repairObj->getRepairByStaff($_SESSION['year'],"tb_e_repair",$_SESSION['s_id']);
+                                            $r = count($datar);
+                                            if($r>0){
+                                            ?>
+                                            <div class="panel panel-default panel-post">
+                                                <div class="panel-heading bg-light-blue">
+                                                    <div class="media">
+                                                        <div class="media-left">
+                                                        
+                                                        </div>
+                                                        <div class="media-body">
+                                                            <h4 class="media-heading">
+                                                                <a href="#">แจ้งซ่อมไฟฟ้าและประปา</a>
+                                                            </h4>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                            <div class="panel-footer">
-                                                <ul>
-                                                    <li>
-                                                        <a href="#">
-                                                            <i class="material-icons">thumb_up</i>
-                                                            <span>125 Likes</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">
-                                                            <i class="material-icons">comment</i>
-                                                            <span>8 Comments</span>
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">
-                                                            <i class="material-icons">share</i>
-                                                            <span>Share</span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
+                                                <div class="panel-body">
+                                                    <div class="table table-responsive">
+                                                        <table class="table table-bordered table-striped table-hover  dataTable">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th width="2%" scope="col">#</th>
+                                                                    <th width="10%" scope="col">วันที่แจ้ง</th>
+                                                                    <th width="" scope="col">รายละเอียด</th>
+                                                                    <th width="8%" scope="col">ห้อง</th>
+                                                                    <th width="3%" scope="col">ชั้น</th>
+                                                                    <th width="15%" scope="col">อาคาร</th>
+                                                                    <th width="8%" scope="col">ประเถท</th>
+                                                                    <th width="8%" scope="col">ลักษณะงาน</th>
+                                                                    <th width="10%" scope="col">สถานะ</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <?php
+                                                                    $i = 0;
+                                                                    $dss['s_id'] = ""; 
+                                                                    $dss['s_name'] = ""; 
+                                                                    foreach($datar as $data){
+                                                                        $i++;
+                                                                        $date_add = datethai($data['date_add']);
+                                                                        $datefull = datethai_time($data['date_add']);
+                                                                        $s = "";
+                                                                        $r_data = $comboboxObj->getDataStatusByRepair2("tb_e_datastatus",$data['r_id']);
+                                                                        foreach($r_data as $datas){
+                                                                            $dataSt1 = $comboboxObj->getDataStatusById("tb_e_status",$datas['es_id']);
+                                                                            $dss['s_id'] = $dataSt1['es_id']; 
+                                                                            $dss['s_name'] = $dataSt1['es_name'];
+                                                                            $das = statusRepair($dss);
+                                                                            $s = $s."". $das['bt'];
+                                                                        }
+                                                                        echo "
+                                                                            <tr>
+                                                                                <th scope='row'>{$i}</th>
+                                                                                <td class='fs-10 text-center'>{$datefull}</td>
+                                                                                <td>{$data['er_remark']}</td>
+                                                                                <td class='fs-12'>{$data['er_room']}</td>
+                                                                                <td class='fs-12'>{$data['er_floor']}</td>
+                                                                                <td class='fs-10'>{$data['b_name']}</td>
+                                                                                <td class='fs-12'>{$data['et_name']}</td>
+                                                                                <td class='fs-12'>{$data['n_name']}</td>
+                                                                                <td class='fs-12 align-justify'>{$s} {$data['es_name']}</td>
+                                                                            
+                                                                            </tr>
+                                                                        ";
+                                                                    }
+                                                                ?>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
 
-                                                <div class="form-group">
-                                                    <div class="form-line">
-                                                        <input type="text" class="form-control" placeholder="Type a comment" />
+                                            </div>
+                                            <?php
+                                            }
+                                        ?>
+                                        <?php
+                                            $datar = $repairObj->getRepairByStaff($_SESSION['year'],"tb_a_repair",$_SESSION['s_id']);
+                                            $r = count($datar);
+                                            if($r>0){
+                                            ?>
+                                            <div class="panel panel-default panel-post">
+                                                <div class="panel-heading bg-light-green">
+                                                    <div class="media">
+                                                        <div class="media-left">
+                                                        
+                                                        </div>
+                                                        <div class="media-body">
+                                                            <h4 class="media-heading">
+                                                                <a href="#">แจ้งซ่อมเครื่องปรับอากาศ</a>
+                                                            </h4>
+                                                        </div>
                                                     </div>
                                                 </div>
+                                                <div class="panel-body">
+                                                    <div class="table table-responsive">
+                                                        <table class="table table-bordered table-striped table-hover  dataTable">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th width="2%" scope="col">#</th>
+                                                                    <th width="10%" scope="col">วันที่แจ้ง</th>
+                                                                    <th width="" scope="col">รายละเอียด</th>
+                                                                    <th width="8%" scope="col">ห้อง</th>
+                                                                    <th width="3%" scope="col">ชั้น</th>
+                                                                    <th width="15%" scope="col">อาคาร</th>
+                                                                    <th width="8%" scope="col">ลักษณะงาน</th>
+                                                                    <th width="10%" scope="col">สถานะ</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <?php
+                                                                    // print_r($datar);
+                                                                    $i = 0;
+                                                                    $dss['s_id'] = ""; 
+                                                                    $dss['s_name'] = ""; 
+                                                                    foreach($datar as $data){
+                                                                        $i++;
+                                                                        $date_add = datethai($data['date_add']);
+                                                                        $datefull = datethai_time($data['date_add']);
+                                                                        $s = "";
+                                                                        $r_data = $comboboxObj->getDataStatusByRepair2("tb_a_datastatus",$data['r_id']);
+                                                                        foreach($r_data as $datas){
+                                                                            $dataSt1 = $comboboxObj->getDataStatusById("tb_a_status",$datas['as_id']);
+                                                                            $dss['s_id'] = $dataSt1['as_id']; 
+                                                                            $dss['s_name'] = $dataSt1['as_name'];
+                                                                            $das = statusRepair($dss);
+                                                                            $s = $s."". $das['bt'];
+                                                                        }
+                                                                        
+                                                                        echo "
+                                                                            <tr>
+                                                                                <th scope='row'>{$i}</th>
+                                                                                <td class='fs-10 text-center'>{$datefull}</td>
+                                                                                <td>{$data['ar_remark']}</td>
+                                                                                <td class='fs-12'>{$data['ar_room']}</td>
+                                                                                <td class='fs-12'>{$data['ar_floor']}</td>
+                                                                                <td class='fs-10'>{$data['b_name']}</td>
+                                                                                <td class='fs-12'>{$data['n_name']}</td>
+                                                                                <td class='fs-12 align-justify'>{$s} {$data['as_name']}</td>
+                                                                            
+                                                                            </tr>
+                                                                        ";
+                                                                    }
+                                                                ?>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+
                                             </div>
-                                        </div> -->
+                                                <?php
+                                                }
+                                        ?>
+                                        <?php
+                                            $datar = $repairObj->getRepairByStaff($_SESSION['year'],"tb_c_repair",$_SESSION['s_id']);
+                                            $r = count($datar);
+                                            if($r>0){
+                                            ?>
+                                            <div class="panel panel-default panel-post">
+                                                <div class="panel-heading bg-orange">
+                                                    <div class="media">
+                                                        <div class="media-left">
+                                                        
+                                                        </div>
+                                                        <div class="media-body">
+                                                            <h4 class="media-heading">
+                                                                <a href="#">แจ้งซ่อมเครื่องคอมพิวเตอร์เจ้าหน้าที่</a>
+                                                            </h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="panel-body">
+                                                    <div class="table table-responsive">
+                                                        <table class="table table-bordered table-striped table-hover  dataTable">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th width="2%" scope="col">#</th>
+                                                                    <th width="10%" scope="col">วันที่แจ้ง</th>
+                                                                    <th width="" scope="col">รายละเอียด</th>
+                                                                    <th width="8%" scope="col">ห้อง</th>
+                                                                    <th width="3%" scope="col">ชั้น</th>
+                                                                    <th width="15%" scope="col">อาคาร</th>
+                                                                    <th width="8%" scope="col">ลักษณะงาน</th>
+                                                                    <th width="10%" scope="col">สถานะ</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <?php
+                                                                    // print_r($datar);
+                                                                    $i = 0;
+                                                                    $dss['s_id'] = ""; 
+                                                                    $dss['s_name'] = ""; 
+                                                                    foreach($datar as $data){
+                                                                        $i++;
+                                                                        $date_add = datethai($data['date_add']);
+                                                                        $datefull = datethai_time($data['date_add']);
+                                                                        $s = "";
+                                                                        $r_data = $comboboxObj->getDataStatusByRepair2("tb_c_datastatus",$data['r_id']);
+                                                                        foreach($r_data as $datas){
+                                                                            $dataSt1 = $comboboxObj->getDataStatusById("tb_c_status",$datas['cs_id']);
+                                                                            $dss['s_id'] = $dataSt1['cs_id']; 
+                                                                            $dss['s_name'] = $dataSt1['cs_name'];
+                                                                            $das = statusRepair($dss);
+                                                                            $s = $s."". $das['bt'];
+                                                                        }
+                                                                        
+                                                                        echo "
+                                                                            <tr>
+                                                                                <th scope='row'>{$i}</th>
+                                                                                <td class='fs-10 text-center'>{$datefull}</td>
+                                                                                <td>{$data['cr_remark']}</td>
+                                                                                <td class='fs-12'>{$data['cr_room']}</td>
+                                                                                <td class='fs-12'>{$data['cr_floor']}</td>
+                                                                                <td class='fs-10'>{$data['b_name']}</td>
+                                                                                <td class='fs-12'>{$data['n_name']}</td>
+                                                                                <td class='fs-12 align-justify'>{$s} {$data['cs_name']}</td>
+                                                                            
+                                                                            </tr>
+                                                                        ";
+                                                                    }
+                                                                ?>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                                <?php
+                                                }
+                                        ?>
+                                        <?php
+                                            $datar = $repairObj->getRepairByStaff($_SESSION['year'],"tb_r_repair",$_SESSION['s_id']);
+                                            $r = count($datar);
+                                            if($r>0){
+                                            ?>
+                                            <div class="panel panel-default panel-post">
+                                                <div class="panel-heading bg-cyan">
+                                                    <div class="media">
+                                                        <div class="media-left">
+                                                        
+                                                        </div>
+                                                        <div class="media-body">
+                                                            <h4 class="media-heading text-white">
+                                                                <a href="#">แจ้งซ่อมเครื่องคอมพิวเตอร์ห้องเรียน</a>
+                                                            </h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="panel-body">
+                                                    <div class="table table-responsive">
+                                                        <table class="table table-bordered table-striped table-hover  dataTable">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th width="2%" scope="col">#</th>
+                                                                    <th width="10%" scope="col">วันที่แจ้ง</th>
+                                                                    <th width="" scope="col">รายละเอียด</th>
+                                                                    <th width="8%" scope="col">ห้อง</th>
+                                                                    <th width="3%" scope="col">ชั้น</th>
+                                                                    <th width="15%" scope="col">อาคาร</th>
+                                                                    <th width="8%" scope="col">ลักษณะงาน</th>
+                                                                    <th width="10%" scope="col">สถานะ</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <?php
+                                                                    // print_r($datar);
+                                                                    $i = 0;
+                                                                    $dss['s_id'] = ""; 
+                                                                    $dss['s_name'] = ""; 
+                                                                    foreach($datar as $data){
+                                                                        $i++;
+                                                                        $date_add = datethai($data['date_add']);
+                                                                        $datefull = datethai_time($data['date_add']);
+                                                                        $s = "";
+                                                                        $r_data = $comboboxObj->getDataStatusByRepair2("tb_r_datastatus",$data['r_id']);
+                                                                        foreach($r_data as $datas){
+                                                                            $dataSt1 = $comboboxObj->getDataStatusById("tb_r_status",$datas['rs_id']);
+                                                                            $dss['s_id'] = $dataSt1['rs_id']; 
+                                                                            $dss['s_name'] = $dataSt1['rs_name'];
+                                                                            $das = statusRepair($dss);
+                                                                            $s = $s."". $das['bt'];
+                                                                        }
+                                                                        
+                                                                        echo "
+                                                                            <tr>
+                                                                                <th scope='row'>{$i}</th>
+                                                                                <td class='fs-10 text-center'>{$datefull}</td>
+                                                                                <td>{$data['rr_remark']}</td>
+                                                                                <td class='fs-12'>{$data['rr_room']}</td>
+                                                                                <td class='fs-12'>{$data['rr_floor']}</td>
+                                                                                <td class='fs-10'>{$data['b_name']}</td>
+                                                                                <td class='fs-12'>{$data['n_name']}</td>
+                                                                                <td class='fs-12 align-justify'>{$s} {$data['rs_name']}</td>
+                                                                            
+                                                                            </tr>
+                                                                        ";
+                                                                    }
+                                                                ?>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                                <?php
+                                                }
+                                        ?>
+                                        <?php
+                                            $datar = $repairObj->getRepairByStaff($_SESSION['year'],"tb_l_repair",$_SESSION['s_id']);
+                                            $r = count($datar);
+                                            if($r>0){
+                                            ?>
+                                            <div class="panel panel-default panel-post">
+                                                <div class="panel-heading bg-yellow">
+                                                    <div class="media">
+                                                        <div class="media-left">
+                                                        
+                                                        </div>
+                                                        <div class="media-body">
+                                                            <h4 class="media-heading text-white">
+                                                                <a href="#">แจ้งซ่อมเครื่องคอมพิวเตอร์ห้อง LAB คณะ</a>
+                                                            </h4>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class="panel-body">
+                                                    <div class="table table-responsive">
+                                                        <table class="table table-bordered table-striped table-hover  dataTable">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th width="2%" scope="col">#</th>
+                                                                    <th width="10%" scope="col">วันที่แจ้ง</th>
+                                                                    <th width="" scope="col">รายละเอียด</th>
+                                                                    <th width="8%" scope="col">ห้อง</th>
+                                                                    <th width="3%" scope="col">ชั้น</th>
+                                                                    <th width="15%" scope="col">อาคาร</th>
+                                                                    <th width="8%" scope="col">ลักษณะงาน</th>
+                                                                    <th width="10%" scope="col">สถานะ</th>
+                                                                </tr>
+                                                            </thead>
+                                                            <tbody>
+                                                                <?php
+                                                                    // print_r($datar);
+                                                                    $i = 0;
+                                                                    $dss['s_id'] = ""; 
+                                                                    $dss['s_name'] = ""; 
+                                                                    foreach($datar as $data){
+                                                                        $i++;
+                                                                        $date_add = datethai($data['date_add']);
+                                                                        $datefull = datethai_time($data['date_add']);
+                                                                        $s = "";
+                                                                        $r_data = $comboboxObj->getDataStatusByRepair2("tb_l_datastatus",$data['r_id']);
+                                                                        foreach($r_data as $datas){
+                                                                            $dataSt1 = $comboboxObj->getDataStatusById("tb_l_status",$datas['ls_id']);
+                                                                            $dss['s_id'] = $dataSt1['ls_id']; 
+                                                                            $dss['s_name'] = $dataSt1['ls_name'];
+                                                                            $das = statusRepair($dss);
+                                                                            $s = $s."". $das['bt'];
+                                                                        }
+                                                                        
+                                                                        echo "
+                                                                            <tr>
+                                                                                <th scope='row'>{$i}</th>
+                                                                                <td class='fs-10 text-center'>{$datefull}</td>
+                                                                                <td>{$data['lr_remark']}</td>
+                                                                                <td class='fs-12'>{$data['lr_room']}</td>
+                                                                                <td class='fs-12'>{$data['lr_floor']}</td>
+                                                                                <td class='fs-10'>{$data['b_name']}</td>
+                                                                                <td class='fs-12'>{$data['n_name']}</td>
+                                                                                <td class='fs-12 align-justify'>{$s} {$data['ls_name']}</td>
+                                                                            
+                                                                            </tr>
+                                                                        ";
+                                                                    }
+                                                                ?>
+                                                            </tbody>
+                                                        </table>
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                                <?php
+                                                }
+                                        ?>
                                     </div>
                                     <div role="tabpanel" class="tab-pane fade in" id="profile_settings">
                                         <form class="form-horizontal" action="profile.php" method="POST">

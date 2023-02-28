@@ -319,6 +319,9 @@ function SentLine($tb,$datas,$name) {
             case "room":
                 $sToken = "ctJJEPRHJSK3EXLftk4ZZh4kXNRrZdLUcjZO2rNEYYR";
                 break;
+            case "lab":
+                $sToken = "ctJJEPRHJSK3EXLftk4ZZh4kXNRrZdLUcjZO2rNEYYR";
+                break;
             default:
                 $sToken = "NEBJNOEsOZKaHi0CtH5DxutkPV9HNGinPgxZTEsrY1W";
         }

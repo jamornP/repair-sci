@@ -48,7 +48,7 @@
                 $data[$i]['repair'] = $notifiObj->countAll($y,"tb_c_repair");
                 $data[$i]['complete'] = $notifiObj->countStatus($y,"tb_c_repair",8);
                 $data[$i]['wait'] = $notifiObj->countStatus($y,"tb_c_repair",9);
-                $data[$i]['company'] = ($notifiObj->countStatus($_SESSION['year'],"tb_c_repair",6))+($notifiObj->countStatus($_SESSION['year'],"tb_c_repair",9));
+                $data[$i]['company'] = ($notifiObj->countStatus($y,"tb_c_repair",6))+($notifiObj->countStatus($y,"tb_c_repair",9));
                 $data[$i]['no'] = $notifiObj->countNoSuccess($y,"tb_c_repair");
             }
             break;
@@ -60,8 +60,20 @@
                 $data[$i]['repair'] = $notifiObj->countAll($y,"tb_r_repair");
                 $data[$i]['complete'] = $notifiObj->countStatus($y,"tb_r_repair",8);
                 $data[$i]['wait'] = $notifiObj->countStatus($y,"tb_r_repair",9);
-                $data[$i]['company'] = ($notifiObj->countStatus($_SESSION['year'],"tb_r_repair",6))+($notifiObj->countStatus($_SESSION['year'],"tb_r_repair",9));
+                $data[$i]['company'] = ($notifiObj->countStatus($y,"tb_r_repair",6))+($notifiObj->countStatus($y,"tb_r_repair",9));
                 $data[$i]['no'] = $notifiObj->countNoSuccess($y,"tb_r_repair");
+            }
+            break;
+        case "tb_l_repair":
+            for($i=0;$i<5;$i++){
+                $y = $_SESSION['year']-(4-$i);
+                $d = (string)$y;
+                $data[$i]['year'] = $d;
+                $data[$i]['repair'] = $notifiObj->countAll($y,"tb_l_repair");
+                $data[$i]['complete'] = $notifiObj->countStatus($y,"tb_l_repair",8);
+                $data[$i]['wait'] = $notifiObj->countStatus($y,"tb_l_repair",9);
+                $data[$i]['company'] = ($notifiObj->countStatus($y,"tb_l_repair",6))+($notifiObj->countStatus($y,"tb_l_repair",9));
+                $data[$i]['no'] = $notifiObj->countNoSuccess($y,"tb_l_repair");
             }
             break;
     }

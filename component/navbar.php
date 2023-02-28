@@ -16,7 +16,7 @@ $notifiObj = new Notifi;
 
 $year_term = yearterm(date("Y-m-d"));
 $_SESSION['year']=$year_term;
-$staffMenu = $menuObj->getMenuByStaff($_SESSION['s_id']);
+$staffMenu = $menuObj->getMenuByStaffNav($_SESSION['s_id']);
 $count1 = 0;
 foreach($staffMenu as $smenu){
     $d = $smenu['m_table'];

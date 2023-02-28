@@ -281,7 +281,7 @@
                                                     </thead>
                                                     <tbody>
                                                         <?php
-                                                            $dataM4 = $menuObj->getMenuByStaff($dataf['s_id']);
+                                                            $dataM4 = $menuObj->getMenuByStaffAll($dataf['s_id']);
                                                             $i=0;
                                                             foreach($dataM4 as $m4){
                                                                 $i++;

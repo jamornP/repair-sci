@@ -28,7 +28,6 @@
                 </h2>
             </div>
             <div class="row clearfix">
-                 <!-- Area Chart -->
                  <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header">
@@ -42,23 +41,7 @@
                         </div>
                     </div>
                 </div>
-                <!-- #END# Area Chart -->
-                <!-- Line Chart -->
-                <!-- <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
-                    <div class="card">
-                        <div class="header">
-                            <h2>ย้อนหลัง 5 ปี</h2>
-                            <ul class="header-dropdown m-r--5">
-                                
-                            </ul>
-                        </div>
-                        <div class="body">
-                            <div id="line_chart" class="graph"></div>
-                        </div>
-                    </div>
-                </div> -->
-                <!-- #END# Line Chart -->
-                <!-- Bar Chart -->
+        
                 <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header">
@@ -72,8 +55,6 @@
                         </div>
                     </div>
                 </div>
-                <!-- #END# Bar Chart -->
-               
             </div>
         </div>
     </section>
@@ -88,17 +69,11 @@
 
     <script>
         $(document).ready(function () {
-            // getMorris('line', 'line_chart');
-            // getMorris('bar', 'bar_chart_m');
-            // getMorris('area', 'area_chart');
-            // getMorris('donut', 'donut_chart');
              showYear();
              showMonth();
-            //  showStatus();
         });
 
         function showYear(){
-            
             $.get('year.php?table=tb_a_repair',function(data){
                 // console.log(data);
                 Morris.Bar({
@@ -124,20 +99,7 @@
                 });
             })
         }
-        // function showStatus(){
-        //     $.post('status.php',function(data){
-        //         console.log(data.color);
-        //         Morris.Donut({
-        //             element: 'donut_chart',
-        //             data: data,
-        //             colors: ['rgb(255,215,0)','rgb(32,178,170)','rgb(0,139,139)','rgb(90,74,133)','rgb(44,83,133)','rgb(35,105,131)','rgb(148,0,211)','rgb(255,20,147)','rgb(30,144,255)','rgb(220,20,60)'],
-        //             formatter: function (y) {
-        //                 return y
-        //             }
-        //         });
-        //     })
-        // }
-       
+        
     </script>
     
 </body>

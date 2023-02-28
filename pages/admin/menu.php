@@ -40,7 +40,10 @@
                                 <?php
                                     if(isset($_POST['add_menu'])){
                                         unset($_POST['add_menu']);
-                                        // print_r($_POST);
+                                        if(!isset($_POST['m_show'])){
+                                            $_POST['m_show']=0;
+                                        }
+                                        //  print_r($_POST);
                                         $ckadd = $menuObj->newMenu($_POST);
                                         $mes="Save Data Success";
                                         echo "
@@ -102,6 +105,13 @@
                                         </div>
                                     </div>
                                 </div>
+                                <div class="row clearfix">
+                                    <div class="col-lg-offset-2 col-md-offset-2 col-sm-offset-4 col-xs-offset-5">
+                                        <input type="checkbox" id="m_show" class="filled-in" value="1" name="m_show">
+                                        <label for="m_show">Show เมนูทุกคนเห็น</label>
+                                    </div>
+                                </div>
+                                <br>
                                 <div class="form-group">
                                     <div class="col-sm-offset-2 col-sm-10">
                                         <button type="submit" class="btn btn-danger" name="add_menu">เพิ่ม</button>
@@ -126,6 +136,7 @@
                                                 <th>Link เจ้าหน้าที่</th>
                                                 <th>Icon เมนู</th>
                                                 <th>Table เมนู</th>
+                                                <th>Show</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -134,6 +145,11 @@
                                                 $i=0;
                                                 foreach($dataM as $m){
                                                     $i++;
+                                                    if($m['m_show']){
+                                                        $show = "Yes";
+                                                    }else{
+                                                        $show = "No";
+                                                    }
                                                     echo "
                                                     <tr>
                                                         <th scope='row'>{$m['m_id']}</th>
@@ -142,6 +158,7 @@
                                                         <td>{$m['m_link_m_repair']}</td>
                                                         <td><i class='material-icons'>{$m['m_icon']}</i></td>
                                                         <td>{$m['m_table']}</td>
+                                                        <td>{$show}</td>
                                                     </tr>
                                                     ";
                                                 }
