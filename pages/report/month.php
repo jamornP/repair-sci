@@ -77,8 +77,7 @@ switch($table){
          $data[$i]['no'] = $notifiObj->countNoSuccessm($y,"tb_r_repair",$datat['m_sql']);
          $i++;
       }
-      break;
-    
+      break; 
    case "tb_l_repair":
       $y=$_SESSION['year'];
       $datatest = monthInYear_term($y);
