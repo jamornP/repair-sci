@@ -59,14 +59,14 @@
                                         }else{
                                             echo "
                                                 <li>
-                                                    <a href='{$menu['m_link_repair']}'>{$menu['m_name']}</a>
+                                                    <a href='{$menu['m_link_repair']}'><i class='material-icons fs-12'>{$menu['m_icon']}</i><span class='fs-13'> {$menu['m_name']}</span></a>
                                                 </li>
                                             ";
                                         }
                                     }else{
                                         echo "
                                                 <li>
-                                                    <a href='{$menu['m_link_repair']}'>{$menu['m_name']}</a>
+                                                    <a href='{$menu['m_link_repair']}'><i class='material-icons fs-12'>{$menu['m_icon']}</i><span class='fs-13'> {$menu['m_name']}</span></a>
                                                 </li>
                                             ";
                                     }
@@ -92,53 +92,58 @@
                                 ";
                             }
                         }
-                        ?>
-                        <li>
-                        <a href="javascript:void(0);" class="menu-toggle">
-                            <i class="material-icons">assignment</i>
-                            <span>รายงาน</span>
-                        </a>
-                        <ul class="ml-menu">
-                            <?php
-                                $dataReport = $menuObj->getMenuByReportStaff($_SESSION['s_id']);
-                                foreach($dataReport as $smenu){
-                                    echo "
+                        
+                        $dataReport = $menuObj->getMenuByReportStaff($_SESSION['s_id']);
+                        $b = count($dataReport);
+                        if($b>0){
+                            echo "
+                                <li>
+                                    <a href='javascript:void(0);' class='menu-toggle'>
+                                        <i class='material-icons'>assignment</i>
+                                        <span>รายงาน</span>
+                                    </a>
+                                    <ul class='ml-menu'>
+                            ";
+                            foreach($dataReport as $smenu){
+                                echo "
                                         <li>
                                             <a href='{$smenu['m_link_m_repair']}'>
-                                                <i class='material-icons'>{$smenu['m_icon']}</i>
-                                                <span>{$smenu['m_name']}</span>
+                                                <i class='material-icons fs-12'>{$smenu['m_icon']}</i>
+                                                <span class='fs-12'>{$smenu['m_name']}</span>
                                             </a>
                                         </li>
-                                    ";
-                                }
-                            ?>
-                        </ul>
-                    </li>
-                        <?php
+                                ";
+                            }
+                            echo "
+                                    </ul>
+                                </li>
+                            ";
+                        }
+                        
                         if($_SESSION['sts_name']=='Administrator'){
-                            ?>
-                            <li class="header">MENU ADMIN</li>
-                            <li>
-                                <a href="javascript:void(0);" class="menu-toggle">
-                                    <i class="material-icons">swap_calls</i>
-                                    <span>Users</span>
-                                </a>
-                                <ul class="ml-menu">
-                                    <li>
-                                        <a href="/repair-sci/pages/admin/all-users.php">All</a>
-                                    </li>
-                                    <li>
-                                        <a href="/repair-sci/pages/admin/reset-password.php">Reset Password</a>
-                                    </li>                               
-                                </ul>
-                            </li>
-                            <li>
-                                <a href="/repair-sci/pages/admin/menu.php">
-                                    <i class="material-icons">list</i>
-                                    <span>Menu</span>
-                                </a>
-                            </li>
-                            <?php
+                            echo "
+                                <li class='header'>MENU ADMIN</li>
+                                <li>
+                                    <a href='javascript:void(0);' class='menu-toggle'>
+                                        <i class='material-icons'>swap_calls</i>
+                                        <span>Users</span>
+                                    </a>
+                                    <ul class='ml-menu'>
+                                        <li>
+                                            <a href='/repair-sci/pages/admin/all-users.php'>All</a>
+                                        </li>
+                                        <li>
+                                            <a href='/repair-sci/pages/admin/reset-password.php'>Reset Password</a>
+                                        </li>                               
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href='/repair-sci/pages/admin/menu.php'>
+                                        <i class='material-icons'>list</i>
+                                        <span>Menu</span>
+                                    </a>
+                                </li>
+                            ";
                         }
                     ?>
                     

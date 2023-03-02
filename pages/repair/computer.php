@@ -135,7 +135,12 @@
                                                     foreach($r_data as $datas){
                                                          $dataSt1 = $comboboxObj->getDataStatusById("tb_c_status",$datas['cs_id']);
                                                          $dss['s_id'] = $dataSt1['cs_id']; 
-                                                         $dss['s_name'] = $dataSt1['cs_name'];
+                                                         if($datas['ds_remark']==""){
+                                                            $dss['s_name'] = $dataSt1['cs_name'];
+                                                         }else{
+                                                            $dss['s_name'] = $datas['ds_remark'];
+                                                         }
+                                                         
                                                          $das = statusIT($dss);
                                                          $s = $s."". $das['bt'];
                                                     }
