@@ -304,7 +304,7 @@ function btStatusIT($data){
     return $s;
 }
 function SentLine($tb,$datas,$name) {
-    $data="{$name}\nชื่อ:{$datas['name_TH']}\nห้อง:{$datas['room']} ชั้น {$datas['floor']}\nอาคาร:{$datas['b_name']}\nเบอร์:{$datas['tel']}\nรายละเอียด:{$datas['r_remark']}" ;
+    $data="{$name}\nชื่อ:{$datas['name_TH']}\nห้อง:{$datas['room']} ชั้น {$datas['floor']}\nอาคาร:{$datas['b_name']}\nเบอร์:{$datas['tel']}\nรายละเอียด:{$datas['r_remark']}\nLink: http://161.246.23.21/repair-sci" ;
         ini_set('display_errors', 1);
         ini_set('display_startup_errors', 1);
         error_reporting(E_ALL);
