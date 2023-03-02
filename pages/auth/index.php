@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-    <title>Sign In | Bootstrap Based Admin Template - Material Design</title>
+    <title>Sign In | App Science KMITL</title>
     <?php require $_SERVER['DOCUMENT_ROOT']."/repair-sci/component/link-css.php";?>
 </head>
 
@@ -23,7 +23,7 @@
                             <i class="material-icons">person</i>
                         </span>
                         <div class="form-line">
-                            <input type="text" class="form-control" name="username" placeholder="Email สถาบัน" required autofocus>
+                            <input type="text" class="form-control" name="username" placeholder="Email สถาบัน ต้องมี @kmitl.ac.th ด้วยนะครับ" required autofocus>
                         </div>
                     </div>
                     <div class="input-group">
