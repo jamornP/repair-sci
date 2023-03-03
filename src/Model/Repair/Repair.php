@@ -20,7 +20,7 @@ class Repair extends DbRepair
                 LEFT JOIN tb_e_status as s ON s.es_id = r.es_id
                 LEFT JOIN tb_nature as n ON n.n_id = r.n_id
                 WHERE r.er_year_term = '".$year."'
-                ORDER BY r.es_id,r.date_add
+                ORDER BY r.date_add DESC
                 ";
             break;
             case "tb_a_repair":
@@ -32,7 +32,7 @@ class Repair extends DbRepair
                 LEFT JOIN tb_a_status as s ON s.as_id = r.as_id
                 LEFT JOIN tb_nature as n ON n.n_id = r.n_id
                 WHERE r.ar_year_term = '".$year."'
-                ORDER BY r.as_id,r.date_add
+                ORDER BY r.date_add DESC
                 ";
             break;
             case "tb_c_repair":
@@ -44,7 +44,7 @@ class Repair extends DbRepair
                 LEFT JOIN tb_c_status as s ON s.cs_id = r.cs_id
                 LEFT JOIN tb_nature as n ON n.n_id = r.n_id
                 WHERE r.cr_year_term = '".$year."'
-                ORDER BY r.cs_id,r.date_add
+                ORDER BY r.date_add DESC
                 ";
             break;
             case "tb_r_repair":
@@ -56,7 +56,7 @@ class Repair extends DbRepair
                 LEFT JOIN tb_r_status as s ON s.rs_id = r.rs_id
                 LEFT JOIN tb_nature as n ON n.n_id = r.n_id
                 WHERE r.rr_year_term = '".$year."'
-                ORDER BY r.rs_id,r.date_add
+                ORDER BY r.date_add DESC
                 ";
             break;
             case "tb_l_repair":
@@ -68,7 +68,7 @@ class Repair extends DbRepair
                 LEFT JOIN tb_l_status as s ON s.ls_id = r.ls_id
                 LEFT JOIN tb_nature as n ON n.n_id = r.n_id
                 WHERE r.lr_year_term = '".$year."'
-                ORDER BY r.ls_id,r.date_add
+                ORDER BY r.date_add DESC
                 ";
             break;
        
@@ -91,7 +91,7 @@ class Repair extends DbRepair
                 LEFT JOIN tb_e_status as s ON s.es_id = r.es_id
                 LEFT JOIN tb_nature as n ON n.n_id = r.n_id
                 WHERE r.er_year_term = '".$year."' AND {$text_sql}
-                ORDER BY r.es_id,r.date_add
+                ORDER BY r.date_add DESC
                 ";
             break;
             case "tb_a_repair":
@@ -103,7 +103,7 @@ class Repair extends DbRepair
                 LEFT JOIN tb_a_status as s ON s.as_id = r.as_id
                 LEFT JOIN tb_nature as n ON n.n_id = r.n_id
                 WHERE r.ar_year_term = '".$year."' AND {$text_sql}
-                ORDER BY r.as_id,r.date_add
+                ORDER BY r.date_add DESC
                 ";
             break;
             case "tb_c_repair":
@@ -115,7 +115,7 @@ class Repair extends DbRepair
                 LEFT JOIN tb_c_status as s ON s.cs_id = r.cs_id
                 LEFT JOIN tb_nature as n ON n.n_id = r.n_id
                 WHERE r.cr_year_term = '".$year."' AND {$text_sql}
-                ORDER BY r.cs_id,r.date_add
+                ORDER BY r.date_add DESC
                 ";
             break;
             case "tb_r_repair":
@@ -127,7 +127,7 @@ class Repair extends DbRepair
                 LEFT JOIN tb_r_status as s ON s.rs_id = r.rs_id
                 LEFT JOIN tb_nature as n ON n.n_id = r.n_id
                 WHERE r.rr_year_term = '".$year."' AND {$text_sql}
-                ORDER BY r.rs_id,r.date_add
+                ORDER BY r.date_add DESC
                 ";
             break;
             case "tb_l_repair":
@@ -139,7 +139,7 @@ class Repair extends DbRepair
                 LEFT JOIN tb_l_status as s ON s.ls_id = r.ls_id
                 LEFT JOIN tb_nature as n ON n.n_id = r.n_id
                 WHERE r.lr_year_term = '".$year."' AND {$text_sql}
-                ORDER BY r.ls_id,r.date_add
+                ORDER BY r.date_add DESC
                 ";
             break;
        
@@ -162,7 +162,7 @@ class Repair extends DbRepair
                 LEFT JOIN tb_e_status as s ON s.es_id = r.es_id
                 LEFT JOIN tb_nature as n ON n.n_id = r.n_id
                 WHERE r.er_year_term = '".$year."' AND r.s_id ={$s_id}
-                ORDER BY r.es_id,r.date_add
+                ORDER BY r.date_add DESC
                 ";
             break;
             case "tb_a_repair":
@@ -174,7 +174,7 @@ class Repair extends DbRepair
                 LEFT JOIN tb_a_status as s ON s.as_id = r.as_id
                 LEFT JOIN tb_nature as n ON n.n_id = r.n_id
                 WHERE r.ar_year_term = '".$year."' AND r.s_id ={$s_id}
-                ORDER BY r.as_id,r.date_add
+                ORDER BY r.date_add DESC
                 ";
             break;
             case "tb_c_repair":
@@ -186,7 +186,7 @@ class Repair extends DbRepair
                 LEFT JOIN tb_c_status as s ON s.cs_id = r.cs_id
                 LEFT JOIN tb_nature as n ON n.n_id = r.n_id
                 WHERE r.cr_year_term = '".$year."' AND r.s_id ={$s_id}
-                ORDER BY r.cs_id,r.date_add
+                ORDER BY r.date_add DESC
                 ";
             break;
             case "tb_r_repair":
@@ -198,7 +198,7 @@ class Repair extends DbRepair
                 LEFT JOIN tb_r_status as s ON s.rs_id = r.rs_id
                 LEFT JOIN tb_nature as n ON n.n_id = r.n_id
                 WHERE r.rr_year_term = '".$year."' AND r.s_id ={$s_id}
-                ORDER BY r.rs_id,r.date_add
+                ORDER BY r.date_add DESC
                 ";
             break;
             case "tb_l_repair":
@@ -210,7 +210,7 @@ class Repair extends DbRepair
                 LEFT JOIN tb_l_status as s ON s.ls_id = r.ls_id
                 LEFT JOIN tb_nature as n ON n.n_id = r.n_id
                 WHERE r.lr_year_term = '".$year."' AND r.s_id ={$s_id}
-                ORDER BY r.ls_id,r.date_add
+                ORDER BY r.date_add DESC
                 ";
             break;
        
@@ -233,7 +233,7 @@ class Repair extends DbRepair
                 LEFT JOIN tb_e_status as s ON s.es_id = r.es_id
                 LEFT JOIN tb_nature as n ON n.n_id = r.n_id
                 WHERE r.er_year_term = '".$year."' AND {$text_sql}
-                ORDER BY r.es_id,r.date_add
+                ORDER BY r.date_add DESC
                 ";
             break;
             case "tb_a_repair":
@@ -245,7 +245,7 @@ class Repair extends DbRepair
                 LEFT JOIN tb_a_status as s ON s.as_id = r.as_id
                 LEFT JOIN tb_nature as n ON n.n_id = r.n_id
                 WHERE r.ar_year_term = '".$year."' AND {$text_sql}
-                ORDER BY r.as_id,r.date_add
+                ORDER BY r.date_add DESC
                 ";
             break;
             case "tb_c_repair":
@@ -257,7 +257,7 @@ class Repair extends DbRepair
                 LEFT JOIN tb_c_status as s ON s.cs_id = r.cs_id
                 LEFT JOIN tb_nature as n ON n.n_id = r.n_id
                 WHERE r.cr_year_term = '".$year."' AND {$text_sql}
-                ORDER BY r.cs_id,r.date_add
+                ORDER BY r.date_add DESC
                 ";
             break;
             case "tb_r_repair":
@@ -269,7 +269,7 @@ class Repair extends DbRepair
                 LEFT JOIN tb_r_status as s ON s.rs_id = r.rs_id
                 LEFT JOIN tb_nature as n ON n.n_id = r.n_id
                 WHERE r.rr_year_term = '".$year."' AND {$text_sql}
-                ORDER BY r.rs_id,r.date_add
+                ORDER BY r.date_add DESC
                 ";
             break;
             case "tb_l_repair":
@@ -281,7 +281,7 @@ class Repair extends DbRepair
                 LEFT JOIN tb_l_status as s ON s.ls_id = r.ls_id
                 LEFT JOIN tb_nature as n ON n.n_id = r.n_id
                 WHERE r.lr_year_term = '".$year."' AND {$text_sql}
-                ORDER BY r.ls_id,r.date_add
+                ORDER BY r.date_add DESC
                 ";
             break;
        
