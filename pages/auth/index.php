@@ -16,7 +16,7 @@
         </div>
         <div class="card">
             <div class="body">
-                <form id="sign_in" action="sign_in.php" method="POST">
+                <form id="sign_in" action="sign_in.php"  method="POST">
                     <div class="msg">Sign in</div>
                     <div class="input-group">
                         <span class="input-group-addon">
@@ -54,6 +54,8 @@
                 </form>
             </div>
         </div>
+        <a href="/repair-sci/doc/คู่มือการใช้งานโปรแกรมแจ้งซ่อมคณะวิทยาศาสตร์เบื้องต้น .pdf" class="btn bg-indigo waves-effect font-bold col-orange" target="_blank">คู่มือการใช้งานเบื้องต้น</a>
+
     </div>
 
     <!-- Jquery Core Js -->
