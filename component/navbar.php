@@ -34,7 +34,11 @@ foreach($staffMenu as $smenu){
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Call Search -->
-                    <li><a href="javascript:void(0);" class="js-search" data-close="true"><i class="material-icons">search</i></a></li>
+                    <li><a href='/repair-sci/pages/member/profile.php' class="">
+                            <!-- <i class='material-icons'>search</i> -->
+                            <span class="fs-16">ติดตามงานซ่อม</span>     
+                        </a> </li>
+                    <!-- <li><a href="javascript:void(0);" class="js-search" data-close="true"><i class="material-icons">search</i></a></li> -->
                     <!-- #END# Call Search -->
                     <!-- Notifications -->
                     <li class="dropdown">

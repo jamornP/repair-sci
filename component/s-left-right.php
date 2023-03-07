@@ -151,7 +151,7 @@
                     <li>
                         <a href='/repair-sci/pages/member/profile.php'>
                             <i class='material-icons'>person</i>
-                            <span>แก้ไขข้อมูล / เปลี่ยน Password</span>
+                            <span>ข้อมูลส่วนตัว</span>
                         </a>
                     </li>
                     <li>
@@ -169,7 +169,7 @@
                     &copy; 2023 <a href="javascript:void(0);">IT-Science@KMITL by Jamorn Pengsuay</a>.
                 </div>
                 <div class="version">
-                    <b>Version: </b> 1
+                    <b>Version: </b> 1.1
                 </div>
                 <div id="css_time_run">
                 
