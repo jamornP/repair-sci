@@ -314,13 +314,13 @@ function SentLine($tb,$datas,$name) {
                 $sToken = "eRPGFqq2xSUZCoULTm0tniHiliZkkULXQ0flEBx9Rig";
                 break;
             case "computer":
-                $sToken = "ad9qJhK5VgAmeflJdKuXtTruIxGvCPoo8RgZfN2Cmmp";
+                $sToken = "hqetKVwQIeBofeRCWQRBnGpOSnxLgUS40hWzVxZflMC";
                 break;
             case "room":
-                $sToken = "ctJJEPRHJSK3EXLftk4ZZh4kXNRrZdLUcjZO2rNEYYR";
+                $sToken = "hqetKVwQIeBofeRCWQRBnGpOSnxLgUS40hWzVxZflMC";
                 break;
             case "lab":
-                $sToken = "ctJJEPRHJSK3EXLftk4ZZh4kXNRrZdLUcjZO2rNEYYR";
+                $sToken = "hqetKVwQIeBofeRCWQRBnGpOSnxLgUS40hWzVxZflMC";
                 break;
             default:
                 $sToken = "NEBJNOEsOZKaHi0CtH5DxutkPV9HNGinPgxZTEsrY1W";
