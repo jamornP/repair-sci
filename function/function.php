@@ -189,7 +189,7 @@ function statusRepair($s){
         break;
     case "7":
         $da['color']="bg-light-green";
-        $da['bt']="<button type='button' class='btn btn-xs {$da['color']} waves-effect mb-2'><i class='material-icons fs-12 ' data-toggle='tooltip' data-placement='top' title='{$s['s_name']}'>camera_alt</i></button>";
+        $da['bt']="<button type='button' class='btn btn-xs {$da['color']} waves-effect mb-2'><i class='material-icons fs-12 ' data-toggle='tooltip' data-placement='top' title='{$s['s_name']}'>mood</i></button>";
         return $da;
         break;
     case "8":
@@ -242,7 +242,7 @@ function statusIT($s){
         case "5":
             // รอดำเนินการครั้งถัดไป
             $da['color']="bg-light-green";
-            $da['bt']="<button type='button' class='btn btn-xs {$da['color']} waves-effect mb-2'><i class='material-icons fs-12 ' data-toggle='tooltip' data-placement='top' title='{$s['s_name']}'>camera_alt</i></button>";
+            $da['bt']="<button type='button' class='btn btn-xs {$da['color']} waves-effect mb-2'><i class='material-icons fs-12 ' data-toggle='tooltip' data-placement='top' title='{$s['s_name']}'>schedule</i></button>";
             return $da;
             break;
         case "8":

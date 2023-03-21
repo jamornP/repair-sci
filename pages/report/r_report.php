@@ -62,6 +62,8 @@
     <?php require $_SERVER['DOCUMENT_ROOT']."/repair-sci/component/script-js.php";?>
     <!-- Jquery Core Js -->
     <script src="/repair-sci/plugins/jquery/jquery.min.js"></script>
+      <!-- Slimscroll Plugin Js -->
+      <script src="/repair-sci/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
 
     <!-- Custom Js -->
     <script src="/repair-sci/js/admin.js"></script>

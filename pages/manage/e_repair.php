@@ -437,7 +437,7 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title" id="defaultModalLabel">ข้อมูลการดำเนินงาน สถานะแจ้งซ่อม <?php echo $dataid['es_id'];?></h4>
+                            <h4 class="modal-title" id="defaultModalLabel">ข้อมูลการดำเนินงาน สถานะแจ้งซ่อม ใบงานที่ <?php echo $r_id;?></h4>
                         </div>
                         <form id="add" action="m_save.php" method="post">
                             <div class="modal-body">
@@ -448,7 +448,7 @@
                                         </p>
                                         <select class="form-control show-tick" name="s_id">
                                             <?php
-                                                $datast2 = $comboboxObj->getStatusManage("tb_e_status",$dataid['es_id']);
+                                                $datast2 = $comboboxObj->getStatusManage("tb_e_status",$dataid['es_id'],$_SESSION['sts_id']);
                                                 foreach($datast2 as $st){
                                                     echo "
                                                         <option value='{$st['es_id']}'>{$st['es_name']}</option>

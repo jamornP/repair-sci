@@ -235,16 +235,17 @@
                                                     <div class="table table-responsive">
                                                         <table class="table table-bordered table-striped table-hover  dataTable">
                                                             <thead>
-                                                                <tr>
-                                                                    <th width="2%" scope="col">#</th>
-                                                                    <th width="10%" scope="col">วันที่แจ้ง</th>
+                                                                <tr class='fs-12'>
+                                                                    <th width="" scope="col">#</th>
+                                                                    <th width="" scope="col">วันที่แจ้ง</th>
                                                                     <th width="" scope="col">รายละเอียด</th>
-                                                                    <th width="8%" scope="col">ห้อง</th>
-                                                                    <th width="3%" scope="col">ชั้น</th>
-                                                                    <th width="15%" scope="col">อาคาร</th>
-                                                                    <th width="8%" scope="col">ประเถท</th>
-                                                                    <th width="8%" scope="col">ลักษณะงาน</th>
-                                                                    <th width="10%" scope="col">สถานะ</th>
+                                                                    <th width="" scope="col">ห้อง</th>
+                                                                    <th width="" scope="col">ชั้น</th>
+                                                                    <th width="" scope="col">อาคาร</th>
+                                                                    <th width="" scope="col">ประเถท</th>
+                                                                    <th width="" scope="col">ลักษณะงาน</th>
+                                                                    <th width="" scope="col">สถานะ</th>
+                                                                    <th width="" scope="" class="fs-12">ความพึงพอใจ</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
@@ -265,17 +266,27 @@
                                                                             $das = statusRepair($dss);
                                                                             $s = $s."". $das['bt'];
                                                                         }
+                                                                        $ckAss = $assessmentObj->countAssByRepairType($data['r_id'],'e');
+                                                                        if($ckAss>0){
+                                                                            $dataAssessment="<a href='#'>ประเมินเรียบร้อย</a>";
+                                                                        }elseif($data['es_id']==8){
+                                                                            $dataAssessment="<a href='/repair-sci/pages/member/assessment.php?re={$data['r_id']}&type=e'>รอประเมิน</a>";
+                                                                        }else{
+                                                                            $dataAssessment="";
+                                                                        }
+                                                                        
                                                                         echo "
                                                                             <tr>
                                                                                 <th scope='row'>{$i}</th>
                                                                                 <td class='fs-10 text-center'>{$datefull}</td>
-                                                                                <td>{$data['er_remark']}</td>
+                                                                                <td class='fs-12'>{$data['er_remark']}</td>
                                                                                 <td class='fs-12'>{$data['er_room']}</td>
                                                                                 <td class='fs-12'>{$data['er_floor']}</td>
                                                                                 <td class='fs-10'>{$data['b_name']}</td>
                                                                                 <td class='fs-12'>{$data['et_name']}</td>
                                                                                 <td class='fs-12'>{$data['n_name']}</td>
                                                                                 <td class='fs-12 align-justify'>{$s} {$data['es_name']}</td>
+                                                                                <td class='fs-12 align-justify'>{$dataAssessment}</td>
                                                                             
                                                                             </tr>
                                                                         ";
@@ -312,7 +323,7 @@
                                                     <div class="table table-responsive">
                                                         <table class="table table-bordered table-striped table-hover  dataTable">
                                                             <thead>
-                                                                <tr>
+                                                                <tr class='fs-12'>
                                                                     <th width="2%" scope="col">#</th>
                                                                     <th width="10%" scope="col">วันที่แจ้ง</th>
                                                                     <th width="" scope="col">รายละเอียด</th>
@@ -342,18 +353,25 @@
                                                                             $das = statusRepair($dss);
                                                                             $s = $s."". $das['bt'];
                                                                         }
-                                                                        
+                                                                        $ckAss = $assessmentObj->countAssByRepairType($data['r_id'],'a');
+                                                                        if($ckAss>0){
+                                                                            $dataAssessment="<a href='#'>ประเมินเรียบร้อย</a>";
+                                                                        }elseif($data['as_id']==8){
+                                                                            $dataAssessment="<a href='/repair-sci/pages/member/assessment.php?re={$data['r_id']}&type=a'>รอประเมิน</a>";
+                                                                        }else{
+                                                                            $dataAssessment="";
+                                                                        }
                                                                         echo "
                                                                             <tr>
                                                                                 <th scope='row'>{$i}</th>
                                                                                 <td class='fs-10 text-center'>{$datefull}</td>
-                                                                                <td>{$data['ar_remark']}</td>
+                                                                                <td class='fs-12'>{$data['ar_remark']}</td>
                                                                                 <td class='fs-12'>{$data['ar_room']}</td>
                                                                                 <td class='fs-12'>{$data['ar_floor']}</td>
                                                                                 <td class='fs-10'>{$data['b_name']}</td>
                                                                                 <td class='fs-12'>{$data['n_name']}</td>
                                                                                 <td class='fs-12 align-justify'>{$s} {$data['as_name']}</td>
-                                                                            
+                                                                                <td class='fs-12 align-justify'>{$dataAssessment}</td>
                                                                             </tr>
                                                                         ";
                                                                     }
@@ -389,7 +407,7 @@
                                                     <div class="table table-responsive">
                                                         <table class="table table-bordered table-striped table-hover  dataTable">
                                                             <thead>
-                                                                <tr>
+                                                                <tr class='fs-12'>
                                                                     <th width="2%" scope="col">#</th>
                                                                     <th width="10%" scope="col">วันที่แจ้ง</th>
                                                                     <th width="" scope="col">รายละเอียด</th>
@@ -419,18 +437,25 @@
                                                                             $das = statusRepair($dss);
                                                                             $s = $s."". $das['bt'];
                                                                         }
-                                                                        
+                                                                        $ckAss = $assessmentObj->countAssByRepairType($data['r_id'],'c');
+                                                                        if($ckAss>0){
+                                                                            $dataAssessment="<a href='#'>ประเมินเรียบร้อย</a>";
+                                                                        }elseif($data['cs_id']==8){
+                                                                            $dataAssessment="<a href='/repair-sci/pages/member/assessment.php?re={$data['r_id']}&type=c'>รอประเมิน</a>";
+                                                                        }else{
+                                                                            $dataAssessment="";
+                                                                        }
                                                                         echo "
                                                                             <tr>
                                                                                 <th scope='row'>{$i}</th>
                                                                                 <td class='fs-10 text-center'>{$datefull}</td>
-                                                                                <td>{$data['cr_remark']}</td>
+                                                                                <td class='fs-12'>{$data['cr_remark']}</td>
                                                                                 <td class='fs-12'>{$data['cr_room']}</td>
                                                                                 <td class='fs-12'>{$data['cr_floor']}</td>
                                                                                 <td class='fs-10'>{$data['b_name']}</td>
                                                                                 <td class='fs-12'>{$data['n_name']}</td>
                                                                                 <td class='fs-12 align-justify'>{$s} {$data['cs_name']}</td>
-                                                                            
+                                                                                <td class='fs-12 align-justify'>{$dataAssessment}</td>
                                                                             </tr>
                                                                         ";
                                                                     }
@@ -466,7 +491,7 @@
                                                     <div class="table table-responsive">
                                                         <table class="table table-bordered table-striped table-hover  dataTable">
                                                             <thead>
-                                                                <tr>
+                                                                <tr class='fs-12'>
                                                                     <th width="2%" scope="col">#</th>
                                                                     <th width="10%" scope="col">วันที่แจ้ง</th>
                                                                     <th width="" scope="col">รายละเอียด</th>
@@ -496,18 +521,25 @@
                                                                             $das = statusRepair($dss);
                                                                             $s = $s."". $das['bt'];
                                                                         }
-                                                                        
+                                                                        $ckAss = $assessmentObj->countAssByRepairType($data['r_id'],'r');
+                                                                        if($ckAss>0){
+                                                                            $dataAssessment="<a href='#'>ประเมินเรียบร้อย</a>";
+                                                                        }elseif($data['rs_id']==8){
+                                                                            $dataAssessment="<a href='/repair-sci/pages/member/assessment.php?re={$data['r_id']}&type=r'>รอประเมิน</a>";
+                                                                        }else{
+                                                                            $dataAssessment="";
+                                                                        }
                                                                         echo "
                                                                             <tr>
                                                                                 <th scope='row'>{$i}</th>
                                                                                 <td class='fs-10 text-center'>{$datefull}</td>
-                                                                                <td>{$data['rr_remark']}</td>
+                                                                                <td class='fs-12'>{$data['rr_remark']}</td>
                                                                                 <td class='fs-12'>{$data['rr_room']}</td>
                                                                                 <td class='fs-12'>{$data['rr_floor']}</td>
                                                                                 <td class='fs-10'>{$data['b_name']}</td>
                                                                                 <td class='fs-12'>{$data['n_name']}</td>
                                                                                 <td class='fs-12 align-justify'>{$s} {$data['rs_name']}</td>
-                                                                            
+                                                                                <td class='fs-12 align-justify'>{$dataAssessment}</td>
                                                                             </tr>
                                                                         ";
                                                                     }
@@ -543,7 +575,7 @@
                                                     <div class="table table-responsive">
                                                         <table class="table table-bordered table-striped table-hover  dataTable">
                                                             <thead>
-                                                                <tr>
+                                                                <tr class='fs-12'>
                                                                     <th width="2%" scope="col">#</th>
                                                                     <th width="10%" scope="col">วันที่แจ้ง</th>
                                                                     <th width="" scope="col">รายละเอียด</th>
@@ -573,18 +605,25 @@
                                                                             $das = statusRepair($dss);
                                                                             $s = $s."". $das['bt'];
                                                                         }
-                                                                        
+                                                                        $ckAss = $assessmentObj->countAssByRepairType($data['r_id'],'l');
+                                                                        if($ckAss>0){
+                                                                            $dataAssessment="<a href='#'>ประเมินเรียบร้อย</a>";
+                                                                        }elseif($data['ls_id']==8){
+                                                                            $dataAssessment="<a href='/repair-sci/pages/member/assessment.php?re={$data['r_id']}&type=l'>รอประเมิน</a>";
+                                                                        }else{
+                                                                            $dataAssessment="";
+                                                                        }
                                                                         echo "
                                                                             <tr>
                                                                                 <th scope='row'>{$i}</th>
                                                                                 <td class='fs-10 text-center'>{$datefull}</td>
-                                                                                <td>{$data['lr_remark']}</td>
+                                                                                <td class='fs-12'>{$data['lr_remark']}</td>
                                                                                 <td class='fs-12'>{$data['lr_room']}</td>
                                                                                 <td class='fs-12'>{$data['lr_floor']}</td>
                                                                                 <td class='fs-10'>{$data['b_name']}</td>
                                                                                 <td class='fs-12'>{$data['n_name']}</td>
                                                                                 <td class='fs-12 align-justify'>{$s} {$data['ls_name']}</td>
-                                                                            
+                                                                                <td class='fs-12 align-justify'>{$dataAssessment}</td>
                                                                             </tr>
                                                                         ";
                                                                     }

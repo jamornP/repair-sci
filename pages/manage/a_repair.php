@@ -442,7 +442,7 @@
                                         </p>
                                         <select class="form-control show-tick" name="s_id">
                                             <?php
-                                                $datast2 = $comboboxObj->getStatusManage("tb_a_status",$dataid['as_id']);
+                                                $datast2 = $comboboxObj->getStatusManage("tb_a_status",$dataid['as_id'],$_SESSION['sts_id']);
                                                 foreach($datast2 as $st){
                                                     echo "
                                                         <option value='{$st['as_id']}'>{$st['as_name']}</option>

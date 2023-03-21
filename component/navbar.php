@@ -12,6 +12,8 @@ use App\Model\Repair\Menu;
 $menuObj = new Menu;
 use App\Model\Repair\Notifi;
 $notifiObj = new Notifi;
+use App\Model\Repair\Assessment;
+$assessmentObj = new Assessment;
 
 
 $year_term = yearterm(date("Y-m-d"));
@@ -34,10 +36,14 @@ foreach($staffMenu as $smenu){
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Call Search -->
+                    <li><a href='/repair-sci/doc/คู่มือการใช้งานโปรแกรมแจ้งซ่อมคณะวิทยาศาสตร์เบื้องต้น .pdf' class="" target="_blank">
+                            <span class="fs-16">คู่มือ</span>     
+                        </a> 
+                    </li>
                     <li><a href='/repair-sci/pages/member/profile.php' class="">
-                            <!-- <i class='material-icons'>search</i> -->
                             <span class="fs-16">ติดตามงานซ่อม</span>     
-                        </a> </li>
+                        </a> 
+                    </li>
                     <!-- <li><a href="javascript:void(0);" class="js-search" data-close="true"><i class="material-icons">search</i></a></li> -->
                     <!-- #END# Call Search -->
                     <!-- Notifications -->

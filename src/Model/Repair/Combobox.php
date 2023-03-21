@@ -72,30 +72,57 @@ class Combobox extends DbRepair
         return $data;
     }
     // เลือกสถานะงานซ่อมจากขั้นตอนการดำเนินงาน
-    public function getStatusManage($table,$s_id) {
+    public function getStatusManage($table,$s_id,$sts_id) {
         switch($table){
             case "tb_e_status" :
-                switch ($s_id) {
-                    case "9":
-                        $sql = "SELECT * FROM {$table} WHERE es_id > 4";
-                      break;
-                    case "10":
-                        $sql = "SELECT * FROM {$table} WHERE es_id > 4";
-                      break;
-                    default:
-                        $sql = "SELECT * FROM {$table} WHERE es_id > {$s_id}";
+                if($sts_id == 6){
+                    switch ($s_id) {
+                        case "9":
+                            $sql = "SELECT * FROM {$table}  WHERE es_id > 4 AND sts_id ={$sts_id}";
+                          break;
+                        case "10":
+                            $sql = "SELECT * FROM {$table} WHERE es_id > 4 AND sts_id ={$sts_id}";
+                          break;
+                        default:
+                            $sql = "SELECT * FROM {$table} WHERE es_id > {$s_id} AND sts_id ={$sts_id}";
+                    }
+                }else{
+                    switch ($s_id) {
+                        case "9":
+                            $sql = "SELECT * FROM {$table} WHERE es_id > 4";
+                          break;
+                        case "10":
+                            $sql = "SELECT * FROM {$table} WHERE es_id > 4";
+                          break;
+                        default:
+                            $sql = "SELECT * FROM {$table} WHERE es_id > {$s_id}";
+                    }
                 }
+                
             break;
             case "tb_a_status" :
-                switch ($s_id) {
-                    case "9":
-                        $sql = "SELECT * FROM {$table} WHERE as_id > 4";
-                      break;
-                    case "10":
-                        $sql = "SELECT * FROM {$table} WHERE as_id > 4";
-                      break;
-                    default:
-                        $sql = "SELECT * FROM {$table} WHERE as_id > ".$s_id;
+                if($sts_id == 6){
+                    switch ($s_id) {
+                        case "9":
+                            $sql = "SELECT * FROM {$table} WHERE as_id > 4 AND sts_id ={$sts_id}";
+                        break;
+                        case "10":
+                            $sql = "SELECT * FROM {$table} WHERE as_id > 4 AND sts_id ={$sts_id}";
+                        break;
+                        default:
+                            $sql = "SELECT * FROM {$table} WHERE as_id > {$s_id} AND sts_id ={$sts_id}";
+                    }
+                }else{
+                    switch ($s_id) {
+                        case "9":
+                            $sql = "SELECT * FROM {$table} WHERE as_id > 4";
+                        break;
+                        case "10":
+                            $sql = "SELECT * FROM {$table} WHERE as_id > 4";
+                        break;
+                        default:
+                            $sql = "SELECT * FROM {$table} WHERE as_id > ".$s_id;
+                    }
                 }
             break;
             case "tb_c_status" :

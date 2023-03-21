@@ -169,7 +169,7 @@
                     &copy; 2023 <a href="javascript:void(0);">IT-Science@KMITL by Jamorn Pengsuay</a>.
                 </div>
                 <div class="version">
-                    <b>Version: </b> 1.1
+                    <b>Version: </b> 2
                 </div>
                 <div id="css_time_run">
                 
