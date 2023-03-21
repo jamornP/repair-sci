@@ -213,6 +213,7 @@
 
                                 <div class="tab-content">
                                     <div role="tabpanel" class="tab-pane fade in active" id="home">
+                                        <!-- ไฟฟ้าและประปา -->
                                         <?php
                                             $datar = $repairObj->getRepairByStaff($_SESSION['year'],"tb_e_repair",$_SESSION['s_id']);
                                             $r = count($datar);
@@ -301,6 +302,7 @@
                                             <?php
                                             }
                                         ?>
+                                        <!-- เครื่องปรับอากาศ -->
                                         <?php
                                             $datar = $repairObj->getRepairByStaff($_SESSION['year'],"tb_a_repair",$_SESSION['s_id']);
                                             $r = count($datar);
@@ -332,6 +334,7 @@
                                                                     <th width="15%" scope="col">อาคาร</th>
                                                                     <th width="8%" scope="col">ลักษณะงาน</th>
                                                                     <th width="10%" scope="col">สถานะ</th>
+                                                                    <th width="" scope="" class="fs-12">ความพึงพอใจ</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
@@ -385,6 +388,7 @@
                                                 <?php
                                                 }
                                         ?>
+                                        <!-- เครื่องคอมพิวเตอร์เจ้าหน้าที่ -->
                                         <?php
                                             $datar = $repairObj->getRepairByStaff($_SESSION['year'],"tb_c_repair",$_SESSION['s_id']);
                                             $r = count($datar);
@@ -416,6 +420,7 @@
                                                                     <th width="15%" scope="col">อาคาร</th>
                                                                     <th width="8%" scope="col">ลักษณะงาน</th>
                                                                     <th width="10%" scope="col">สถานะ</th>
+                                                                    <th width="" scope="" class="fs-12">ความพึงพอใจ</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
@@ -469,6 +474,7 @@
                                                 <?php
                                                 }
                                         ?>
+                                        <!-- เครื่องคอมพิวเตอร์ห้องเรียน -->
                                         <?php
                                             $datar = $repairObj->getRepairByStaff($_SESSION['year'],"tb_r_repair",$_SESSION['s_id']);
                                             $r = count($datar);
@@ -500,6 +506,7 @@
                                                                     <th width="15%" scope="col">อาคาร</th>
                                                                     <th width="8%" scope="col">ลักษณะงาน</th>
                                                                     <th width="10%" scope="col">สถานะ</th>
+                                                                    <th width="" scope="" class="fs-12">ความพึงพอใจ</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>
@@ -553,6 +560,7 @@
                                                 <?php
                                                 }
                                         ?>
+                                        <!-- เครื่องคอมพิวเตอร์ห้อง Lab -->
                                         <?php
                                             $datar = $repairObj->getRepairByStaff($_SESSION['year'],"tb_l_repair",$_SESSION['s_id']);
                                             $r = count($datar);
@@ -584,6 +592,7 @@
                                                                     <th width="15%" scope="col">อาคาร</th>
                                                                     <th width="8%" scope="col">ลักษณะงาน</th>
                                                                     <th width="10%" scope="col">สถานะ</th>
+                                                                    <th width="" scope="" class="fs-12">ความพึงพอใจ</th>
                                                                 </tr>
                                                             </thead>
                                                             <tbody>

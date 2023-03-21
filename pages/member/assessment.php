@@ -105,14 +105,14 @@ session_start();
 
                             <div class="table-responsive">
                                 <form action="save.php" method="POST">
-                                    <input type="text" class="form-control date" placeholder="" value="<?php echo $r_id; ?>" name="r_id">
-                                    <input type="text" class="form-control date" placeholder="" value="<?php echo $type; ?>" name="type">
+                                    <input type="hidden" class="form-control date" placeholder="" value="<?php echo $r_id; ?>" name="r_id">
+                                    <input type="hidden" class="form-control date" placeholder="" value="<?php echo $type; ?>" name="type">
                                     <table class="table table-bordered table-striped table-hover">
                                         <thead>
                                             <tr class="bg-blue">
                                                 <th width="5%" scope="col" class="text-center">ข้อที่</th>
                                                 <th width="" scope="col" class="text-center">หัวข้อ</th>
-                                                <th width="" scope="col" class="text-center">คะแนน</th>
+                                                <th width="50%" scope="col" class="text-center">ระดับความพึงพอใจ</th>
                                             </tr>
                                         </thead>
 
@@ -125,19 +125,19 @@ session_start();
                                                 echo "
                                                 <tr class=''>
                                                     <td width='5%'  class='text-center'>{$i}</td>
-                                                    <td width='65%'  class=''>{$ass['ass_name']}</td>
-                                                    <td width='' class=''>
+                                                    <td width=''  class=''>{$ass['ass_name']}</td>
+                                                    <td width='50%' class=''>
                                                         <div class=''>
                                                             <input name='a{$ass['ass_id']}' type='radio' id='radio_38{$ass['ass_id']}' class='with-gap radio-col-teal' value='5' />
-                                                            <label for='radio_38{$ass['ass_id']}'>ดีมาก</label>
+                                                            <label for='radio_38{$ass['ass_id']}'>มากที่สุด (5)</label>
                                                             <input name='a{$ass['ass_id']}' type='radio' id='radio_40{$ass['ass_id']}' class='with-gap radio-col-light-green' value='4' />
-                                                            <label for='radio_40{$ass['ass_id']}'>ดี</label>
+                                                            <label for='radio_40{$ass['ass_id']}'>มาก (4)</label>
                                                             <input name='a{$ass['ass_id']}' type='radio' id='radio_35{$ass['ass_id']}' class='with-gap radio-col-blue' value='3' />
-                                                            <label for='radio_35{$ass['ass_id']}'>ปานกลาง</label>
+                                                            <label for='radio_35{$ass['ass_id']}'>ปานกลาง (3)</label>
                                                             <input name='a{$ass['ass_id']}' type='radio' id='radio_44{$ass['ass_id']}' class='with-gap radio-col-orange' value='2' />
-                                                            <label for='radio_44{$ass['ass_id']}'>พอใช้</label>
+                                                            <label for='radio_44{$ass['ass_id']}'>น้อย (2)</label>
                                                             <input name='a{$ass['ass_id']}' type='radio' id='radio_30{$ass['ass_id']}' class='with-gap radio-col-red' value='1' />
-                                                            <label for='radio_30{$ass['ass_id']}'>ปรับปรุง</label>
+                                                            <label for='radio_30{$ass['ass_id']}'>ควรปรับปรุง (1)</label>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -154,7 +154,7 @@ session_start();
                                         </tbody>
 
                                     </table>
-                                    <input type="text" class="form-control date" placeholder="" value="<?php echo $_SESSION['s_id']; ?>" name="s_id">
+                                    <input type="hidden" class="form-control date" placeholder="" value="<?php echo $_SESSION['s_id']; ?>" name="s_id">
                                     <button type="submit" class="btn bg-indigo waves-effect">บันทึก</button>
                                 </form>
                             </div>
