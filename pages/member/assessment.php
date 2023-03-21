@@ -26,7 +26,7 @@ session_start();
             <?php
             $r_id = $_GET['re'];
             $type = $_GET['type'];
-            $dataid = $repairObj->getRepairById($_SESSION['year'], "tb_e_repair", $r_id);
+            
             ?>
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -41,6 +41,9 @@ session_start();
                         <div class="body table-responsive">
                             <table class="table table-bordered">
                                 <thead>
+                                    <?php
+                                    if($type=='e'){
+                                        ?>
                                     <tr>
                                         <th width="2%" scope="col">#</th>
                                         <th width="6%" scope="col">วันที่แจ้ง</th>
@@ -53,35 +56,160 @@ session_start();
                                         <th width="10%" scope="col">ผู้แจ้ง</th>
                                         <th width="15%" scope="col">สถานะ</th>
                                     </tr>
+                                        <?php
+                                    }else{
+                                        ?>
+                                    <tr>
+                                        <th width="2%" scope="col">#</th>
+                                        <th width="6%" scope="col">วันที่แจ้ง</th>
+                                        <th width="34%" scope="col">รายละเอียด</th>
+                                        <th width="8%" scope="col">ห้อง</th>
+                                        <th width="3%" scope="col">ชั้น</th>
+                                        <th width="12%" scope="col">อาคาร</th>
+                                        <th width="8%" scope="col">ลักษณะงาน</th>
+                                        <th width="10%" scope="col">ผู้แจ้ง</th>
+                                        <th width="15%" scope="col">สถานะ</th>
+                                    </tr>
+                                        <?php
+                                    }
+                                    ?>
+                                    
                                 </thead>
                                 <tbody>
                                     <?php
 
                                     // print_r($dataid);
-                                    $date_add = datethai($dataid['date_add']);
-                                    $datefull = datethai_time($dataid['date_add']);
-                                    $s = "";
-                                    $dataSt1 = $comboboxObj->getDataStatusById("tb_e_status", $dataid['es_id']);
-                                    $dss['s_id'] = $dataSt1['es_id'];
-                                    $dss['s_name'] = $dataSt1['es_name'];
-                                    $das = statusRepair($dss);
-                                    $s = $das['bt'];
-                                    $r_idl = sent($dataid['r_id']);
-                                    echo "
-                                            <tr>
-                                                <th scope='row'>{$r_id}</th>
-                                                <td class='fs-10 text-center'>{$datefull}</td>
-                                                <td>{$dataid['er_remark']}</td>
-                                                <td class='fs-12'>{$dataid['er_room']}</td>
-                                                <td class='fs-12'>{$dataid['er_floor']}</td>
-                                                <td class='fs-10'>{$dataid['b_name']}</td>
-                                                <td class='fs-12'>{$dataid['et_name']}</td>
-                                                <td class='fs-12'>{$dataid['n_name']}</td>
-                                                <td class='fs-12'>{$dataid['s_name_TH']}</td>
-                                                <td class='fs-12 align-justify'>{$s} {$dataid['es_name']}</td>
-                                            </tr>
-                                        ";
+                                    
+                                    switch ($type){
+                                        case  'e':
+                                            $dataid = $repairObj->getRepairById($_SESSION['year'], "tb_e_repair", $r_id);
+                                            $date_add = datethai($dataid['date_add']);
+                                            $datefull = datethai_time($dataid['date_add']);
+                                            $s = "";
+                                            $dataSt1 = $comboboxObj->getDataStatusById("tb_e_status", $dataid['es_id']);
+                                            $dss['s_id'] = $dataSt1['es_id'];
+                                            $dss['s_name'] = $dataSt1['es_name'];
+                                            $das = statusRepair($dss);
+                                            $s = $das['bt'];
+                                            $r_idl = sent($dataid['r_id']);
+                                            echo "
+                                                    <tr>
+                                                        <th scope='row'>{$r_id}</th>
+                                                        <td class='fs-10 text-center'>{$datefull}</td>
+                                                        <td>{$dataid['er_remark']}</td>
+                                                        <td class='fs-12'>{$dataid['er_room']}</td>
+                                                        <td class='fs-12'>{$dataid['er_floor']}</td>
+                                                        <td class='fs-10'>{$dataid['b_name']}</td>
+                                                        <td class='fs-12'>{$dataid['et_name']}</td>
+                                                        <td class='fs-12'>{$dataid['n_name']}</td>
+                                                        <td class='fs-12'>{$dataid['s_name_TH']}</td>
+                                                        <td class='fs-12 align-justify'>{$s} {$dataid['es_name']}</td>
+                                                    </tr>
+                                                ";
+                                        break;
+                                        case  'a':
+                                            $dataid = $repairObj->getRepairById($_SESSION['year'], "tb_a_repair", $r_id);
+                                            $date_add = datethai($dataid['date_add']);
+                                            $datefull = datethai_time($dataid['date_add']);
+                                            $s = "";
+                                            $dataSt1 = $comboboxObj->getDataStatusById("tb_a_status", $dataid['as_id']);
+                                            $dss['s_id'] = $dataSt1['as_id'];
+                                            $dss['s_name'] = $dataSt1['as_name'];
+                                            $das = statusRepair($dss);
+                                            $s = $das['bt'];
+                                            $r_idl = sent($dataid['r_id']);
+                                            echo "
+                                                    <tr>
+                                                        <th scope='row'>{$r_id}</th>
+                                                        <td class='fs-10 text-center'>{$datefull}</td>
+                                                        <td>{$dataid['ar_remark']}</td>
+                                                        <td class='fs-12'>{$dataid['ar_room']}</td>
+                                                        <td class='fs-12'>{$dataid['ar_floor']}</td>
+                                                        <td class='fs-10'>{$dataid['b_name']}</td>
+                                                        <td class='fs-12'>{$dataid['n_name']}</td>
+                                                        <td class='fs-12'>{$dataid['s_name_TH']}</td>
+                                                        <td class='fs-12 align-justify'>{$s} {$dataid['as_name']}</td>
+                                                    </tr>
+                                                ";
+                                        break;
+                                        case  'c':
+                                            $dataid = $repairObj->getRepairById($_SESSION['year'], "tb_c_repair", $r_id);
+                                            $date_add = datethai($dataid['date_add']);
+                                            $datefull = datethai_time($dataid['date_add']);
+                                            $s = "";
+                                            $dataSt1 = $comboboxObj->getDataStatusById("tb_c_status", $dataid['cs_id']);
+                                            $dss['s_id'] = $dataSt1['cs_id'];
+                                            $dss['s_name'] = $dataSt1['cs_name'];
+                                            $das = statusRepair($dss);
+                                            $s = $das['bt'];
+                                            $r_idl = sent($dataid['r_id']);
+                                            echo "
+                                                    <tr>
+                                                        <th scope='row'>{$r_id}</th>
+                                                        <td class='fs-10 text-center'>{$datefull}</td>
+                                                        <td>{$dataid['cr_remark']}</td>
+                                                        <td class='fs-12'>{$dataid['cr_room']}</td>
+                                                        <td class='fs-12'>{$dataid['cr_floor']}</td>
+                                                        <td class='fs-10'>{$dataid['b_name']}</td>
+                                                        <td class='fs-12'>{$dataid['n_name']}</td>
+                                                        <td class='fs-12'>{$dataid['s_name_TH']}</td>
+                                                        <td class='fs-12 align-justify'>{$s} {$dataid['cs_name']}</td>
+                                                    </tr>
+                                                ";
+                                        break;
+                                        case  'r':
+                                            $dataid = $repairObj->getRepairById($_SESSION['year'], "tb_r_repair", $r_id);
+                                            $date_add = datethai($dataid['date_add']);
+                                            $datefull = datethai_time($dataid['date_add']);
+                                            $s = "";
+                                            $dataSt1 = $comboboxObj->getDataStatusById("tb_r_status", $dataid['rs_id']);
+                                            $dss['s_id'] = $dataSt1['rs_id'];
+                                            $dss['s_name'] = $dataSt1['rs_name'];
+                                            $das = statusRepair($dss);
+                                            $s = $das['bt'];
+                                            $r_idl = sent($dataid['r_id']);
+                                            echo "
+                                                    <tr>
+                                                        <th scope='row'>{$r_id}</th>
+                                                        <td class='fs-10 text-center'>{$datefull}</td>
+                                                        <td>{$dataid['rr_remark']}</td>
+                                                        <td class='fs-12'>{$dataid['rr_room']}</td>
+                                                        <td class='fs-12'>{$dataid['rr_floor']}</td>
+                                                        <td class='fs-10'>{$dataid['b_name']}</td>
+                                                        <td class='fs-12'>{$dataid['n_name']}</td>
+                                                        <td class='fs-12'>{$dataid['s_name_TH']}</td>
+                                                        <td class='fs-12 align-justify'>{$s} {$dataid['rs_name']}</td>
+                                                    </tr>
+                                                ";
+                                        break;
+                                        case  'l':
+                                            $dataid = $repairObj->getRepairById($_SESSION['year'], "tb_l_repair", $r_id);
+                                            $date_add = datethai($dataid['date_add']);
+                                            $datefull = datethai_time($dataid['date_add']);
+                                            $s = "";
+                                            $dataSt1 = $comboboxObj->getDataStatusById("tb_l_status", $dataid['ls_id']);
+                                            $dss['s_id'] = $dataSt1['ls_id'];
+                                            $dss['s_name'] = $dataSt1['ls_name'];
+                                            $das = statusRepair($dss);
+                                            $s = $das['bt'];
+                                            $r_idl = sent($dataid['r_id']);
+                                            echo "
+                                                    <tr>
+                                                        <th scope='row'>{$r_id}</th>
+                                                        <td class='fs-10 text-center'>{$datefull}</td>
+                                                        <td>{$dataid['lr_remark']}</td>
+                                                        <td class='fs-12'>{$dataid['lr_room']}</td>
+                                                        <td class='fs-12'>{$dataid['lr_floor']}</td>
+                                                        <td class='fs-10'>{$dataid['b_name']}</td>
+                                                        <td class='fs-12'>{$dataid['n_name']}</td>
+                                                        <td class='fs-12'>{$dataid['s_name_TH']}</td>
+                                                        <td class='fs-12 align-justify'>{$s} {$dataid['ls_name']}</td>
+                                                    </tr>
+                                                ";
+                                        break;
 
+                                    }
+                                    
                                     ?>
 
                                 </tbody>
@@ -111,8 +239,8 @@ session_start();
                                         <thead>
                                             <tr class="bg-blue">
                                                 <th width="5%" scope="col" class="text-center">ข้อที่</th>
-                                                <th width="" scope="col" class="text-center">หัวข้อ</th>
-                                                <th width="50%" scope="col" class="text-center">ระดับความพึงพอใจ</th>
+                                                <th width="55%" scope="col" class="text-center">หัวข้อ</th>
+                                                <th width="" scope="col" class="text-center">ระดับความพึงพอใจ</th>
                                             </tr>
                                         </thead>
 
@@ -123,31 +251,31 @@ session_start();
                                             foreach ($dataAss as $ass) {
                                                 $i++;
                                                 echo "
-                                                <tr class=''>
-                                                    <td width='5%'  class='text-center'>{$i}</td>
-                                                    <td width=''  class=''>{$ass['ass_name']}</td>
-                                                    <td width='50%' class=''>
-                                                        <div class=''>
-                                                            <input name='a{$ass['ass_id']}' type='radio' id='radio_38{$ass['ass_id']}' class='with-gap radio-col-teal' value='5' />
-                                                            <label for='radio_38{$ass['ass_id']}'>มากที่สุด (5)</label>
-                                                            <input name='a{$ass['ass_id']}' type='radio' id='radio_40{$ass['ass_id']}' class='with-gap radio-col-light-green' value='4' />
-                                                            <label for='radio_40{$ass['ass_id']}'>มาก (4)</label>
-                                                            <input name='a{$ass['ass_id']}' type='radio' id='radio_35{$ass['ass_id']}' class='with-gap radio-col-blue' value='3' />
-                                                            <label for='radio_35{$ass['ass_id']}'>ปานกลาง (3)</label>
-                                                            <input name='a{$ass['ass_id']}' type='radio' id='radio_44{$ass['ass_id']}' class='with-gap radio-col-orange' value='2' />
-                                                            <label for='radio_44{$ass['ass_id']}'>น้อย (2)</label>
-                                                            <input name='a{$ass['ass_id']}' type='radio' id='radio_30{$ass['ass_id']}' class='with-gap radio-col-red' value='1' />
-                                                            <label for='radio_30{$ass['ass_id']}'>ควรปรับปรุง (1)</label>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            ";
+                                                    <tr class=''>
+                                                        <td   class='text-center'>{$i}</td>
+                                                        <td  class=''>{$ass['ass_name']}</td>
+                                                        <td class=''>
+                                                            <div class=''>
+                                                                <input name='a{$ass['ass_id']}' type='radio' id='radio_38{$ass['ass_id']}' class='with-gap radio-col-teal' value='5' />
+                                                                <label for='radio_38{$ass['ass_id']}'>มากที่สุด (5)</label>
+                                                                <input name='a{$ass['ass_id']}' type='radio' id='radio_40{$ass['ass_id']}' class='with-gap radio-col-light-green' value='4' />
+                                                                <label for='radio_40{$ass['ass_id']}'>มาก (4)</label>
+                                                                <input name='a{$ass['ass_id']}' type='radio' id='radio_35{$ass['ass_id']}' class='with-gap radio-col-blue' value='3' />
+                                                                <label for='radio_35{$ass['ass_id']}'>ปานกลาง (3)</label>
+                                                                <input name='a{$ass['ass_id']}' type='radio' id='radio_44{$ass['ass_id']}' class='with-gap radio-col-orange' value='2' />
+                                                                <label for='radio_44{$ass['ass_id']}'>น้อย (2)</label>
+                                                                <input name='a{$ass['ass_id']}' type='radio' id='radio_30{$ass['ass_id']}' class='with-gap radio-col-red' value='1' />
+                                                                <label for='radio_30{$ass['ass_id']}'>ควรปรับปรุง (1)</label>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                ";
                                             }
                                             $i++;
                                             ?>
                                             <tr>
-                                                <td width='5%' class='text-center'><?php echo $i; ?></td>
-                                                <td width='65%' class=''>ข้อเสนอแนะ</td>
+                                                <td width='' class='text-center'><?php echo $i; ?></td>
+                                                <td width=' class=''>ข้อเสนอแนะ</td>
                                                 <td width='' class=''><textarea class="form-control" rows='5' name='suggestion'></textarea></td>
                                             </tr>
 
