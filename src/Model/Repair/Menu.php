@@ -16,6 +16,7 @@ class Menu extends DbRepair
             m_link_m_repair, 
             m_icon, 
             m_table,
+            m_images,
             m_show
           ) VALUES (
             :m_name, 
@@ -23,6 +24,7 @@ class Menu extends DbRepair
             :m_link_m_repair, 
             :m_icon, 
             :m_table,
+            :m_images,
             :m_show
           )    
       ";
@@ -141,3 +143,4 @@ class Menu extends DbRepair
   }
 
 }
+?>

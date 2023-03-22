@@ -6,11 +6,24 @@ use App\Database\DbRepair;
 
 class Assessment extends DbRepair {
 
-    public function getAssByType($type) {
+    public function getAssByGroup($ass_group) {
         $sql = "
         SELECT *
         FROM tb_assessment
-        WHERE type = '".$type."'
+        WHERE ass_group = '".$ass_group."'
+        ";
+          
+        $stmt = $this->pdo->query($sql);
+        $data = $stmt->fetchAll();
+        // $row = $stmt->rowCount();
+        return  $data;
+    }
+    public function getAssGroup() {
+        $sql = "
+        SELECT ass_group
+        FROM tb_assessment
+        GROUP BY ass_group
+        ORDER BY ass_id
         ";
           
         $stmt = $this->pdo->query($sql);

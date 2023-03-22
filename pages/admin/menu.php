@@ -43,6 +43,7 @@
                                         if(!isset($_POST['m_show'])){
                                             $_POST['m_show']=0;
                                         }
+                                        $_POST['m_images']="";
                                         //  print_r($_POST);
                                         $ckadd = $menuObj->newMenu($_POST);
                                         $mes="Save Data Success";

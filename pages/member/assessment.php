@@ -26,7 +26,7 @@ session_start();
             <?php
             $r_id = $_GET['re'];
             $type = $_GET['type'];
-            
+
             ?>
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -42,45 +42,45 @@ session_start();
                             <table class="table table-bordered">
                                 <thead>
                                     <?php
-                                    if($type=='e'){
-                                        ?>
-                                    <tr>
-                                        <th width="2%" scope="col">#</th>
-                                        <th width="6%" scope="col">วันที่แจ้ง</th>
-                                        <th width="34%" scope="col">รายละเอียด</th>
-                                        <th width="8%" scope="col">ห้อง</th>
-                                        <th width="3%" scope="col">ชั้น</th>
-                                        <th width="12%" scope="col">อาคาร</th>
-                                        <th width="8%" scope="col">ประเถท</th>
-                                        <th width="8%" scope="col">ลักษณะงาน</th>
-                                        <th width="10%" scope="col">ผู้แจ้ง</th>
-                                        <th width="15%" scope="col">สถานะ</th>
-                                    </tr>
-                                        <?php
-                                    }else{
-                                        ?>
-                                    <tr>
-                                        <th width="2%" scope="col">#</th>
-                                        <th width="6%" scope="col">วันที่แจ้ง</th>
-                                        <th width="34%" scope="col">รายละเอียด</th>
-                                        <th width="8%" scope="col">ห้อง</th>
-                                        <th width="3%" scope="col">ชั้น</th>
-                                        <th width="12%" scope="col">อาคาร</th>
-                                        <th width="8%" scope="col">ลักษณะงาน</th>
-                                        <th width="10%" scope="col">ผู้แจ้ง</th>
-                                        <th width="15%" scope="col">สถานะ</th>
-                                    </tr>
-                                        <?php
+                                    if ($type == 'e') {
+                                    ?>
+                                        <tr>
+                                            <th width="2%" scope="col">#</th>
+                                            <th width="6%" scope="col">วันที่แจ้ง</th>
+                                            <th width="34%" scope="col">รายละเอียด</th>
+                                            <th width="8%" scope="col">ห้อง</th>
+                                            <th width="3%" scope="col">ชั้น</th>
+                                            <th width="12%" scope="col">อาคาร</th>
+                                            <th width="8%" scope="col">ประเถท</th>
+                                            <th width="8%" scope="col">ลักษณะงาน</th>
+                                            <th width="10%" scope="col">ผู้แจ้ง</th>
+                                            <th width="15%" scope="col">สถานะ</th>
+                                        </tr>
+                                    <?php
+                                    } else {
+                                    ?>
+                                        <tr>
+                                            <th width="2%" scope="col">#</th>
+                                            <th width="6%" scope="col">วันที่แจ้ง</th>
+                                            <th width="34%" scope="col">รายละเอียด</th>
+                                            <th width="8%" scope="col">ห้อง</th>
+                                            <th width="3%" scope="col">ชั้น</th>
+                                            <th width="12%" scope="col">อาคาร</th>
+                                            <th width="8%" scope="col">ลักษณะงาน</th>
+                                            <th width="10%" scope="col">ผู้แจ้ง</th>
+                                            <th width="15%" scope="col">สถานะ</th>
+                                        </tr>
+                                    <?php
                                     }
                                     ?>
-                                    
+
                                 </thead>
                                 <tbody>
                                     <?php
 
                                     // print_r($dataid);
-                                    
-                                    switch ($type){
+
+                                    switch ($type) {
                                         case  'e':
                                             $dataid = $repairObj->getRepairById($_SESSION['year'], "tb_e_repair", $r_id);
                                             $date_add = datethai($dataid['date_add']);
@@ -106,7 +106,7 @@ session_start();
                                                         <td class='fs-12 align-justify'>{$s} {$dataid['es_name']}</td>
                                                     </tr>
                                                 ";
-                                        break;
+                                            break;
                                         case  'a':
                                             $dataid = $repairObj->getRepairById($_SESSION['year'], "tb_a_repair", $r_id);
                                             $date_add = datethai($dataid['date_add']);
@@ -131,7 +131,7 @@ session_start();
                                                         <td class='fs-12 align-justify'>{$s} {$dataid['as_name']}</td>
                                                     </tr>
                                                 ";
-                                        break;
+                                            break;
                                         case  'c':
                                             $dataid = $repairObj->getRepairById($_SESSION['year'], "tb_c_repair", $r_id);
                                             $date_add = datethai($dataid['date_add']);
@@ -156,7 +156,7 @@ session_start();
                                                         <td class='fs-12 align-justify'>{$s} {$dataid['cs_name']}</td>
                                                     </tr>
                                                 ";
-                                        break;
+                                            break;
                                         case  'r':
                                             $dataid = $repairObj->getRepairById($_SESSION['year'], "tb_r_repair", $r_id);
                                             $date_add = datethai($dataid['date_add']);
@@ -181,7 +181,7 @@ session_start();
                                                         <td class='fs-12 align-justify'>{$s} {$dataid['rs_name']}</td>
                                                     </tr>
                                                 ";
-                                        break;
+                                            break;
                                         case  'l':
                                             $dataid = $repairObj->getRepairById($_SESSION['year'], "tb_l_repair", $r_id);
                                             $date_add = datethai($dataid['date_add']);
@@ -206,10 +206,9 @@ session_start();
                                                         <td class='fs-12 align-justify'>{$s} {$dataid['ls_name']}</td>
                                                     </tr>
                                                 ";
-                                        break;
-
+                                            break;
                                     }
-                                    
+
                                     ?>
 
                                 </tbody>
@@ -224,68 +223,83 @@ session_start();
                     <div class="card">
                         <div class="header">
                             <h2>
-                                แบบประเมิน
+                                แบบประเมินความพึงพอใจ
                             </h2>
                             <div class="header-dropdown m-r--5">
                             </div>
                         </div>
                         <div class="body">
-
-                            <div class="table-responsive">
-                                <form action="save.php" method="POST">
-                                    <input type="hidden" class="form-control date" placeholder="" value="<?php echo $r_id; ?>" name="r_id">
-                                    <input type="hidden" class="form-control date" placeholder="" value="<?php echo $type; ?>" name="type">
-                                    <table class="table table-bordered table-striped table-hover">
+                            <form action="save.php" method="POST">
+                                <input type="hidden" class="form-control date" placeholder="" value="<?php echo $r_id; ?>" name="r_id">
+                                <input type="hidden" class="form-control date" placeholder="" value="<?php echo $type; ?>" name="type">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-striped">
                                         <thead>
-                                            <tr class="bg-blue">
-                                                <th width="5%" scope="col" class="text-center">ข้อที่</th>
-                                                <th width="55%" scope="col" class="text-center">หัวข้อ</th>
+                                            <!-- <tr class="bg-black">
+                                                
+                                                <th colspan='2' width="55%" scope="col" class="text-center">หัวข้อ</th>
                                                 <th width="" scope="col" class="text-center">ระดับความพึงพอใจ</th>
-                                            </tr>
+                                            </tr> -->
                                         </thead>
 
                                         <tbody>
                                             <?php
-                                            $dataAss = $assessmentObj->getAssByType("c");
-                                            $i = 0;
-                                            foreach ($dataAss as $ass) {
-                                                $i++;
+                                            $groups = $assessmentObj->getAssGroup();
+                                            // print_r($groups);
+                                            $j = 0;
+                                            foreach ($groups as $g) {
+                                                $j++;
                                                 echo "
-                                                    <tr class=''>
-                                                        <td   class='text-center'>{$i}</td>
-                                                        <td  class=''>{$ass['ass_name']}</td>
-                                                        <td class=''>
-                                                            <div class=''>
-                                                                <input name='a{$ass['ass_id']}' type='radio' id='radio_38{$ass['ass_id']}' class='with-gap radio-col-teal' value='5' />
-                                                                <label for='radio_38{$ass['ass_id']}'>มากที่สุด (5)</label>
-                                                                <input name='a{$ass['ass_id']}' type='radio' id='radio_40{$ass['ass_id']}' class='with-gap radio-col-light-green' value='4' />
-                                                                <label for='radio_40{$ass['ass_id']}'>มาก (4)</label>
-                                                                <input name='a{$ass['ass_id']}' type='radio' id='radio_35{$ass['ass_id']}' class='with-gap radio-col-blue' value='3' />
-                                                                <label for='radio_35{$ass['ass_id']}'>ปานกลาง (3)</label>
-                                                                <input name='a{$ass['ass_id']}' type='radio' id='radio_44{$ass['ass_id']}' class='with-gap radio-col-orange' value='2' />
-                                                                <label for='radio_44{$ass['ass_id']}'>น้อย (2)</label>
-                                                                <input name='a{$ass['ass_id']}' type='radio' id='radio_30{$ass['ass_id']}' class='with-gap radio-col-red' value='1' />
-                                                                <label for='radio_30{$ass['ass_id']}'>ควรปรับปรุง (1)</label>
-                                                            </div>
-                                                        </td>
+                                                    <tr class='bg-cyan fs-16'>
+                                                    <td colspan='2'>{$j}.{$g['ass_group']}</td>
+                                                    <td class='text-center'>ระดับความพึงพอใจ</td>
                                                     </tr>
                                                 ";
+                                                $dataAss = $assessmentObj->getAssByGroup($g['ass_group']);
+                                                $i = 0;
+                                                foreach ($dataAss as $ass) {
+                                                    $i++;
+                                                    echo "
+                                                        <tr class=''>
+                                                            <td   class='text-center'>{$j}.{$i}</td>
+                                                            <td  class=''>{$ass['ass_name']}</td>
+                                                            <td class=''>
+                                                                <div class=''>
+                                                                    <input name='a{$ass['ass_id']}' type='radio' id='radio_38{$ass['ass_id']}' class='with-gap radio-col-teal' value='5' />
+                                                                    <label for='radio_38{$ass['ass_id']}'>มากที่สุด (5)</label>
+                                                                    <input name='a{$ass['ass_id']}' type='radio' id='radio_40{$ass['ass_id']}' class='with-gap radio-col-light-green' value='4' />
+                                                                    <label for='radio_40{$ass['ass_id']}'>มาก (4)</label>
+                                                                    <input name='a{$ass['ass_id']}' type='radio' id='radio_35{$ass['ass_id']}' class='with-gap radio-col-blue' value='3' />
+                                                                    <label for='radio_35{$ass['ass_id']}'>ปานกลาง (3)</label>
+                                                                    <input name='a{$ass['ass_id']}' type='radio' id='radio_44{$ass['ass_id']}' class='with-gap radio-col-orange' value='2' />
+                                                                    <label for='radio_44{$ass['ass_id']}'>น้อย (2)</label>
+                                                                    <input name='a{$ass['ass_id']}' type='radio' id='radio_30{$ass['ass_id']}' class='with-gap radio-col-red' value='1' />
+                                                                    <label for='radio_30{$ass['ass_id']}'>ควรปรับปรุง (1)</label>
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    ";
+                                                }
                                             }
-                                            $i++;
                                             ?>
+                                            <tr class='bg-cyan fs-16'>
+                                                    <td colspan='2'><?php echo ($j + 1).'.ข้อเสนอแนะ'; ?></td>
+                                                    <td></td>
+                                                    </tr>
                                             <tr>
-                                                <td width='' class='text-center'><?php echo $i; ?></td>
-                                                <td width=' class=''>ข้อเสนอแนะ</td>
-                                                <td width='' class=''><textarea class="form-control" rows='5' name='suggestion'></textarea></td>
+                                                <td width='' class='text-center'></td>
+                                                <td colspan='2'width='' class=''><textarea class="form-control" rows=' 3' name='suggestion'></textarea></td>
+                                                
                                             </tr>
 
                                         </tbody>
 
                                     </table>
-                                    <input type="hidden" class="form-control date" placeholder="" value="<?php echo $_SESSION['s_id']; ?>" name="s_id">
-                                    <button type="submit" class="btn bg-indigo waves-effect">บันทึก</button>
-                                </form>
-                            </div>
+                                </div>
+                                <input type="hidden" class="form-control date" placeholder="" value="<?php echo $_SESSION['s_id']; ?>" name="s_id">
+                                <button type="submit" class="btn bg-indigo waves-effect">บันทึก</button>
+                            </form>
+
 
                         </div>
                     </div>

@@ -36,16 +36,47 @@ session_start();
                         <div class="body">
                             <div class="row clearfix">
                                 <form action="" method="POST">
-
+                                    <!-- <div class="row"> -->
+                                    <?php
+                                    // if ($_SESSION['sts_id'] < 7) {
+                                    ?>
+                                        <div class="col-sm-10 col-md-10 col-xl-6">
+                                            <h2 class="card-inside-title">รายงานแจ้งซ่อม</h2>
+                                            <select class="form-control show-tick" tabindex="-98" name="table">
+                                                <option value="">-- เลือก --</option>
+                                                <?php
+                                                $staffMenu = $menuObj->getMenuByStaff($_SESSION['s_id']);
+                                                $a = count($staffMenu);
+                                                if ($a > 0) {
+                                                    foreach ($staffMenu as $smenu) {
+                                                        $selected =($smenu['m_table']==$_POST['table']?"selected":"");
+                                                        echo "
+                                                            <option value='{$smenu['m_table']}' {$selected}>{$smenu['m_name']}</option>
+                                                            ";
+                                                    }
+                                                }
+                                                ?>
+                                            </select>
+                                        </div>
+                                    <?php
+                                    // } else {
+                                    //     $_POST['table'] = "tb_e_repair";
+                                    // }
+                                    ?>
+                                    <!-- </div> -->
+                                    <?php 
+                                    $dateS=(isset($_POST['dateS'])?$_POST['dateS']:"");
+                                    $dateE=(isset($_POST['dateE'])?$_POST['dateE']:"");
+                                    ?>
                                     <div class="col-sm-10 col-md-10 col-xl-6">
                                         <h2 class="card-inside-title">ระหว่างวันที่</h2>
                                         <div class="input-daterange input-group">
                                             <div class="form-line">
-                                                <input type="text" id="datepicker" class="form-control" placeholder="วันที่เริ่ม" name="dateS" autocomplete="off">
+                                                <input type="text" id="datepicker" class="form-control" placeholder="วันที่เริ่ม" name="dateS" autocomplete="off" value="<?php echo $dateS;?>">
                                             </div>
                                             <span class="input-group-addon">ถึง</span>
                                             <div class="form-line">
-                                                <input type="text" id="datepicker2" class="form-control" placeholder="วันที่สิ้นสุด" name="dateE" autocomplete="off">
+                                                <input type="text" id="datepicker2" class="form-control" placeholder="วันที่สิ้นสุด" name="dateE" autocomplete="off" value="<?php echo $dateE;?>">
                                             </div>
                                         </div>
                                     </div>
@@ -57,82 +88,86 @@ session_start();
                                     </div>
                                 </form>
                                 <!-- รายงานตามประเภท เฉพาะไฟฟ้าและประปรา -->
-                                <?php if(isset($_POST['dateS']) AND isset($_POST['dateE'])){?>
-                                    <div class="col-sm- 12 col-md-12 col-xl-4">
-                                        <div class="table-responsive">
-                                            <h4>
-                                                <?php
-                                                $dateth = datethai($_POST['dateS'])." - ".datethai($_POST['dateE']);
-                                                echo "ระหว่างวันที่ ".$dateth;
-                                                ?>
-                                            </h4>
-                                            <table class="table table-bordered table-striped">
-                                                <thead>
-                                                    <tr class="bg-pink">
-                                                        <th width="4%"></th>
-                                                        <th width="">ประเภท</th>
-                                                        <?php
-                                                        // $datas = $comboboxObj->getDataStatus("tb_e_status");
-                                                        // foreach ($datas as $s) {
-                                                        //     // สี
-                                                        //     $st['s_id']=$s['es_id'];
-                                                        //     $st['s_name']=$s['es_name'];
-                                                        //     $color_bg = statusRepair($st);
-                                                        //     $color = $color_bg['color'];
-                                                        //     //
-                                                        //     echo "
-                                                        //         <th width='8%' class='text-center {$color}'>{$s['es_name']}</th>
-                                                        //     ";
-                                                        // }
-                                                        ?>
-                                                        <th width="8%" class='text-center'>แจ้งซ่อม</th>
-                                                        <th width="8%" class='text-center'>เรียบร้อย</th>
-                                                        <th width="8%" class='text-center'>งานค้าง</th>
-                                                        <th width="8%" class='text-center'>รออะไหล่</th>
-                                                        <th width="8%" class='text-center'>จ้างเหมา</th>
-                                                        <th width="8%" class='text-center'>รอตรวจสอบ</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
+                                <?php
+                                if ((isset($_POST['dateS']) and isset($_POST['dateE'])) AND ($_POST['dateS']<>"" OR $_POST['dateE']<>"")) {
+                                    $dateth = datethai($_POST['dateS']) . " - " . datethai($_POST['dateE']);
+                                    if ($_POST['table'] == "tb_e_repair") {
+                                    ?>
+                                        <div class="col-sm- 12 col-md-12 col-xl-4">
+                                            <div class="table-responsive">
+                                                <h4>
                                                     <?php
-                                                
-                                                    $data = $comboboxObj->getType();
-                                                    $datas = $comboboxObj->getDataStatus("tb_e_status");
-                                                    foreach ($data as $d) {
-                                                        echo "
+
+                                                    echo "รายการแจ้งซ่อมไฟฟ้าและประปา ระหว่างวันที่ " . $dateth;
+                                                    ?>
+                                                </h4>
+                                                <table class="table table-bordered table-striped">
+                                                    <thead>
+                                                        <tr class="bg-pink">
+                                                            <th width="4%"></th>
+                                                            <th width="">ประเภท</th>
+                                                            <?php
+                                                            // $datas = $comboboxObj->getDataStatus("tb_e_status");
+                                                            // foreach ($datas as $s) {
+                                                            //     // สี
+                                                            //     $st['s_id']=$s['es_id'];
+                                                            //     $st['s_name']=$s['es_name'];
+                                                            //     $color_bg = statusRepair($st);
+                                                            //     $color = $color_bg['color'];
+                                                            //     //
+                                                            //     echo "
+                                                            //         <th width='8%' class='text-center {$color}'>{$s['es_name']}</th>
+                                                            //     ";
+                                                            // }
+                                                            ?>
+                                                            <th width="8%" class='text-center'>แจ้งซ่อม</th>
+                                                            <th width="8%" class='text-center'>เรียบร้อย</th>
+                                                            <th width="8%" class='text-center'>งานค้าง</th>
+                                                            <th width="8%" class='text-center'>รออะไหล่</th>
+                                                            <th width="8%" class='text-center'>จ้างเหมา</th>
+                                                            <th width="8%" class='text-center'>รอตรวจสอบ</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <?php
+
+                                                        $data = $comboboxObj->getType();
+                                                        $datas = $comboboxObj->getDataStatus("tb_e_status");
+                                                        foreach ($data as $d) {
+                                                            echo "
                                                             <tr>
                                                                 <th scope='row'>{$d['et_id']}</th>
                                                                 <td>{$d['et_name']}</td> ";
-                                                        $d1=0;
-                                                        $d2=0;
-                                                        $d3=0;
-                                                        $d4=0;
-                                                        $d5=0;
-                                                        $d6=0;
-                                                        foreach ($datas as $s) {
-                                                            $sqlD = " (date_add BETWEEN '{$_POST['dateS']} 00:00:00' AND '{$_POST['dateE']} 23:59:59')";
-                                                            $countS = $notifiObj->countStatusR($_SESSION['year'], "tb_e_repair",$d['et_id'],$s['es_id'], $sqlD);
-                                                            $d1 += $countS;
-                                                            if($s['es_id']<=6){
-                                                                $d3 +=$countS;
-                                                            }
-                                                            if($s['es_id']==8){
-                                                                $d2 +=$countS;
-                                                            }
-                                                            if($s['es_id']==9){
-                                                                $d4 =$countS;
-                                                            }
-                                                            if($s['es_id']==10){
-                                                                $d5 =$countS;
-                                                            }
-                                                            if($s['es_id']==7){
-                                                                $d6 =$countS;
-                                                            }
-                                                            echo "
+                                                            $d1 = 0;
+                                                            $d2 = 0;
+                                                            $d3 = 0;
+                                                            $d4 = 0;
+                                                            $d5 = 0;
+                                                            $d6 = 0;
+                                                            foreach ($datas as $s) {
+                                                                $sqlD = " (date_add BETWEEN '{$_POST['dateS']} 00:00:00' AND '{$_POST['dateE']} 23:59:59')";
+                                                                $countS = $notifiObj->countStatusR($_SESSION['year'], "tb_e_repair", $d['et_id'], $s['es_id'], $sqlD);
+                                                                $d1 += $countS;
+                                                                if ($s['es_id'] <= 6) {
+                                                                    $d3 += $countS;
+                                                                }
+                                                                if ($s['es_id'] == 8) {
+                                                                    $d2 += $countS;
+                                                                }
+                                                                if ($s['es_id'] == 9) {
+                                                                    $d4 = $countS;
+                                                                }
+                                                                if ($s['es_id'] == 10) {
+                                                                    $d5 = $countS;
+                                                                }
+                                                                if ($s['es_id'] == 7) {
+                                                                    $d6 = $countS;
+                                                                }
+                                                                echo "
                                                                 
                                                             ";
-                                                        }
-                                                        echo "
+                                                            }
+                                                            echo "
                                                             <td class='text-center'>{$d1}</td>
                                                             <td class='text-center'>{$d2}</td>
                                                             <td class='text-center'>{$d3}</td>
@@ -141,15 +176,17 @@ session_start();
                                                             <td class='text-center'>{$d6}</td>
                                                             </tr>
                                                         ";
-                                                    }
-                                                    ?>
+                                                        }
+                                                        ?>
 
 
-                                                </tbody>
-                                            </table>
+                                                    </tbody>
+                                                </table>
+                                            </div>
                                         </div>
-                                    </div>
-                                <?php } ?>
+                                <?php 
+                                        }
+                                } ?>
                                 <!-- //เฉพาะไฟฟ้าและประปรา -->
                             </div>
                         </div>
@@ -157,17 +194,47 @@ session_start();
                 </div>
             </div>
             <!-- export Excel -->
-            <?php if(isset($_POST['dateS']) AND isset($_POST['dateE'])){?>
+            <?php
+            if (isset($_POST['dateS']) and isset($_POST['dateE']) AND ($_POST['dateS']<>"" OR $_POST['dateE']<>"")) {
+                $table = $_POST['table'];
+                switch ($table) {
+                    case "tb_e_repair":
+                        $title = "รายการแจ้งซ่อมไฟฟ้าและประปา ระหว่างวันที่ " . $dateth;
+                        $table2 ="tb_e_datastatus";
+                        $table3 ="tb_e_status";
+                        break;
+                    case "tb_a_repair":
+                        $title = "รายการแจ้งซ่อมเครื่องปรับอากาศ ระหว่างวันที่ " . $dateth;
+                        $table2 ="tb_a_datastatus";
+                        $table3 ="tb_a_status";
+                        break;
+                    case "tb_c_repair":
+                        $title = "รายการแจ้งซ่อมเครื่องคอมพิวเตอร์เจ้าหน้าที่ ระหว่างวันที่ " . $dateth;
+                        $table2 ="tb_c_datastatus";
+                        $table3 ="tb_c_status";
+                        break;
+                    case "tb_r_repair":
+                        $title = "รายการแจ้งซ่อมเครื่องคอมพิวเตอร์ห้องเรียน ระหว่างวันที่ " . $dateth;
+                        $table2 ="tb_r_datastatus";
+                        $table3 ="tb_r_status";
+                        break;
+                    case "tb_l_repair":
+                        $title = "รายการแจ้งซ่อมเครื่องคอมพิวเตอร์ห้อง LAB  ระหว่างวันที่ " . $dateth;
+                        $table2 ="tb_l_datastatus";
+                        $table3 ="tb_l_status";
+                        break;
+                }
+                ?>
                 <div class="row clearfix">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="card">
                             <div class="header">
                                 <h2>
-                                    รายการแจ้งซ่อมระหว่างวันที่ <?php echo $dateth;?>
+                                    <?php echo $title; ?>
                                 </h2>
                                 <ul class="header-dropdown m-r--5">
                                     <li class="dropdown">
-                                        
+
                                     </li>
                                 </ul>
                             </div>
@@ -182,7 +249,9 @@ session_start();
                                                 <th width="8%" scope="col">ห้อง</th>
                                                 <th width="3%" scope="col">ชั้น</th>
                                                 <th width="12%" scope="col">อาคาร</th>
-                                                <th width="8%" scope="col">ประเถท</th>
+                                                <?php if($table =="tb_e_repair"){?>
+                                                    <th width="8%" scope="col">ประเถท</th>
+                                                <?php }?>
                                                 <th width="8%" scope="col">ลักษณะงาน</th>
                                                 <th width="10%" scope="col">ผู้แจ้ง</th>
                                                 <th width="10%" scope="col">สถานะ</th>
@@ -192,7 +261,7 @@ session_start();
                                         <tbody>
                                             <?php
                                             $sqlD = " (date_add BETWEEN '{$_POST['dateS']} 00:00:00' AND '{$_POST['dateE']} 23:59:59')";
-                                            $datar = $repairObj->getRepairByDate($_SESSION['year'], "tb_e_repair", $sqlD);
+                                            $datar = $repairObj->getRepairByDate($_SESSION['year'], $table, $sqlD);
                                             $r = count($datar);
                                             if ($r > 0) {
                                                 // print_r($datar);
@@ -204,34 +273,151 @@ session_start();
                                                     $date_add = datethai($data['date_add']);
                                                     $datefull = datethai_time($data['date_add']);
                                                     $s = "";
-                                                    $r_data = $comboboxObj->getDataStatusByRepair2("tb_e_datastatus", $data['r_id']);
-                                                    foreach ($r_data as $datas) {
-                                                        $dataSt1 = $comboboxObj->getDataStatusById("tb_e_status", $datas['es_id']);
-                                                        $dss['s_id'] = $dataSt1['es_id'];
-                                                        if ($datas['ds_remark'] == "") {
-                                                            $dss['s_name'] = $dataSt1['es_name'];
-                                                        } else {
-                                                            $dss['s_name'] = $datas['ds_remark'];
-                                                        }
-                                                        $das = statusRepair($dss);
-                                                        $s = $s . "" . $das['bt'];
-                                                    }
+                                                    $r_data = $comboboxObj->getDataStatusByRepair2($table2, $data['r_id']);
+                                                    // 
+                                                    switch ($table){
+                                                        case "tb_e_repair":
+                                                            foreach ($r_data as $datas) {
+                                                                $dataSt1 = $comboboxObj->getDataStatusById($table3, $datas['es_id']);
+                                                                $dss['s_id'] = $dataSt1['es_id'];
+                                                                if ($datas['ds_remark'] == "") {
+                                                                    $dss['s_name'] = $dataSt1['es_name'];
+                                                                } else {
+                                                                    $dss['s_name'] = $datas['ds_remark'];
+                                                                }
+                                                                $das = statusRepair($dss);
+                                                                $s = $s . "" . $das['bt'];
+                                                            }
 
-                                                    echo "
-                                                            <tr>
-                                                                <th scope='row'>{$i}</th>
-                                                                <td class='fs-10 text-center'>{$datefull}</td>
-                                                                <td>{$data['er_remark']}</td>
-                                                                <td class='fs-12'>{$data['er_room']}</td>
-                                                                <td class='fs-12'>{$data['er_floor']}</td>
-                                                                <td class='fs-10'>{$data['b_name']}</td>
-                                                                <td class='fs-12'>{$data['et_name']}</td>
-                                                                <td class='fs-12'>{$data['n_name']}</td>
-                                                                <td class='fs-12'>{$data['s_name_TH']}</td>
-                                                                <td class='fs-12 align-justify'>{$data['es_name']}</td>
-                                                            
-                                                            </tr>
-                                                        ";
+                                                            echo "
+                                                                <tr>
+                                                                    <th scope='row'>{$i}</th>
+                                                                    <td class='fs-10 text-center'>{$datefull}</td>
+                                                                    <td>{$data['er_remark']}</td>
+                                                                    <td class='fs-12'>{$data['er_room']}</td>
+                                                                    <td class='fs-12'>{$data['er_floor']}</td>
+                                                                    <td class='fs-10'>{$data['b_name']}</td>
+                                                                    <td class='fs-12'>{$data['et_name']}</td>
+                                                                    <td class='fs-12'>{$data['n_name']}</td>
+                                                                    <td class='fs-12'>{$data['s_name_TH']}</td>
+                                                                    <td class='fs-12 align-justify'>{$data['es_name']}</td>
+                                                                
+                                                                </tr>
+                                                            ";
+                                                        break;
+                                                        case "tb_a_repair":
+                                                            foreach ($r_data as $datas) {
+                                                                $dataSt1 = $comboboxObj->getDataStatusById($table3, $datas['as_id']);
+                                                                $dss['s_id'] = $dataSt1['as_id'];
+                                                                if ($datas['ds_remark'] == "") {
+                                                                    $dss['s_name'] = $dataSt1['as_name'];
+                                                                } else {
+                                                                    $dss['s_name'] = $datas['ds_remark'];
+                                                                }
+                                                                $das = statusRepair($dss);
+                                                                $s = $s . "" . $das['bt'];
+                                                            }
+
+                                                            echo "
+                                                                <tr>
+                                                                    <th scope='row'>{$i}</th>
+                                                                    <td class='fs-10 text-center'>{$datefull}</td>
+                                                                    <td>{$data['ar_remark']}</td>
+                                                                    <td class='fs-12'>{$data['ar_room']}</td>
+                                                                    <td class='fs-12'>{$data['ar_floor']}</td>
+                                                                    <td class='fs-10'>{$data['b_name']}</td>
+                                                                    <td class='fs-12'>{$data['n_name']}</td>
+                                                                    <td class='fs-12'>{$data['s_name_TH']}</td>
+                                                                    <td class='fs-12 align-justify'>{$data['as_name']}</td>
+                                                                
+                                                                </tr>
+                                                            ";
+                                                        break;
+                                                        case "tb_c_repair":
+                                                            foreach ($r_data as $datas) {
+                                                                $dataSt1 = $comboboxObj->getDataStatusById($table3, $datas['cs_id']);
+                                                                $dss['s_id'] = $dataSt1['cs_id'];
+                                                                if ($datas['ds_remark'] == "") {
+                                                                    $dss['s_name'] = $dataSt1['cs_name'];
+                                                                } else {
+                                                                    $dss['s_name'] = $datas['ds_remark'];
+                                                                }
+                                                                $das = statusRepair($dss);
+                                                                $s = $s . "" . $das['bt'];
+                                                            }
+
+                                                            echo "
+                                                                <tr>
+                                                                    <th scope='row'>{$i}</th>
+                                                                    <td class='fs-10 text-center'>{$datefull}</td>
+                                                                    <td>{$data['cr_remark']}</td>
+                                                                    <td class='fs-12'>{$data['cr_room']}</td>
+                                                                    <td class='fs-12'>{$data['cr_floor']}</td>
+                                                                    <td class='fs-10'>{$data['b_name']}</td>
+                                                                    <td class='fs-12'>{$data['n_name']}</td>
+                                                                    <td class='fs-12'>{$data['s_name_TH']}</td>
+                                                                    <td class='fs-12 align-justify'>{$data['cs_name']}</td>
+                                                                
+                                                                </tr>
+                                                            ";
+                                                        break;
+                                                        case "tb_r_repair":
+                                                            foreach ($r_data as $datas) {
+                                                                $dataSt1 = $comboboxObj->getDataStatusById($table3, $datas['rs_id']);
+                                                                $dss['s_id'] = $dataSt1['rs_id'];
+                                                                if ($datas['ds_remark'] == "") {
+                                                                    $dss['s_name'] = $dataSt1['rs_name'];
+                                                                } else {
+                                                                    $dss['s_name'] = $datas['ds_remark'];
+                                                                }
+                                                                $das = statusRepair($dss);
+                                                                $s = $s . "" . $das['bt'];
+                                                            }
+
+                                                            echo "
+                                                                <tr>
+                                                                    <th scope='row'>{$i}</th>
+                                                                    <td class='fs-10 text-center'>{$datefull}</td>
+                                                                    <td>{$data['rr_remark']}</td>
+                                                                    <td class='fs-12'>{$data['rr_room']}</td>
+                                                                    <td class='fs-12'>{$data['rr_floor']}</td>
+                                                                    <td class='fs-10'>{$data['b_name']}</td>
+                                                                    <td class='fs-12'>{$data['n_name']}</td>
+                                                                    <td class='fs-12'>{$data['s_name_TH']}</td>
+                                                                    <td class='fs-12 align-justify'>{$data['rs_name']}</td>
+                                                                
+                                                                </tr>
+                                                            ";
+                                                        break;
+                                                        case "tb_l_repair":
+                                                            foreach ($r_data as $datas) {
+                                                                $dataSt1 = $comboboxObj->getDataStatusById($table3, $datas['ls_id']);
+                                                                $dss['s_id'] = $dataSt1['ls_id'];
+                                                                if ($datas['ds_remark'] == "") {
+                                                                    $dss['s_name'] = $dataSt1['ls_name'];
+                                                                } else {
+                                                                    $dss['s_name'] = $datas['ds_remark'];
+                                                                }
+                                                                $das = statusRepair($dss);
+                                                                $s = $s . "" . $das['bt'];
+                                                            }
+
+                                                            echo "
+                                                                <tr>
+                                                                    <th scope='row'>{$i}</th>
+                                                                    <td class='fs-10 text-center'>{$datefull}</td>
+                                                                    <td>{$data['lr_remark']}</td>
+                                                                    <td class='fs-12'>{$data['lr_room']}</td>
+                                                                    <td class='fs-12'>{$data['lr_floor']}</td>
+                                                                    <td class='fs-10'>{$data['b_name']}</td>
+                                                                    <td class='fs-12'>{$data['n_name']}</td>
+                                                                    <td class='fs-12'>{$data['s_name_TH']}</td>
+                                                                    <td class='fs-12 align-justify'>{$data['ls_name']}</td>
+                                                                
+                                                                </tr>
+                                                            ";
+                                                        break;
+                                                    }
                                                 }
                                             }
 
@@ -245,7 +431,8 @@ session_start();
                         </div>
                     </div>
                 </div>
-            <?php } ?>
+            <?php }
+            ?>
         </div>
         </div>
     </section>
@@ -257,50 +444,50 @@ session_start();
 
     <!-- Bootstrap Datepicker Plugin Js -->
     <!-- Jquery Core Js -->
-    <script src="../../plugins/jquery/jquery.min.js"></script>
+    <script src="/repair-sci/plugins/jquery/jquery.min.js"></script>
 
     <!-- Bootstrap Core Js -->
-    <script src="../../plugins/bootstrap/js/bootstrap.js"></script>
+    <script src="/repair-sci/plugins/bootstrap/js/bootstrap.js"></script>
 
     <!-- Select Plugin Js -->
-    <script src="../../plugins/bootstrap-select/js/bootstrap-select.js"></script>
+    <script src="/repair-sci/plugins/bootstrap-select/js/bootstrap-select.js"></script>
 
     <!-- Slimscroll Plugin Js -->
-    <script src="../../plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
+    <script src="/repair-sci/plugins/jquery-slimscroll/jquery.slimscroll.js"></script>
 
     <!-- Waves Effect Plugin Js -->
-    <script src="../../plugins/node-waves/waves.js"></script>
+    <script src="/repair-sci/plugins/node-waves/waves.js"></script>
 
     <!-- Autosize Plugin Js -->
-    <script src="../../plugins/autosize/autosize.js"></script>
+    <script src="/repair-sci/plugins/autosize/autosize.js"></script>
 
     <!-- Moment Plugin Js -->
-    <script src="../../plugins/momentjs/moment.js"></script>
+    <script src="/repair-sci/plugins/momentjs/moment.js"></script>
 
     <!-- Bootstrap Material Datetime Picker Plugin Js -->
-    <script src="../../plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
+    <script src="/repair-sci/plugins/bootstrap-material-datetimepicker/js/bootstrap-material-datetimepicker.js"></script>
 
     <!-- Bootstrap Datepicker Plugin Js -->
-    <script src="../../plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
+    <script src="/repair-sci/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
 
     <!-- Jquery DataTable Plugin Js -->
-    <script src="../../plugins/jquery-datatable/jquery.dataTables.js"></script>
-    <script src="../../plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
-    <script src="../../plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
-    <script src="../../plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
-    <script src="../../plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
-    <script src="../../plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
-    <script src="../../plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
-    <script src="../../plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
-    <script src="../../plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
+    <script src="/repair-sci/plugins/jquery-datatable/jquery.dataTables.js"></script>
+    <script src="/repair-sci/plugins/jquery-datatable/skin/bootstrap/js/dataTables.bootstrap.js"></script>
+    <script src="/repair-sci/plugins/jquery-datatable/extensions/export/dataTables.buttons.min.js"></script>
+    <script src="/repair-sci/plugins/jquery-datatable/extensions/export/buttons.flash.min.js"></script>
+    <script src="/repair-sci/plugins/jquery-datatable/extensions/export/jszip.min.js"></script>
+    <script src="/repair-sci/plugins/jquery-datatable/extensions/export/pdfmake.min.js"></script>
+    <script src="/repair-sci/plugins/jquery-datatable/extensions/export/vfs_fonts.js"></script>
+    <script src="/repair-sci/plugins/jquery-datatable/extensions/export/buttons.html5.min.js"></script>
+    <script src="/repair-sci/plugins/jquery-datatable/extensions/export/buttons.print.min.js"></script>
 
     <!-- Custom Js -->
-    <script src="../../js/admin.js"></script>
-    <script src="../../js/pages/forms/basic-form-elements.js"></script>
-    <script src="../../js/pages/tables/jquery-datatable.js"></script>
+    <script src="/repair-sci/js/admin.js"></script>
+    <script src="/repair-sci/js/pages/forms/basic-form-elements.js"></script>
+    <script src="/repair-sci/js/pages/tables/jquery-datatable.js"></script>
 
     <!-- Demo Js -->
-    <script src="../../js/demo.js"></script>
+    <script src="/repair-sci/js/demo.js"></script>
     <script src='/repair-sci/plugins/datepicker-th/js/bootstrap-datepicker.js'></script>
     <script src='/repair-sci/plugins/datepicker-th/js/bootstrap-datepicker-thai.js'></script>
     <script src='/repair-sci/plugins/datepicker-th/js/locales/bootstrap-datepicker.th.js'></script>
