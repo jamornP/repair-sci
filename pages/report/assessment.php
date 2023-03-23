@@ -206,6 +206,7 @@ session_start();
                                                                             }else{
                                                                                 $average = $a[$i]/$countAss;
                                                                             }
+                                                                            $average = AssessmentAswer($average);
                                                                             echo "
                                                                                 <tr class=''>
                                                                                     <td   class='text-center'>{$j}.{$i}</td>
@@ -285,6 +286,7 @@ session_start();
                                                                             }else{
                                                                                 $average = $a[$i]/$countAss;
                                                                             }
+                                                                            $average = AssessmentAswer($average);
                                                                             echo "
                                                                                 <tr class=''>
                                                                                     <td   class='text-center'>{$j}.{$i}</td>
@@ -362,6 +364,7 @@ session_start();
                                                                             }else{
                                                                                 $average = $a[$i]/$countAss;
                                                                             }
+                                                                            $average = AssessmentAswer($average);
                                                                             echo "
                                                                                 <tr class=''>
                                                                                     <td   class='text-center'>{$j}.{$i}</td>
@@ -439,6 +442,7 @@ session_start();
                                                                             }else{
                                                                                 $average = $a[$i]/$countAss;
                                                                             }
+                                                                            $average = AssessmentAswer($average);
                                                                             echo "
                                                                                 <tr class=''>
                                                                                     <td   class='text-center'>{$j}.{$i}</td>
@@ -498,7 +502,7 @@ session_start();
                     </div>
                 </div>
                 <?php
-                if(isset($_POST['submit'])){
+                if(isset($_POST['submit']) AND $_POST['table']<>""){
                     ?>
                 <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
@@ -510,9 +514,9 @@ session_start();
                         </div>
                         <div class="body">
                             <div class="row clearfix">
-                                
+                                <?php $dd = number_format($assper,2);?>
                                 <div class="text-center">
-                                    <input type="text" class="knob" value="<?php echo $assper;?>" data-width="300" data-height="300" data-thickness="0.50" data-fgColor="#E91E63" readonly>
+                                    <input type="text" class="knob" value="<?php echo $dd;?>" data-width="300" data-height="300" data-thickness="0.50" data-fgColor="#E91E63" readonly>
                                 </div>
                                 
                             </div>

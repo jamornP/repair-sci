@@ -434,7 +434,11 @@ function AssessmentAswer($num){
     }elseif($score > 1.5){
         $data="น้อย";
     }else{
+        if($score == 0 OR $score ==""){
+            $data="";
+        }else{
         $data="ต้องปรับปรุง";
+        }
     }
     return $data;
 }
