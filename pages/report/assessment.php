@@ -117,6 +117,7 @@ session_start();
                                                                             <tr class='bg-cyan fs-16'>
                                                                             <td colspan='2'>{$j}.{$g['ass_group']}</td>
                                                                             <td class='text-center'>ระดับความพึงพอใจ</td>
+                                                                            <td class='text-center'>คะแนนเฉลี่ย</td>
                                                                             </tr>
                                                                         ";
                                                                         $dataAss = $assessmentObj->getAssByGroup($g['ass_group']);
@@ -128,13 +129,18 @@ session_start();
                                                                             }else{
                                                                                 $average = $a[$i]/$countAss;
                                                                             }
+                                                                            $scoreAv = number_format($average,2);
                                                                             $average = AssessmentAswer($average);
+                                                                            
                                                                             echo "
                                                                                 <tr class=''>
                                                                                     <td   class='text-center'>{$j}.{$i}</td>
                                                                                     <td  class=''>{$ass['ass_name']}</td>
                                                                                     <td class='text-center'>
                                                                                         {$average}
+                                                                                    </td>
+                                                                                    <td class='text-center'>
+                                                                                        {$scoreAv}
                                                                                     </td>
                                                                                 </tr>
                                                                             ";
@@ -525,6 +531,36 @@ session_start();
                         </div>
                     </div>
                 </div>
+                
+                
+                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>ข้อเสนอแนะ</h2>
+                            <ul class="header-dropdown m-r--5">
+                                
+                            </ul>
+                        </div>
+                        <div class="body">   
+                        <?php
+                        $dataAssType = $assessmentObj->getAssByType($type);
+                        // print_r($dataAssType);
+                        $i=0;
+                        foreach($dataAssType as $data){
+                            
+                            if($data['suggestion']=="" OR strlen($data['suggestion']) <= 1){
+                                    
+                            }else{
+                                $i++;
+                                echo "
+                                    <p>{$i}. {$data['suggestion']}</p>
+                                ";
+                            }
+                        }
+                        ?>
+                        </div>
+                    </div>
+                </div>
                 <?php } ?>
             </div>
             <!-- export Excel -->
@@ -555,9 +591,13 @@ session_start();
     <!-- Custom Js -->
     <script src="../../js/admin.js"></script>
     <script src="../../js/pages/charts/jquery-knob.js"></script>
+    <script src="../../js/pages/charts/morris.js"></script>
 
     <!-- Demo Js -->
     <script src="../../js/demo.js"></script>
+
+
+    
 </body>
 
 </html>
