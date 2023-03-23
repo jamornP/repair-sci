@@ -512,7 +512,7 @@ session_start();
                             <div class="row clearfix">
                                 
                                 <div class="text-center">
-                                    <input type="text" class="knob" value="<?php echo $assper;?>" data-width="300" data-height="300" data-thickness="0.50" data-fgColor="#E91E63">
+                                    <input type="text" class="knob" value="<?php echo $assper;?>" data-width="300" data-height="300" data-thickness="0.50" data-fgColor="#E91E63" readonly>
                                 </div>
                                 
                             </div>
