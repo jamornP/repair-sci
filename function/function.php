@@ -422,4 +422,20 @@ function month_TH($m){
     }
     return $month;
 }
+function AssessmentAswer($num){
+    $data="";
+    $score = $num;
+    if($score > 4.5){
+        $data="ดีมาก";
+    }elseif($score > 3.5){
+        $data="ดี";
+    }elseif($score > 2.5){
+        $data="ปานกลาง";
+    }elseif($score > 1.5){
+        $data="น้อย";
+    }else{
+        $data="ต้องปรับปรุง";
+    }
+    return $data;
+}
 ?>

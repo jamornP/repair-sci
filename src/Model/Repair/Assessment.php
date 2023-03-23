@@ -80,5 +80,17 @@ class Assessment extends DbRepair {
         $row = $stmt->rowCount();
         return $row;
     }
+    public function getAssByType($type) {
+        $sql = "
+        SELECT *
+        FROM tb_ass_data
+        WHERE type = '".$type."'
+        ";
+          
+        $stmt = $this->pdo->query($sql);
+        $data = $stmt->fetchAll();
+        // $row = $stmt->rowCount();
+        return  $data;
+    }
 }
 ?>
