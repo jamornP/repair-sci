@@ -125,7 +125,7 @@ session_start();
                                                                         foreach ($dataAss as $ass) {
                                                                             $i++;
                                                                             if($a[$i]==0 or $countAss == 0){
-                                                                                $average="";
+                                                                                $average=0;
                                                                             }else{
                                                                                 $average = $a[$i]/$countAss;
                                                                             }
@@ -201,6 +201,7 @@ session_start();
                                                                             <tr class='bg-cyan fs-16'>
                                                                             <td colspan='2'>{$j}.{$g['ass_group']}</td>
                                                                             <td class='text-center'>ระดับความพึงพอใจ</td>
+                                                                            <td class='text-center'>คะแนนเฉลี่ย</td>
                                                                             </tr>
                                                                         ";
                                                                         $dataAss = $assessmentObj->getAssByGroup($g['ass_group']);
@@ -208,17 +209,22 @@ session_start();
                                                                         foreach ($dataAss as $ass) {
                                                                             $i++;
                                                                             if($a[$i]==0 or $countAss == 0){
-                                                                                $average="";
+                                                                                $average=0;
                                                                             }else{
                                                                                 $average = $a[$i]/$countAss;
                                                                             }
+                                                                            $scoreAv = number_format($average,2);
                                                                             $average = AssessmentAswer($average);
+                                                                            
                                                                             echo "
                                                                                 <tr class=''>
                                                                                     <td   class='text-center'>{$j}.{$i}</td>
                                                                                     <td  class=''>{$ass['ass_name']}</td>
                                                                                     <td class='text-center'>
                                                                                         {$average}
+                                                                                    </td>
+                                                                                    <td class='text-center'>
+                                                                                        {$scoreAv}
                                                                                     </td>
                                                                                 </tr>
                                                                             ";
@@ -281,6 +287,7 @@ session_start();
                                                                             <tr class='bg-cyan fs-16'>
                                                                             <td colspan='2'>{$j}.{$g['ass_group']}</td>
                                                                             <td class='text-center'>ระดับความพึงพอใจ</td>
+                                                                            <td class='text-center'>คะแนนเฉลี่ย</td>
                                                                             </tr>
                                                                         ";
                                                                         $dataAss = $assessmentObj->getAssByGroup($g['ass_group']);
@@ -288,17 +295,22 @@ session_start();
                                                                         foreach ($dataAss as $ass) {
                                                                             $i++;
                                                                             if($a[$i]==0 or $countAss == 0){
-                                                                                $average="";
+                                                                                $average=0;
                                                                             }else{
                                                                                 $average = $a[$i]/$countAss;
                                                                             }
+                                                                            $scoreAv = number_format($average,2);
                                                                             $average = AssessmentAswer($average);
+                                                                            
                                                                             echo "
                                                                                 <tr class=''>
                                                                                     <td   class='text-center'>{$j}.{$i}</td>
                                                                                     <td  class=''>{$ass['ass_name']}</td>
                                                                                     <td class='text-center'>
                                                                                         {$average}
+                                                                                    </td>
+                                                                                    <td class='text-center'>
+                                                                                        {$scoreAv}
                                                                                     </td>
                                                                                 </tr>
                                                                             ";
@@ -359,6 +371,7 @@ session_start();
                                                                             <tr class='bg-cyan fs-16'>
                                                                             <td colspan='2'>{$j}.{$g['ass_group']}</td>
                                                                             <td class='text-center'>ระดับความพึงพอใจ</td>
+                                                                            <td class='text-center'>คะแนนเฉลี่ย</td>
                                                                             </tr>
                                                                         ";
                                                                         $dataAss = $assessmentObj->getAssByGroup($g['ass_group']);
@@ -366,17 +379,22 @@ session_start();
                                                                         foreach ($dataAss as $ass) {
                                                                             $i++;
                                                                             if($a[$i]==0 or $countAss == 0){
-                                                                                $average="";
+                                                                                $average=0;
                                                                             }else{
                                                                                 $average = $a[$i]/$countAss;
                                                                             }
+                                                                             $scoreAv = number_format($average,2);
                                                                             $average = AssessmentAswer($average);
+                                                                            
                                                                             echo "
                                                                                 <tr class=''>
                                                                                     <td   class='text-center'>{$j}.{$i}</td>
                                                                                     <td  class=''>{$ass['ass_name']}</td>
                                                                                     <td class='text-center'>
                                                                                         {$average}
+                                                                                    </td>
+                                                                                    <td class='text-center'>
+                                                                                        {$scoreAv}
                                                                                     </td>
                                                                                 </tr>
                                                                             ";
@@ -437,6 +455,7 @@ session_start();
                                                                             <tr class='bg-cyan fs-16'>
                                                                             <td colspan='2'>{$j}.{$g['ass_group']}</td>
                                                                             <td class='text-center'>ระดับความพึงพอใจ</td>
+                                                                            <td class='text-center'>คะแนนเฉลี่ย</td>
                                                                             </tr>
                                                                         ";
                                                                         $dataAss = $assessmentObj->getAssByGroup($g['ass_group']);
@@ -444,17 +463,22 @@ session_start();
                                                                         foreach ($dataAss as $ass) {
                                                                             $i++;
                                                                             if($a[$i]==0 or $countAss == 0){
-                                                                                $average="";
+                                                                                $average=0;
                                                                             }else{
                                                                                 $average = $a[$i]/$countAss;
                                                                             }
+                                                                            $scoreAv = number_format($average,2);
                                                                             $average = AssessmentAswer($average);
+                                                                            
                                                                             echo "
                                                                                 <tr class=''>
                                                                                     <td   class='text-center'>{$j}.{$i}</td>
                                                                                     <td  class=''>{$ass['ass_name']}</td>
                                                                                     <td class='text-center'>
                                                                                         {$average}
+                                                                                    </td>
+                                                                                    <td class='text-center'>
+                                                                                        {$scoreAv}
                                                                                     </td>
                                                                                 </tr>
                                                                             ";
