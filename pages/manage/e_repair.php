@@ -115,6 +115,7 @@
                                         <th width="8%" scope="col">ประเถท</th>
                                         <th width="8%" scope="col">ลักษณะงาน</th>
                                         <th width="10%" scope="col">ผู้แจ้ง</th>
+                                        <th width="10%" scope="col">เบอร์ติดต่อ</th>
                                         <th width="15%" scope="col">สถานะ</th>
                                         </tr>
                                 </thead>
@@ -142,6 +143,7 @@
                                                 <td class='fs-12'>{$dataid['et_name']}</td>
                                                 <td class='fs-12'>{$dataid['n_name']}</td>
                                                 <td class='fs-12'>{$dataid['s_name_TH']}</td>
+                                                <td class='fs-12'>{$dataid['er_tel']}</td>
                                                 <td class='fs-12 align-justify'>{$s} {$dataid['es_name']}</td>
                                             </tr>
                                         ";

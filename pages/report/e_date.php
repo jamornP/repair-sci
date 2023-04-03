@@ -45,7 +45,11 @@ session_start();
                                             <select class="form-control show-tick" tabindex="-98" name="table">
                                                 <option value="">-- เลือก --</option>
                                                 <?php
-                                                $staffMenu = $menuObj->getMenuByStaff($_SESSION['s_id']);
+                                                if(($_SESSION['sts_id']==7) OR ($_SESSION['sts_id']==8) OR ($_SESSION['sts_id']==1)){
+                                                    $staffMenu = $menuObj->getMenuByBigbos();
+                                                }else{
+                                                    $staffMenu = $menuObj->getMenuByStaff($_SESSION['s_id']);
+                                                }
                                                 $a = count($staffMenu);
                                                 if ($a > 0) {
                                                     foreach ($staffMenu as $smenu) {

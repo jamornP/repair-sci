@@ -78,6 +78,25 @@ class Menu extends DbRepair
     $data = $stmt->fetchAll();
     return $data;
   }
+  // Big bos
+  public function getMenuByBigbos()
+  {
+    $sql = "
+          SELECT 
+              stm.*,m.*
+          FROM
+              tb_st_menu as stm
+              LEFT JOIN tb_menu as m ON m.m_id = stm.m_id
+          WHERE
+              (m.type = 'e') OR (m.type = 'a') OR (m.type = 'c') OR (m.type = 'r') OR (m.type = 'l')
+          GROUP BY m.type
+          ORDER BY m.m_id
+      ";
+    $stmt = $this->pdo->prepare($sql);
+    $stmt->execute([$s_id]);
+    $data = $stmt->fetchAll();
+    return $data;
+  }
   public function getMenuByStaff($s_id)
   {
     $sql = "

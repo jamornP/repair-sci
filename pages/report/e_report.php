@@ -41,7 +41,19 @@
                         </div>
                     </div>
                 </div>
-        
+                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>ปีงบประมาณ <?php echo $_SESSION['year'];?> (แบบรายเดือน)</h2>
+                            <ul class="header-dropdown m-r--5">
+                                
+                            </ul>
+                        </div>
+                        <div class="body">
+                            <div id="bar_chart_m" class="graph"></div>
+                        </div>
+                    </div>
+                </div>
                 <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header">
@@ -51,7 +63,7 @@
                             </ul>
                         </div>
                         <div class="body">
-                            <div id="bar_chart_m" class="graph"></div>
+                            <div id="bar_chart_m3" class="graph"></div>
                         </div>
                     </div>
                 </div>
@@ -91,6 +103,7 @@
              showYear();
              showMonth();
              showMonth2();
+             showMonth3();
             //  getMorris('donut', 'donut_chart');
             //  getMorris('line', 'donut_chart2');
         });
@@ -111,11 +124,11 @@
                 });
             })
         }
-        function showMonth(){
+        function showMonth3(){
             $.get('type.php?table=tb_e_repair',function(data){
                 // console.log(data);
                 Morris.Donut({
-                    element: 'bar_chart_m',
+                    element: 'bar_chart_m3',
                     data: data,
                     colors: ['rgb(233, 30, 99)', 'rgb(0, 188, 212)', 'rgb(255, 152, 0)', 'rgb(0, 150, 136)','rgb(1,67,91)','rgb(17,161,157)','rgb(255,135,135)','rgb(152,168,248)','rgb(194,17,17)'],
                     formatter: function (y) {
@@ -137,7 +150,19 @@
                 });
             })
         }
-       
+        function showMonth(){
+            $.get('month.php?table=tb_e_repair',function(data){
+                // console.log(data);
+                Morris.Area({
+                    element: 'bar_chart_m',
+                    data: data,
+                    xkey: 'month',
+                    ykeys: ['repair'],
+                    labels: ['แจ้งซ่อม'],
+                    barColors: ['rgb(17,161,157)','rgb(0, 150, 136)']
+                });
+            })
+        }
 
 
 // function getMorris(type, element) {
