@@ -92,8 +92,8 @@ class Menu extends DbRepair
           GROUP BY m.type
           ORDER BY m.m_id
       ";
-    $stmt = $this->pdo->prepare($sql);
-    $stmt->execute([$s_id]);
+    $stmt = $this->pdo->query($sql);
+    // $stmt->execute([$s_id]);
     $data = $stmt->fetchAll();
     return $data;
   }
