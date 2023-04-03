@@ -169,7 +169,7 @@
                     IT &copy; 2023 <a href="javascript:void(0);">by Jamorn Pengsuay</a>.
                 </div>
                 <div class="version">
-                    <b>Version : </b> 2.2
+                    <b>Version : </b> <a href="/repair-sci/component/ver.php">2.3</a>
                 </div>
                 <div id="css_time_run">
                 

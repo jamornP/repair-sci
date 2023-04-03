@@ -255,6 +255,7 @@ session_start();
                                                 <th width="8%" scope="col">ลักษณะงาน</th>
                                                 <th width="10%" scope="col">ผู้แจ้ง</th>
                                                 <th width="10%" scope="col">สถานะ</th>
+                                                <th width="10%" scope="col">ใช้เวลา</th>
                                             </tr>
                                         </thead>
 
@@ -274,6 +275,10 @@ session_start();
                                                     $datefull = datethai_time($data['date_add']);
                                                     $s = "";
                                                     $r_data = $comboboxObj->getDataStatusByRepair2($table2, $data['r_id']);
+                                                    $crow = count($r_data)-1;
+                                                    $countDs = $r_data[0]['ds_date'];
+                                                    $countDe = $r_data[$crow]['ds_date'];
+                                                    $timeCount = time_dif_TH($countDs,$countDe);
                                                     // 
                                                     switch ($table){
                                                         case "tb_e_repair":
@@ -291,7 +296,7 @@ session_start();
 
                                                             echo "
                                                                 <tr>
-                                                                    <th scope='row'>{$i}</th>
+                                                                    <th scope='row'>{$data['r_id']}</th>
                                                                     <td class='fs-10 text-center'>{$datefull}</td>
                                                                     <td>{$data['er_remark']}</td>
                                                                     <td class='fs-12'>{$data['er_room']}</td>
@@ -301,6 +306,7 @@ session_start();
                                                                     <td class='fs-12'>{$data['n_name']}</td>
                                                                     <td class='fs-12'>{$data['s_name_TH']}</td>
                                                                     <td class='fs-12 align-justify'>{$data['es_name']}</td>
+                                                                    <td class='fs-12 align-justify'>{$timeCount}</td>
                                                                 
                                                                 </tr>
                                                             ";
@@ -320,7 +326,7 @@ session_start();
 
                                                             echo "
                                                                 <tr>
-                                                                    <th scope='row'>{$i}</th>
+                                                                    <th scope='row'>{$data['r_id']}</th>
                                                                     <td class='fs-10 text-center'>{$datefull}</td>
                                                                     <td>{$data['ar_remark']}</td>
                                                                     <td class='fs-12'>{$data['ar_room']}</td>
@@ -329,7 +335,7 @@ session_start();
                                                                     <td class='fs-12'>{$data['n_name']}</td>
                                                                     <td class='fs-12'>{$data['s_name_TH']}</td>
                                                                     <td class='fs-12 align-justify'>{$data['as_name']}</td>
-                                                                
+                                                                    <td class='fs-12 align-justify'>{$timeCount}</td>
                                                                 </tr>
                                                             ";
                                                         break;
@@ -348,7 +354,7 @@ session_start();
 
                                                             echo "
                                                                 <tr>
-                                                                    <th scope='row'>{$i}</th>
+                                                                    <th scope='row'>{$data['r_id']}</th>
                                                                     <td class='fs-10 text-center'>{$datefull}</td>
                                                                     <td>{$data['cr_remark']}</td>
                                                                     <td class='fs-12'>{$data['cr_room']}</td>
@@ -357,7 +363,7 @@ session_start();
                                                                     <td class='fs-12'>{$data['n_name']}</td>
                                                                     <td class='fs-12'>{$data['s_name_TH']}</td>
                                                                     <td class='fs-12 align-justify'>{$data['cs_name']}</td>
-                                                                
+                                                                    <td class='fs-12 align-justify'>{$timeCount}</td>
                                                                 </tr>
                                                             ";
                                                         break;
@@ -376,7 +382,7 @@ session_start();
 
                                                             echo "
                                                                 <tr>
-                                                                    <th scope='row'>{$i}</th>
+                                                                    <th scope='row'>{$data['r_id']}</th>
                                                                     <td class='fs-10 text-center'>{$datefull}</td>
                                                                     <td>{$data['rr_remark']}</td>
                                                                     <td class='fs-12'>{$data['rr_room']}</td>
@@ -385,7 +391,7 @@ session_start();
                                                                     <td class='fs-12'>{$data['n_name']}</td>
                                                                     <td class='fs-12'>{$data['s_name_TH']}</td>
                                                                     <td class='fs-12 align-justify'>{$data['rs_name']}</td>
-                                                                
+                                                                    <td class='fs-12 align-justify'>{$timeCount}</td>
                                                                 </tr>
                                                             ";
                                                         break;
@@ -404,7 +410,7 @@ session_start();
 
                                                             echo "
                                                                 <tr>
-                                                                    <th scope='row'>{$i}</th>
+                                                                    <th scope='row'>{$data['r_id']}</th>
                                                                     <td class='fs-10 text-center'>{$datefull}</td>
                                                                     <td>{$data['lr_remark']}</td>
                                                                     <td class='fs-12'>{$data['lr_room']}</td>
@@ -413,7 +419,7 @@ session_start();
                                                                     <td class='fs-12'>{$data['n_name']}</td>
                                                                     <td class='fs-12'>{$data['s_name_TH']}</td>
                                                                     <td class='fs-12 align-justify'>{$data['ls_name']}</td>
-                                                                
+                                                                    <td class='fs-12 align-justify'>{$timeCount}</td>
                                                                 </tr>
                                                             ";
                                                         break;

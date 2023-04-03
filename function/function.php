@@ -363,17 +363,17 @@ function monthInYear_term($year) {
             $mn = sprintf("%02d",$n);
             $mn1 = sprintf("%02d",$n1);
             $data[$i]['m_sql']= "BETWEEN '{$y_en}-{$mn}-01' AND '{$y_en}-{$mn1}-01'";
-            $data[$i]['m_name']= month_TH($mn);
+            $data[$i]['m_name']= ($year)."-".$mn;
         }elseif($n==12){
             $mn = sprintf("%02d",$n);
             $data[$i]['m_sql']= "BETWEEN '{$y_en_old}-{$n}-01' AND '{$y_en}-01-01'";
-            $data[$i]['m_name']= month_TH($mn);
+            $data[$i]['m_name']= ($year-1)."-".$mn;
         }elseif($n>9){
             $n1 = $n+1;
             $mn = sprintf("%02d",$n);
             $mn1 = sprintf("%02d",$n1);
             $data[$i]['m_sql']= "BETWEEN '{$y_en_old}-{$mn}-01' AND '{$y_en_old}-{$mn1}-01'";
-            $data[$i]['m_name']= month_TH($mn);
+            $data[$i]['m_name']= ($year-1)."-".$mn;
         }
         $i++;
     }

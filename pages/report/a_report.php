@@ -31,7 +31,7 @@
                  <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header">
-                        <h2>ย้อนหลัง 5 ปี (แบบรายปี)</h2>
+                        <h2>รายการแจ้งซ่อมย้อนหลัง 5 ปี (แบบรายปี)</h2>
                             <ul class="header-dropdown m-r--5">
                                 
                             </ul>
@@ -41,7 +41,6 @@
                         </div>
                     </div>
                 </div>
-        
                 <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header">
@@ -52,6 +51,19 @@
                         </div>
                         <div class="body">
                             <div id="bar_chart_m" class="graph"></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-12 col-sm-12 col-xs-12">
+                    <div class="card">
+                        <div class="header">
+                            <h2>ปีงบประมาณ <?php echo $_SESSION['year'];?> (แยกตามอาคาร)</h2>
+                            <ul class="header-dropdown m-r--5">
+                                
+                            </ul>
+                        </div>
+                        <div class="body">
+                            <div id="bar_chart_m2" class="graph"></div>
                         </div>
                     </div>
                 </div>
@@ -75,34 +87,52 @@
         $(document).ready(function () {
              showYear();
              showMonth();
+             showMonth2();
         });
 
         function showYear(){
             $.get('year.php?table=tb_a_repair',function(data){
                 // console.log(data);
-                Morris.Bar({
+                Morris.Area({
                     element: 'bar_chart_y',
                     data: data,
                     xkey: 'year',
-                    ykeys: ['repair','complete','wait','company','no'],
-                    labels: ['แจ้งซ่อม','เรียบร้อย','รออะไหล่','จ้างเหมา','งานค้าง'],
-                    barColors: ['rgb(1,67,91)','rgb(17,161,157)','rgb(255,135,135)','rgb(152,168,248)','rgb(194,17,17)']
+                    ykeys: ['repair'],
+                    labels: ['แจ้งซ่อม'],
+                    pointSize: 2,
+                    hideHover: 'auto',
+                    // barColors: ['rgb(1,67,91)','rgb(17,161,157)','rgb(255,135,135)','rgb(152,168,248)','rgb(194,17,17)'],
+                    lineColors: ['rgb(233, 30, 99)']
+                });
+            })
+        }
+        function showMonth2(){
+            $.get('building.php?table=tb_a_repair',function(data){
+                // console.log(data);
+                Morris.Donut({
+                    element: 'bar_chart_m2',
+                    data: data,
+                    colors: ['rgb(233, 30, 99)', 'rgb(0, 188, 212)', 'rgb(255, 152, 0)', 'rgb(0, 150, 136)','rgb(1,67,91)','rgb(17,161,157)','rgb(255,135,135)','rgb(152,168,248)','rgb(194,17,17)'],
+                    formatter: function (y) {
+                        return y + '%'
+                    }
                 });
             })
         }
         function showMonth(){
             $.get('month.php?table=tb_a_repair',function(data){
                 // console.log(data);
-                Morris.Bar({
+                Morris.Area({
                     element: 'bar_chart_m',
                     data: data,
                     xkey: 'month',
-                    ykeys: ['repair','complete','wait','company','no'],
-                    labels: ['แจ้งซ่อม','เรียบร้อย','รออะไหล่','จ้างเหมา','งานค้าง'],
-                    barColors: ['rgb(1,67,91)','rgb(17,161,157)','rgb(255,135,135)','rgb(152,168,248)','rgb(194,17,17)']
+                    ykeys: ['repair'],
+                    labels: ['แจ้งซ่อม'],
+                    barColors: ['rgb(17,161,157)','rgb(0, 150, 136)']
                 });
             })
         }
+        
         
     </script>
     
