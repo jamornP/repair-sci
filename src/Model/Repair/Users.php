@@ -82,9 +82,48 @@ class Users extends DbRepair {
         $_SESSION['s_images']=$userDB['s_images'];
         $_SESSION['s_id']=$userDB['s_id'];
         $_SESSION['sts_id']=$userDB['sts_id'];
-        
+        $_SESSION['google']=false;
 
         return true;
+        } else {
+        return false;
+        }
+    }
+    public function checkUserGoogle($user,$img) {
+        $sql = "
+        SELECT
+            s.*,sts.sts_name,d.d_name
+        FROM
+            tb_staff as s
+            LEFT JOIN tb_st_status as sts ON sts.sts_id = s.sts_id
+            LEFT JOIN tb_department as d ON d.d_id = s.d_id
+        WHERE
+            email = ?
+        ";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute([$user['email']]);
+        $data = $stmt->fetchAll();
+        $userDB = $data[0];
+        if(count($data)>0) {
+            session_start();
+            $_SESSION['s_name'] = $userDB['s_name_EN'];
+            $_SESSION['s_name_TH'] = $userDB['s_name_TH'];
+            $_SESSION['s_name_EN'] = $userDB['s_name_EN'];
+            $_SESSION['email'] = $userDB['email'];
+            $_SESSION['s_position']=$userDB['s_position'];
+            $_SESSION['sts_name']=$userDB['sts_name'];
+            $_SESSION['s_id']=$userDB['s_id'];
+            $_SESSION['d_id']=$userDB['d_id'];
+            $_SESSION['d_name']=$userDB['d_name'];
+            $_SESSION['s_tel']=$userDB['s_tel'];
+            $_SESSION['login'] = true;
+            $_SESSION['s_images']=$img;
+            $_SESSION['s_id']=$userDB['s_id'];
+            $_SESSION['sts_id']=$userDB['sts_id'];
+            $_SESSION['google']=true;
+            
+
+            return true;
         } else {
         return false;
         }

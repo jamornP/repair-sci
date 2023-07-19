@@ -8,28 +8,54 @@
             }else{
                 $image = $_SESSION['s_images'];
             }
+            if($_SESSION['google']){
                 echo '
-            <div class="user-info">
-                <div class="image">
-                    <img src="/repair-sci/images/staff/'.$image.'" width="48" height="48" alt="User" />
-                    
-                </div>
-                <div class="info-container">
-                    <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'.$_SESSION['s_name'].'</div>
-                    <div class="email">'.$_SESSION['email'].'</div>
-                    <div class="btn-group user-helper-dropdown">
-                        <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
-                        <ul class="dropdown-menu pull-right">
-                            <li><a href="/repair-sci/pages/member/profile.php"><i class="material-icons">person</i>Profile</a></li>
-                            <li role="separator" class="divider"></li>
+                    <div class="user-info">
+                        <div class="image">
+                            <img src="'.$image.'" width="48" height="48" alt="User" />
                             
-                            <li><a href="/repair-sci/pages/auth/sign_out.php"><i class="material-icons">input</i>Sign Out</a></li>
-                        </ul>
+                        </div>
+                        <div class="info-container">
+                            <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'.$_SESSION['s_name'].'</div>
+                            <div class="email">'.$_SESSION['email'].'</div>
+                            <div class="btn-group user-helper-dropdown">
+                                <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
+                                <ul class="dropdown-menu pull-right">
+                                    <li><a href="/repair-sci/pages/member/profile.php"><i class="material-icons">person</i>Profile</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    
+                                    <li><a href="/repair-sci/pages/auth/sign_out.php"><i class="material-icons">input</i>Sign Out</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        
                     </div>
-                </div>
-                
-            </div>
                 ';
+
+            }else{
+                echo '
+                    <div class="user-info">
+                        <div class="image">
+                            <img src="/repair-sci/images/staff/'.$image.'" width="48" height="48" alt="User" />
+                            
+                        </div>
+                        <div class="info-container">
+                            <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">'.$_SESSION['s_name'].'</div>
+                            <div class="email">'.$_SESSION['email'].'</div>
+                            <div class="btn-group user-helper-dropdown">
+                                <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
+                                <ul class="dropdown-menu pull-right">
+                                    <li><a href="/repair-sci/pages/member/profile.php"><i class="material-icons">person</i>Profile</a></li>
+                                    <li role="separator" class="divider"></li>
+                                    
+                                    <li><a href="/repair-sci/pages/auth/sign_out.php"><i class="material-icons">input</i>Sign Out</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                    </div>
+                ';
+            }
             ?>
             
             <!-- #User Info -->

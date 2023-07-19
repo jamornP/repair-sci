@@ -1,3 +1,4 @@
+<?php require_once $_SERVER['DOCUMENT_ROOT']."/repair-sci/pages/auth/config.php";?>
 <!DOCTYPE html>
 <html>
 
@@ -35,13 +36,15 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-xs-8 p-t-5">
-                            <!-- <input type="checkbox" name="rememberme" id="rememberme" class="filled-in chk-col-pink">
-                            <label for="rememberme">Remember Me</label> -->
+                        <div class="col-xs-8">
+                        <button onclick="window.location = '<?php echo $login_url;?>'" type="button" class="btn bg-22">
+                                <div class=""><img src="/repair-sci/images/logo_google2.png" alt="Logo" style="display:box; margin: 0 auto; max-width:20px;">Sign in with Google </div>
+                            </button>
                         </div>
                         <div class="col-xs-4">
                             <button class="btn btn-block bg-pink waves-effect" type="submit">SIGN IN</button>
                         </div>
+                        .
                     </div>
                     <!-- <div class="row m-t-15 m-b--20">
                         <div class="col-xs-6">
@@ -55,7 +58,7 @@
             </div>
         </div>
         <a href="/repair-sci/doc/คู่มือการใช้งานโปรแกรมแจ้งซ่อมคณะวิทยาศาสตร์เบื้องต้น .pdf" class="btn bg-indigo waves-effect font-bold col-orange" target="_blank">คู่มือการใช้งานเบื้องต้น</a>
-
+       
     </div>
 
     <!-- Jquery Core Js -->
